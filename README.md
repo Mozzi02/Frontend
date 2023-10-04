@@ -11,8 +11,8 @@ Gestion de Stock para tienda de indumentaria
 * 48022 - Ayelen Aimar
 
 ## Repositorios
-* [Frontend app](https://github.com/bautigr02/TP-DSW/tree/frontend-app)
-* [Backend app](https://github.com/bautigr02/TP-DSW/tree/backend-app)
+* [Frontend app](https://github.com/Mozzi02/TrabajoPractico-DSW-Grau-Mozzi-Aimar/tree/frontend)
+* [Backend app](https://github.com/Mozzi02/TrabajoPractico-DSW-Grau-Mozzi-Aimar/tree/backend)
 
 ## TEMA: 
 
