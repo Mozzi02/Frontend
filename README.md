@@ -18,7 +18,7 @@ Gestion de Stock para tienda de indumentaria
 
   Un negocio de indumentaria nos pidió que realicemos una página web para su gestión. Esta le permitirá a un empleado dar de alta, baja o modificar productos, gestionar su stock, registrar un cliente y registrar ventas.
   Además, un usuario administrador podrá dar de alta, baja o modificar empleados, dar de alta, baja o modificar proveedores, realizar pedidos a proveedores y también podrá realizar las funciones que puede realizar un empleado.
-  Al final de cada mes, el administrador deberá poder confeccionar una lista de los proveedores a los que más pedidos se le realizó y una lista de los productos más vendidos.
+  El sistema deberá poder listar todos los componentes del negocio, permitir a los usuarios con acceso editarlos, añadir otros, o borrarlos.
 
 
 ## IMAGEN DEL MODELO:
