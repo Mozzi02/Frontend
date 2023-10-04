@@ -11,8 +11,8 @@ Gestion de Stock para tienda de indumentaria
 * 48022 - Ayelen Aimar
 
 ## Repositorios
-* [Frontend app]()
-* [Backend app]()
+* Frontend app
+* Backend app
 
 ## TEMA: 
 
