@@ -30,15 +30,14 @@ https://drive.google.com/file/d/1m_fRjhLe9l6uyDgpRPfrgdzHzN00MFXC/view?usp=shari
 ### Alcance mínimo
 |Req|Detalle|
 |:-|:-|
-|CRUD simple|1. CRUD Cliente<br>2. CRUD Producto<br>3. CRUD Proveedor |
-|CRUD dependiente|1. CRUD Venta {depende de} CRUD Línea de venta + CRUD Cliente + CRUD Empleado<br>2. CRUD Producto {depende de} CRUD Tipo producto|
-|Listado<br>+<br>detalle| 1. Listado de los productos filtrados por cantidad de líneas de ventas. Muestra idProducto, descripciónProducto y cantidad total vendida.<br> 2. Listado de los proveedores filtrado por cantidad de Pedidos. Muestra cuitProveedor y razonSocial|
+|CRUD simple|1. CRUD Proveedor<br>2. CRUD Rol<br>3. CRUD Tipo Producto |
+|CRUD dependiente|1. CRUD Cliente {depende de} CRUD Categoría<br>2. CRUD Empleado {depende de} CRUD Rol|
+|Listado<br>+<br>detalle| 1. Listado de los productos filtrados por stock.<br> 2. Listado de los clientes filtrado por nombre y/o apellido|
 |CUU/Epic|1. Registrar una venta<br>2. Realizar un pedido|
-
 
 ### Adicionales para aprobación directa
 
 |Req|Detalle|
 |:-|:-|
 |CRUD |1. CRUD Empleados<br>2. CRUD Pedidos<br>3. CRUD Cliente<br>4. CRUD Venta<br>5. CRUD Productos<br>6. CRUD Proveedor<br>7. CRUD Linea de venta<br>8. CRUD Tipo producto<br>9. CRUD Rol|
-|CUU/Epic|1. Registrar una venta<br>2. Realizar un pedido<br>3. Alta de un empleado|
+|CUU/Epic|1. <br>2. <br>3. |
