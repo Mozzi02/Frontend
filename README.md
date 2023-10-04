@@ -11,8 +11,8 @@ Gestion de Stock para tienda de indumentaria
 * 48022 - Ayelen Aimar
 
 ## Repositorios
-* [Frontend app](https://github.com/Mozzi02/TrabajoPractico-DSW-Grau-Mozzi-Aimar/tree/frontend)
-* [Backend app](https://github.com/Mozzi02/TrabajoPractico-DSW-Grau-Mozzi-Aimar/tree/backend)
+* [Frontend app]()
+* [Backend app]()
 
 ## TEMA: 
 
@@ -23,9 +23,9 @@ Gestion de Stock para tienda de indumentaria
 
 ## IMAGEN DEL MODELO:
 
-![MODELO DE DOMINIO - TIENDA INDUMENTARIA-Copia de Página-1 drawio](https://github.com/bautigr02/TP-DSW/assets/75873464/5ad1794d-0bb0-4092-987e-8761ce681d4c)
+![MODELO DE DOMINIO - TIENDA INDUMENTARIA-Copia de Página-1 drawio](https://drive.google.com/file/d/18v-n7xb8ZoUxy-R92nKAjMU5oQqoP1fb/view?usp=sharing)
 
-https://drive.google.com/drive/folders/157aghfvbj1BjJCeRXHIjp3ElVico5Tsm?usp=drive_link
+https://drive.google.com/file/d/1m_fRjhLe9l6uyDgpRPfrgdzHzN00MFXC/view?usp=sharing 
 
 
 
