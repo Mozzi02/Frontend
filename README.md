@@ -23,11 +23,7 @@ Gestion de Stock para tienda de indumentaria
 
 ## IMAGEN DEL MODELO:
 
-![MODELO DE DOMINIO - TIENDA INDUMENTARIA-Copia de Página-1 drawio](https://drive.google.com/file/d/18v-n7xb8ZoUxy-R92nKAjMU5oQqoP1fb/view?usp=sharing)
-
 https://drive.google.com/file/d/1m_fRjhLe9l6uyDgpRPfrgdzHzN00MFXC/view?usp=sharing 
-
-
 
 ## ALCANCE FUNCIONAL
 
