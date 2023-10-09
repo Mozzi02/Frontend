@@ -14,5 +14,8 @@ INSTANCIA 2 (04/10/2023)
 INSTANCIA 3 (05/10/2023)
 ![image](https://github.com/Mozzi02/TrabajoPractico-DSW-Grau-Mozzi-Aimar/assets/128518865/bbd540ad-62ec-4ecd-99b7-83f050340dcf)
 
+INSTANCIA 4 (07/10/2023)
+![image](https://github.com/Mozzi02/TrabajoPractico-DSW-Grau-Mozzi-Aimar/assets/128518865/5c4e2f0c-61f9-4f82-8eb7-ef7808acaf9c)
+
 
 
