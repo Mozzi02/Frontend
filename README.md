@@ -35,7 +35,7 @@ https://drive.google.com/file/d/1m_fRjhLe9l6uyDgpRPfrgdzHzN00MFXC/view?usp=shari
 |:-|:-|
 |CRUD simple|1. CRUD Proveedor<br>2. CRUD Rol<br>3. CRUD Tipo Producto |
 |CRUD dependiente|1. CRUD Cliente {depende de} CRUD Categoría<br>2. CRUD Empleado {depende de} CRUD Rol|
-|Listado<br>+<br>detalle| 1. Listado de los productos filtrados por stock.<br> 2. Listado de los clientes filtrado por nombre y/o apellido|
+|Listado<br>+<br>detalle| 1. Listado de los productos por descripcion.<br> 2. Listado de los proveedores por razon Social. <br>|
 |CUU/Epic|1. Registrar una venta<br>2. Realizar un pedido|
 
 ### Adicionales para aprobación directa
