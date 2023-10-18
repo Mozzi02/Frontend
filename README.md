@@ -11,7 +11,7 @@ Gestion de Stock para tienda de indumentaria
 * 48022 - Ayelen Aimar
 
 ## Repositorios
-* Frontend app
+* [Frontend app](https://github.com/Mozzi02/Frontend)
 * Backend app
 
 ## TEMA: 
