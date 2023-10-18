@@ -43,4 +43,4 @@ https://drive.google.com/file/d/1m_fRjhLe9l6uyDgpRPfrgdzHzN00MFXC/view?usp=shari
 |Req|Detalle|
 |:-|:-|
 |CRUD |1. CRUD Empleados<br>2. CRUD Pedidos<br>3. CRUD Cliente<br>4. CRUD Venta<br>5. CRUD Productos<br>6. CRUD Proveedor<br>7. CRUD Linea de venta<br>8. CRUD Tipo producto<br>9. CRUD Rol|
-|CUU/Epic|1. <br>2. <br>3. |
+|CUU/Epic|1. Registrar una venta<br>2. Realizar un pedido<br>3. Gráficos sobre las ventas en un período de tiempo|
