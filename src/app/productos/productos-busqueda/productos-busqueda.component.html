@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="buscador">
+    <label for="descripcion">Buscar Productos</label>
+    <input #descripcion id="descripcion" (input)="buscar(descripcion.value)" />
+    <ul class="resultado">
+      <li *ngFor="let prod of productos$ | async">
+        <a routerLink="/productos/{{prod.idProducto}}">   
+          {{prod.descripcion}}
+        </a>
+        </li>
+    </ul>
+  </div>
+</body>
+</html>

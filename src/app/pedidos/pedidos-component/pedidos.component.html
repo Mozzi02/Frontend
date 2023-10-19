@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div class="nuevopedido">
+    <h4>Nuevo Pedido</h4>
+    <form class="formulario" #formproducto="ngForm">
+      <div class="input-group">
+        <label for="fecha">Fecha y hora:</label>
+        <input class="input" type="text" id="fecha" name="fecha" placeholder="Fecha" [(ngModel)]="fechaPedido">
+      </div>
+      <div class="input-group">
+        <label for="empleado">Empleado:</label>
+        <input class="input" type="text" id="empleado" name="empleado" placeholder="Empleado" [(ngModel)]="idEmpleado">
+      </div>
+      <div class="input-group">
+        <label for="proveedor">Proveedor:</label>
+        <input class="input" type="text" id="proveedor" name="proveedor" placeholder="Proveedor" [(ngModel)]="idProveedor">
+      </div>
+      <div class="input-group">
+        <label for="cantidad">Cantidad:</label>
+        <input class="input" type="text" id="cantidad" name="cantidad" placeholder="Cantidad" [(ngModel)]="cantidad">
+      </div>
+      <div class="input-group">
+        <label for="producto">Producto:</label>
+        <input class="input" type="text" id="producto" name="producto" placeholder="Producto" [(ngModel)]="idProducto">
+      </div>
+      <button class="boton agregar" (click)="agregarNuevoPedido()">Agregar</button>
+    </form>
+  </div>
+  <div class="grilla">
+    <div class="columnas">
+      <span>Id</span>
+      <span>Fecha y hora</span>
+      <span>Empleado</span>
+      <span>Proveedor</span>
+      <span>Cantidad</span>
+      <span>Producto</span>
+      <span>Acciones</span>
+    </div>
+    <div class="items" *ngFor="let ped of pedidos">
+      <div class="datos">
+        <span>{{ped.idPedido}}</span>
+        <span>{{ped.fechaPedido}}</span>
+        <span>{{ped.idEmpleado}}</span>
+        <span>{{ped.idProveedor}}</span>
+        <span>{{ped.cantidad}}</span>
+        <span>{{ped.idProducto}}</span>
+        <div class="editarborrar">
+          <button class="boton editar">Editar</button>
+          <button class="boton borrar">Borrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

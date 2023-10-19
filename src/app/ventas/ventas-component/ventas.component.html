@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="nuevaventa">
+    <h4>Nueva Venta</h4>
+    <form class="formulario" #formproducto="ngForm">
+      <div class="input-group">
+        <label for="fecha">Fecha y hora:</label>
+        <input class="input" type="text" id="fecha" name="fecha" placeholder="Fecha" [(ngModel)]="fechaVenta">
+      </div>
+      <div class="input-group">
+        <label for="cliente">Cliente:</label>
+        <input class="input" type="text" id="cliente" name="cliente" placeholder="Cliente" [(ngModel)]="idCliente">
+      </div>
+      <div class="input-group">
+        <label for="empleado">Empleado:</label>
+        <input class="input" type="text" id="empleado" name="empleado" placeholder="Empleado" [(ngModel)]="idEmpleado">
+      </div>
+      <button class="boton agregar" (click)="agregarNuevaVenta()">Agregar</button>
+    </form>
+  </div>
+  <div class="grilla">
+    <div class="columnas">
+      <span>Id</span>
+      <span>Fecha y hora</span>
+      <span>Cliente</span>
+      <span>Empleado</span>
+      <span>Acciones</span>
+    </div>
+    <div class="items" *ngFor="let ven of ventas">
+      <div class="datos">
+        <span>{{ven.idVenta}}</span>
+        <span>{{ven.fechaVenta}}</span>
+        <span>{{ven.idCliente}}</span>
+        <span>{{ven.idEmpleado}}</span>
+        <div class="editarborrar">
+          <button class="boton editar">Editar</button>
+          <button class="boton borrar">Borrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

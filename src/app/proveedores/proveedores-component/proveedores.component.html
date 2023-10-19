@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div class="nuevoproveedor">
+    <h4>Nuevo Proveedor</h4>
+    <form class="formulario" #formproducto="ngForm">
+      <div class="input-group">
+        <label for="cuit">CUIT:</label>
+        <input class="input" type="text" id="cuit" name="cuit" placeholder="CUIT" [(ngModel)]="cuit">
+      </div>
+      <div class="input-group">
+        <label for="razonSocial">Razon Social:</label>
+        <input class="input" type="text" id="razonSocial" name="razonSocial" placeholder="Razon Social" [(ngModel)]="razonSocial">
+      </div>
+      <div class="input-group">
+        <label for="telefono">Telefono:</label>
+        <input class="input" type="text" id="telefono" name="telefono" placeholder="Telefono" [(ngModel)]="telefono">
+      </div>
+      <div class="input-group">
+        <label for="email">Email:</label>
+        <input class="input" type="text" id="email" name="email" placeholder="E-Mail" [(ngModel)]="email">
+      </div>
+      <button class="boton agregar" (click)="agregarNuevoProveedor()">Agregar</button>
+    </form>
+  </div>
+
+  <app-proveedores-busqueda></app-proveedores-busqueda>
+
+  <div class="grilla">
+    <div class="columnas">
+      <span>Id</span>
+      <span>CUIT</span>
+      <span>Razon Social</span>
+      <span>Telefono</span>
+      <span>Email</span>
+      <span>Acciones</span>
+    </div>
+    <div class="items" *ngFor="let pro of proveedores">
+      <div class="datos">
+        <span>{{pro.idProveedor}}</span>
+        <span>{{pro.cuit}}</span>
+        <span>{{pro.razonSocial}}</span>
+        <span>{{pro.telefono}}</span>
+        <span>{{pro.email}}</span>
+        <div class="editarborrar">
+          <button class="boton editar">Editar</button>
+          <button class="boton borrar">Borrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

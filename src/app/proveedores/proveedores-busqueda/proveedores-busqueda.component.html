@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="buscador">
+    <label for="razonSocial">Buscar Proveedores</label>
+    <input #razonSocial id="razonSocial" (input)="buscar(razonSocial.value)" />
+    <ul class="resultado">
+      <li *ngFor="let prov of proveedores$ | async">
+        <a routerLink="/proveedores/{{prov.idProveedor}}">
+          {{prov.razonSocial}}
+        </a>
+      </li>
+    </ul>
+  </div>
+</body>
+</html>

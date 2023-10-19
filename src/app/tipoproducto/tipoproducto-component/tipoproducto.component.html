@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div class="nuevotipo">
+    <span class="titulo">Nueva Rol</span>
+    <form class="formulario" #formproducto="ngForm">
+      <div class="input-group">
+        <label for="descripcion">Descripcion:</label>
+        <input class="input" type="text" id="descripcion" name="descripcion" placeholder="Descripcion" [(ngModel)]="descripcion">
+      </div>
+      <button class="boton agregar" (click)="agregarNuevoTipo()">Agregar</button>
+    </form>
+  </div>
+  <div class="grilla">
+    <div class="columnas">
+      <span>Id</span>
+      <span>Descripcion</span>
+      <span>Acciones</span>
+    </div>
+    <div class="items" *ngFor="let tipo of tipos">
+      <div class="datos">
+        <span>{{tipo.idTipo}}</span>
+        <span>{{tipo.descripcion}}</span>
+        <div class="editarborrar">
+          <button class="boton editar">Editar</button>
+          <button class="boton borrar">Borrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

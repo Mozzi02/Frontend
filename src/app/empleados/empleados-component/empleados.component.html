@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+  <div class="nuevoempleado">
+    <h4>Nuevo Empleado</h4>
+    <form class="formulario" #formproducto="ngForm">
+      <div class="input-group">
+        <label for="nombre">Nombre:</label>
+        <input class="input" type="text" id="nombre" name="nombre" placeholder="Nombre" [(ngModel)]="nombre">
+      </div>
+      <div class="input-group">
+        <label for="apellido">Apellido:</label>
+        <input class="input" type="text" id="apellido" name="apellido" placeholder="Apellido" [(ngModel)]="apellido">
+      </div>
+      <div class="input-group">
+        <label for="telefono">Telefono:</label>
+        <input class="input" type="text" id="telefono" name="telefono" placeholder="Telefono" [(ngModel)]="telefono">
+      </div>
+      <div class="input-group">
+        <label for="email">Email:</label>
+        <input class="input" type="text" id="email" name="email" placeholder="E-Mail" [(ngModel)]="email">
+      </div>
+      <div class="input-group">
+        <label for="direccion">Direccion:</label>
+        <input class="input" type="text" id="direccion" name="direccion" placeholder="Direccion" [(ngModel)]="direccion">
+      </div>
+      <div class="input-group">
+        <label for="dni">DNI:</label>
+        <input class="input" type="text" id="dni" name="dni" placeholder="DNI" [(ngModel)]="dni">
+      </div>
+      <div class="input-group">
+        <label for="selecRol">Rol:</label>
+        <select class="seleccionador" id="selecRol" name="rol" placeholder="ROL" [(ngModel)]="rol">
+          <option type="number" id="empleado">Empleado</option>
+          <option type="number" id="administrador">Administrador</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="password">Password:</label>
+        <input class="input" type="text" id="password" name="password" placeholder="Password" [(ngModel)]="password">
+      </div>
+      <button class="boton agregar" (click)="agregarNuevoEmpleado()">Agregar</button>
+    </form>
+  </div>
+  <div class="grilla">
+    <div class="columnas">
+      <span>Id</span>
+      <span>Nombre</span>
+      <span>Apellido</span>
+      <span>Telefono</span>
+      <span>Email</span>
+      <span>Direccion</span>
+      <span>DNI</span>
+      <span>Categoria</span>
+      <span>Password</span>
+      <span>Acciones</span>
+  
+    </div>
+    <div class="items" *ngFor="let emp of empleados">
+      <div class="datos">
+        <span>{{emp.idEmpleado}}</span>
+        <span>{{emp.nombre}}</span>
+        <span>{{emp.apellido}}</span>
+        <span>{{emp.telefono}}</span>
+        <span>{{emp.email}}</span>
+        <span>{{emp.direccion}}</span>
+        <span>{{emp.dni}}</span>
+        <span>{{emp.idRol}}</span>
+        <span>{{emp.password}}</span>
+        <div class="editarborrar">
+          <button class="boton editar">Editar</button>
+          <button class="boton borrar">Borrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="nuevoproducto">
+    <span class="titulo">Nuevo Producto</span>
+      <form class="formulario" #formproducto = "ngForm">
+        <div class="input-group">
+          <label for="descripcion">Descripcion:</label>
+          <input class="input" type="text" id="descripcion" name="descripcion" placeholder="Descripcion" [(ngModel)]="descripcion">
+        </div>
+        <div class="input-group">
+          <label for="precio">Precio:</label>
+          <input class="input" type="text" id="precio"  name="precio" placeholder="Precio" [(ngModel)]="precio">
+        </div>
+        <div class="input-group">
+          <label for="selecTipo">Tipo de producto:</label>
+          <select class="seleccionador" id="selecTipo" name="tipo" placeholder="Tipo de Producto" [(ngModel)]="tipo">
+            <option type="number" id="campera">Campera</option>
+            <option type="number" id="gorro">Gorro</option>
+            <option type="number" id="calzado">Calzado</option>
+            <option type="number" id="pantalon">Pantalon</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label for="stock">Stock:</label>
+          <input class="input" type="text" id="stock" name="stock" placeholder="Stock" [(ngModel)]="stock">
+        </div>
+        <div class="input-group">
+          <label for="imagen">URL de la Imagen:</label>
+          <input class="input" type="text" id="imagen" name="imagen" placeholder="URL de la Imagen" [(ngModel)]="imagen">
+        </div>
+        <button class="boton agregar" (click)="agregarNuevoProducto()">Agregar</button>
+      </form>
+  </div>
+
+  <app-productos-busqueda></app-productos-busqueda>
+
+  <div class="grilla">
+    <div class="columnas">
+      <span>Imagen</span>
+      <span>Id</span>
+      <span>Descripcion</span>
+      <span>Precio</span>
+      <span>Tipo de Producto</span>
+      <span>Stock</span>
+      <span>Acciones</span>
+    </div>
+    <div class="items" *ngFor="let prod of productos">
+      <div class="datos">
+        <span>
+          <img class="imgprod" src={{prod.imagen}} alt="Imagen del producto"/>
+        </span>
+        <span>{{prod.idProducto}}</span>
+        <span>{{prod.descripcion}}</span>
+        <span>${{prod.precio}}</span>
+        <span *ngIf="prod.idTipo == 1">Campera</span>
+        <span *ngIf="prod.idTipo == 2">Gorro</span>
+        <span *ngIf="prod.idTipo == 3">Calzado</span>
+        <span *ngIf="prod.idTipo == 4">Pantalon</span>
+        <span>{{prod.stock}}</span>
+        <div class="editarborrar">
+          <button class="boton editar">Editar</button>
+          <button class="boton borrar">Borrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

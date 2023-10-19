@@ -1,0 +1,39 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.home {
+  text-decoration: none;
+  transition: all 0.2s ease;
+  color: white;
+  font-size: 35px;
+}
+
+.home:hover {
+  transform: scale(110%);
+}
+
+.pestaña {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  transition: all 0.2s ease;
+  padding: 10px;
+  border-radius: 15px;
+  height: 30px;
+}
+
+.pestaña:hover {
+  background-color: #176B87;
+}
+
+.icono {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  margin-left: 10px;
+}

@@ -1,0 +1,80 @@
+.nuevopedido {
+  display: flex;
+  border: 2px solid #DAFFFB;
+  border-radius: 8px;
+  background-color: #176B87;
+  padding: 20px;
+}
+
+.formulario {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 10px;
+  text-decoration: none;
+  align-items: center;
+}
+
+.grilla {
+  background: #001C30;
+  margin-top: 20px;
+}
+
+.columnas {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+  grid-column: span 7;
+  border: 2px solid #DAFFFB;
+}
+
+.columnas span {
+  text-align: center;
+  border-right: 2px solid #DAFFFB;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+}
+
+.datos {
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+  grid-column: span 7;
+  border: 2px solid #DAFFFB;
+}
+
+.datos span {
+  display: flex;
+  text-align: center;
+  border-right: 2px solid #DAFFFB;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.editarborrar {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.editar {
+  background-color: rgb(54, 54, 231);
+  margin-bottom: 10px;
+}
+
+.borrar {
+  background-color: red;
+  margin-bottom: 10px;
+}
+
+.agregar {
+  background-color: rgb(10, 214, 10);
+  align-self: center;
+}
