@@ -1,0 +1,22 @@
+html {
+  font-family: 'Noto Serif', serif;
+  font-size: 16px;
+  color: white;
+  background-color: #001C30;
+}
+
+.boton {
+  border-radius: 10px;
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  height: 30px;
+  width: 75px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.boton:hover {
+  transform: scale(105%);
+}
