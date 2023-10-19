@@ -1,46 +1,27 @@
-# TP-DSW
-Gestion de Stock para tienda de indumentaria
+# AngularNegocioIndumentaria
 
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.5.
 
-## INTEGRANTES: 
+## Development server
 
-* 47857 - Mozzi Feliciano
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-* 47858 - Grau Juan Bautista
+## Code scaffolding
 
-* 48022 - Ayelen Aimar
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Repositorios
-* [Frontend app](https://github.com/Mozzi02/Frontend)
-* [Backend app](https://github.com/Mozzi02/Backend)
+## Build
 
-## TEMA: 
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-  Un negocio de indumentaria nos pidió que realicemos una página web para su gestión. Esta le permitirá a un empleado dar de alta, baja o modificar productos, gestionar su stock, registrar un cliente y registrar ventas.
-  Además, un usuario administrador podrá dar de alta, baja o modificar empleados, dar de alta, baja o modificar proveedores, realizar pedidos a proveedores y también podrá realizar las funciones que puede realizar un empleado.
-  El sistema deberá poder listar todos los componentes del negocio, permitir a los usuarios con acceso editarlos, añadir otros, o borrarlos.
+## Running unit tests
 
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## IMAGEN DEL MODELO:
+## Running end-to-end tests
 
-![image](https://github.com/Mozzi02/TrabajoPractico-DSW-Grau-Mozzi-Aimar/assets/128518865/8d062f17-546a-40cc-b0c5-6ca3bd05aeb9)
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
+## Further help
 
-https://drive.google.com/file/d/1m_fRjhLe9l6uyDgpRPfrgdzHzN00MFXC/view?usp=sharing 
-
-## ALCANCE FUNCIONAL
-
-### Alcance mínimo
-|Req|Detalle|
-|:-|:-|
-|CRUD simple|1. CRUD Proveedor<br>2. CRUD Rol<br>3. CRUD Tipo Producto |
-|CRUD dependiente|1. CRUD Cliente {depende de} CRUD Categoría<br>2. CRUD Empleado {depende de} CRUD Rol|
-|Listado<br>+<br>detalle| 1. Listado de los productos por descripcion.<br> 2. Listado de los proveedores por razon Social. <br>|
-|CUU/Epic|1. Registrar una venta<br>2. Realizar un pedido|
-
-### Adicionales para aprobación directa
-
-|Req|Detalle|
-|:-|:-|
-|CRUD |1. CRUD Empleados<br>2. CRUD Pedidos<br>3. CRUD Cliente<br>4. CRUD Venta<br>5. CRUD Productos<br>6. CRUD Proveedor<br>7. CRUD Linea de venta<br>8. CRUD Tipo producto<br>9. CRUD Rol|
-|CUU/Epic|1. Registrar una venta<br>2. Realizar un pedido<br>3. Gráficos sobre las ventas en un período de tiempo|
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
