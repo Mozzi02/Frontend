@@ -49,5 +49,15 @@ export class ClientesComponent {
 
     this.clienteService.agregarCliente(cliente);
     this.clientes.push(cliente);
+// estos ultimos 2 van en agregarCliente o en clienteSubmit ??
+  }
+  clienteSubmit(){
+    this.nombre = '';
+    this.apellido = '';
+    this.telefono = '';
+    this.email = '';
+    this.direccion = '';
+    this.cuit = '';
+    this.categoria = '';
   }
 }

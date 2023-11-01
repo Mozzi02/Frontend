@@ -43,6 +43,7 @@ import { LineadeventaComponent } from './lineadeventa/lineadeventa-component/lin
     ProductosBusquedaComponent,
     ProveedoresBusquedaComponent,
     LineadeventaComponent,
+
   ],
   imports: [
     BrowserModule,
