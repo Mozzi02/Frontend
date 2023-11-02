@@ -56,4 +56,11 @@ export class ProductosComponent implements OnInit {
     this.productoService.agregarProducto(producto);
     this.productos.push(producto);
   }
+  productoSubmit(){
+    this.descripcion = '';
+    this.precio = '';
+    this.tipo = '';
+    this.stock = '';
+    this.imagen = '';
+  }
 }
