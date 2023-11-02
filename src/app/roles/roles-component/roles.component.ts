@@ -8,6 +8,7 @@ import { RolService } from '../rol.service';
   styleUrls: ['./roles.component.css']
 })
 export class RolesComponent {
+
   constructor (private rolService: RolService) {}
 
   ngOnInit(): void {
@@ -29,5 +30,8 @@ export class RolesComponent {
 
     this.rolService.agregarRol(rol);
     this.roles.push(rol);
+  }
+  rolSubmit() {
+    this.descripcion = '';
   }
 }

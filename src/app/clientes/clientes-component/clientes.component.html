@@ -41,12 +41,12 @@
           <option type="number" id="minorista">Minorista</option>
           <option type="number" id="minorista">Mayorista</option>
         </select>
-      <!-- Boton Agregar -->
       </div>
-        <button class="btn m-1 btn-primary" type="submit"  
-        (click)="agregarNuevoCliente()"
-        [disabled]="!formcliente.form.valid"
-        >Agregar
+      <!-- Boton Agregar -->
+      <button class="btn m-1 btn-primary" type="submit"  
+      (click)="agregarNuevoCliente()"
+      [disabled]="!formcliente.form.valid"
+      >Agregar
       </button>
     </form>
   </div>
@@ -76,7 +76,6 @@
         <td>{{cli.direccion}}</td>
         <td>{{cli.cuit}}</td>
         <td>{{cli.idCategoria}}</td>
-        <!-- Botones -->
         <td>
           <button class="btn btn-secondary btn-sm">Editar</button>
           <button class="btn btn-danger btn-sm">Borrar</button>

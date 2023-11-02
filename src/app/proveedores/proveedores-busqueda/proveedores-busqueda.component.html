@@ -6,9 +6,19 @@
   <title>Document</title>
 </head>
 <body>
-  <div id="buscador">
-    <label for="razonSocial">Buscar Proveedores</label>
-    <input #razonSocial id="razonSocial" (input)="buscar(razonSocial.value)" />
+  <div class="p-3 bg-dark align-middle text-white">
+    <h4 class="text-white">Buscar Proveedores</h4>
+    <div class="d-flex align-middle p-3 g-col-10">
+      <!--Busca por CUIT-->
+      <div class="d-flex flex-column m-1">
+        <input class="form-control" #razonSocial id="razonSocial" placeholder="CUIT del proveedor"
+        (input)="buscar(razonSocial.value)" />
+      </div>
+      <!--Boton buscar (agregar funcionalidad) tener en cuenta por cual de las dos busca-->
+      <div class="d-flex flex-column m-1">
+        <button class="btn btn-primary">Buscar</button>
+      </div>
+    </div>
     <ul class="resultado">
       <li *ngFor="let prov of proveedores$ | async">
         <a routerLink="/proveedores/{{prov.idProveedor}}">

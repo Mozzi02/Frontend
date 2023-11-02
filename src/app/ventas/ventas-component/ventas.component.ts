@@ -8,6 +8,7 @@ import { VentaService } from '../venta.service';
   styleUrls: ['./ventas.component.css']
 })
 export class VentasComponent {
+
   constructor (private ventaService: VentaService) {}
 
   ngOnInit(): void {
@@ -34,4 +35,9 @@ export class VentasComponent {
     this.ventaService.agregarVenta(venta);
     this.ventas.push(venta);
   }
+  ventaSubmit() {
+    this.fechaVenta = '';
+    this.idCliente = '';
+    this.idEmpleado = '';
+} 
 }

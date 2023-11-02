@@ -5,70 +5,80 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
-  <div class="nuevoproducto">
-    <span class="titulo">Nuevo Producto</span>
-      <form class="formulario" #formproducto = "ngForm">
-        <div class="input-group">
-          <label for="descripcion">Descripcion:</label>
-          <input class="input" type="text" id="descripcion" name="descripcion" placeholder="Descripcion" [(ngModel)]="descripcion">
-        </div>
-        <div class="input-group">
-          <label for="precio">Precio:</label>
-          <input class="input" type="text" id="precio"  name="precio" placeholder="Precio" [(ngModel)]="precio">
-        </div>
-        <div class="input-group">
-          <label for="selecTipo">Tipo de producto:</label>
-          <select class="seleccionador" id="selecTipo" name="tipo" placeholder="Tipo de Producto" [(ngModel)]="tipo">
-            <option type="number" id="campera">Campera</option>
-            <option type="number" id="gorro">Gorro</option>
-            <option type="number" id="calzado">Calzado</option>
-            <option type="number" id="pantalon">Pantalon</option>
-          </select>
-        </div>
-        <div class="input-group">
-          <label for="stock">Stock:</label>
-          <input class="input" type="text" id="stock" name="stock" placeholder="Stock" [(ngModel)]="stock">
-        </div>
-        <div class="input-group">
-          <label for="imagen">URL de la Imagen:</label>
-          <input class="input" type="text" id="imagen" name="imagen" placeholder="URL de la Imagen" [(ngModel)]="imagen">
-        </div>
-        <button class="boton agregar" (click)="agregarNuevoProducto()">Agregar</button>
-      </form>
-  </div>
-
-  <app-productos-busqueda></app-productos-busqueda>
-
-  <div class="grilla">
-    <div class="columnas">
-      <span>Imagen</span>
-      <span>Id</span>
-      <span>Descripcion</span>
-      <span>Precio</span>
-      <span>Tipo de Producto</span>
-      <span>Stock</span>
-      <span>Acciones</span>
-    </div>
-    <div class="items" *ngFor="let prod of productos">
-      <div class="datos">
-        <span>
-          <img class="imgprod" src={{prod.imagen}} alt="Imagen del producto"/>
-        </span>
-        <span>{{prod.idProducto}}</span>
-        <span>{{prod.descripcion}}</span>
-        <span>${{prod.precio}}</span>
-        <span *ngIf="prod.idTipo == 1">Campera</span>
-        <span *ngIf="prod.idTipo == 2">Gorro</span>
-        <span *ngIf="prod.idTipo == 3">Calzado</span>
-        <span *ngIf="prod.idTipo == 4">Pantalon</span>
-        <span>{{prod.stock}}</span>
-        <div class="editarborrar">
-          <button class="boton editar">Editar</button>
-          <button class="boton borrar">Borrar</button>
-        </div>
+  <!-- form -->
+  <div class="p-3 bg-dark align-middle text-white">
+    <h4 class="text-white">Nuevo Producto</h4>
+    <form (ngSubmit)="productoSubmit()" class="d-flex align-middle p-3 g-col-10" #formproducto = "ngForm">
+      <!-- Descripcion -->
+      <div class="d-flex flex-column m-1">
+        <input class="form-control" type="text" name="descripcion" placeholder="Descripcion" [(ngModel)]="descripcion" required>
       </div>
-    </div>
+      <!-- Precio -->
+      <div class="d-flex flex-column m-1">
+        <input class="form-control" type="text" id="precio" name="precio" placeholder="Precio" [(ngModel)]="precio" required>
+      </div>
+      <!-- Tipo de Producto -->
+      <div class="d-flex flex-column m-1">
+        <select class="form-select" id="selecTipo" name="tipo" placeholder="Tipo de Producto" [(ngModel)]="tipo" required>
+          <option type="number" id="campera">Campera</option>
+          <option type="number" id="gorro">Gorro</option>
+          <option type="number" id="calzado">Calzado</option>
+          <option type="number" id="pantalon">Pantalon</option>
+        </select>
+      </div>
+      <!-- Stock -->
+      <div class="d-flex flex-column m-1">
+        <input class="form-control" type="text" id="stock" name="stock" placeholder="Stock" [(ngModel)]="stock">
+      </div>
+      <!-- Imagen -->
+      <div class="d-flex flex-column m-1">
+        <input class="form-control" type="text" id="imagen" name="imagen" placeholder="URL de la Imagen" [(ngModel)]="imagen">
+      </div>
+      <!-- Boton Agregar -->
+      <button class="btn m-1 btn-primary" 
+      (click)="agregarNuevoProducto()"
+      [disabled]="!formproducto.form.valid"
+      >Agregar
+      </button>
+    </form>
   </div>
+<!-- buscar -->
+  <app-productos-busqueda></app-productos-busqueda>
+<!-- tabla -->
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Descripcion</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Stock</th>
+        <th scope="col">Imagen</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let prod of productos">
+        <th scope="row">{{prod.idProducto}}</th>
+        <td>{{prod.descripcion}}</td>
+        <td>${{prod.precio}}</td>
+        <td *ngIf="prod.idTipo == 1">Campera</td>
+        <td *ngIf="prod.idTipo == 2">Gorro</td>
+        <td *ngIf="prod.idTipo == 3">Calzado</td>
+        <td *ngIf="prod.idTipo == 4">Pantalon</td>
+        <td>{{prod.stock}}</td>
+        <td>
+          <img class="imgprod" src={{prod.imagen}} alt="Imagen del producto" />
+        </td>
+        <!-- Botones -->
+        <td>
+          <button class="btn btn-secondary btn-sm">Editar</button>
+          <button class="btn btn-danger btn-sm">Borrar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </body>
 </html>

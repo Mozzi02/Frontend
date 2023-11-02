@@ -38,4 +38,11 @@ export class PedidosComponent {
     this.pedidoService.agregarPedido(pedido);
     this.pedidos.push(pedido);
   }
+  pedidoSubmit() {
+    this.fechaPedido = '';
+    this.idEmpleado = '';
+    this.idProveedor = '';
+    this.cantidad = '';
+    this.idProducto = '';
+  }
 }

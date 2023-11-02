@@ -36,5 +36,11 @@ export class ProveedoresComponent {
     this.proveedorService.agregarProveedor(proveedor);
     this.proveedores.push(proveedor);
   }
+  proveedorSubmit() {
+    this.cuit = '';
+    this.razonSocial = '';
+    this.telefono = '';
+    this.email = '';
+  }
   
 }

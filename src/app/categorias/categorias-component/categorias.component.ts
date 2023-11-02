@@ -8,6 +8,7 @@ import { CategoriaService } from '../categoria.service';
   styleUrls: ['./categorias.component.css']
 })
 export class CategoriasComponent {
+
   constructor (private categoriaService: CategoriaService) {}
 
   ngOnInit(): void {
@@ -29,5 +30,8 @@ export class CategoriasComponent {
     this.categoriaService.agregarCategoria(categoria);
     this.categorias.push(categoria);
   }
+  categoriaSubmit() {
+    this.descripcion = '';
+}
   
 }

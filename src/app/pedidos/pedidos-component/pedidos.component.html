@@ -6,56 +6,59 @@
     <title>Document</title>
 </head>
 <body>
-  <div class="nuevopedido">
-    <h4>Nuevo Pedido</h4>
-    <form class="formulario" #formproducto="ngForm">
-      <div class="input-group">
-        <label for="fecha">Fecha y hora:</label>
-        <input class="input" type="text" id="fecha" name="fecha" placeholder="Fecha" [(ngModel)]="fechaPedido">
+  <!-- form -->
+  <div class="p-3 bg-dark align-middle text-white">
+    <h4 class="text-white">Nuevo Pedido</h4>
+    <form (ngSubmit)="pedidoSubmit()" class="d-flex align-middle p-3 g-col-10" #formpedido="ngForm">
+      <div class="d-flex flex-column m-1">
+        <input class="form-control" type="text" id="fecha" name="fecha" placeholder="Fecha" [(ngModel)]="fechaPedido">
       </div>
-      <div class="input-group">
-        <label for="empleado">Empleado:</label>
-        <input class="input" type="text" id="empleado" name="empleado" placeholder="Empleado" [(ngModel)]="idEmpleado">
+      <div class="d-flex flex-column m-1">
+        <input class="form-control" type="text" id="empleado" name="empleado" placeholder="Empleado" [(ngModel)]="idEmpleado" required>
       </div>
-      <div class="input-group">
-        <label for="proveedor">Proveedor:</label>
-        <input class="input" type="text" id="proveedor" name="proveedor" placeholder="Proveedor" [(ngModel)]="idProveedor">
+      <div class="d-flex flex-column m-1">
+        <input class="form-control" type="text" id="proveedor" name="proveedor" placeholder="Proveedor" [(ngModel)]="idProveedor" required>
       </div>
-      <div class="input-group">
-        <label for="cantidad">Cantidad:</label>
-        <input class="input" type="text" id="cantidad" name="cantidad" placeholder="Cantidad" [(ngModel)]="cantidad">
+      <div class="d-flex flex-column m-1">
+        <input class="form-control" type="text" id="cantidad" name="cantidad" placeholder="Cantidad" [(ngModel)]="cantidad" required>
       </div>
-      <div class="input-group">
-        <label for="producto">Producto:</label>
-        <input class="input" type="text" id="producto" name="producto" placeholder="Producto" [(ngModel)]="idProducto">
+      <div class="d-flex flex-column m-1">
+        <input class="form-control" type="text" id="producto" name="producto" placeholder="Producto" [(ngModel)]="idProducto" required>
       </div>
-      <button class="boton agregar" (click)="agregarNuevoPedido()">Agregar</button>
+      <button class="btn m-1 btn-primary" type="submit" 
+      (click)="agregarNuevoPedido()"
+      [disabled]="!formpedido.form.valid">Agregar
+      </button>    
     </form>
   </div>
-  <div class="grilla">
-    <div class="columnas">
-      <span>Id</span>
-      <span>Fecha y hora</span>
-      <span>Empleado</span>
-      <span>Proveedor</span>
-      <span>Cantidad</span>
-      <span>Producto</span>
-      <span>Acciones</span>
-    </div>
-    <div class="items" *ngFor="let ped of pedidos">
-      <div class="datos">
-        <span>{{ped.idPedido}}</span>
-        <span>{{ped.fechaPedido}}</span>
-        <span>{{ped.idEmpleado}}</span>
-        <span>{{ped.idProveedor}}</span>
-        <span>{{ped.cantidad}}</span>
-        <span>{{ped.idProducto}}</span>
-        <div class="editarborrar">
-          <button class="boton editar">Editar</button>
-          <button class="boton borrar">Borrar</button>
-        </div>
-      </div>
-    </div>
-  </div>
+
+  <!-- tabla -->
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Fecha y hora</th>
+        <th scope="col">Empleado</th>
+        <th scope="col">Proveedor</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Producto</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ped of pedidos">
+        <th scope="row">{{ped.idPedido}}</th>
+        <td>{{ped.fechaPedido}}</td>
+        <td>{{ped.idEmpleado}}</td>
+        <td>{{ped.idProveedor}}</td>
+        <td>{{ped.cantidad}}</td>
+        <td>{{ped.idProducto}}</td>
+        <td>
+          <button class="btn btn-secondary btn-sm">Editar</button>
+          <button class="btn btn-danger btn-sm">Borrar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </body>
 </html>

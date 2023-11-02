@@ -6,78 +6,87 @@
     <title>Document</title>
 </head>
 <body>
-  <div class="nuevoempleado">
-    <h4>Nuevo Empleado</h4>
-    <form class="formulario" #formproducto="ngForm">
-      <div class="input-group">
-        <label for="nombre">Nombre:</label>
-        <input class="input" type="text" id="nombre" name="nombre" placeholder="Nombre" [(ngModel)]="nombre">
+  <!-- form -->
+  <div class="p-3 bg-dark align-middle text-white">
+    <h4 class="text-white">Nuevo Empleado</h4>
+    <form (ngSubmit)="empleadoSubmit()" class="d-flex align-middle p-3 g-col-10" #formempleado="ngForm">
+      <!-- Nombre -->
+      <div class="d-flex flex-column m-1">
+        <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Nombre" [(ngModel)]="nombre">
       </div>
-      <div class="input-group">
-        <label for="apellido">Apellido:</label>
-        <input class="input" type="text" id="apellido" name="apellido" placeholder="Apellido" [(ngModel)]="apellido">
+      <!-- Apellido -->
+      <div class="d-flex flex-column m-1">
+        <input class="form-control" type="text" id="apellido" name="apellido" placeholder="Apellido" [(ngModel)]="apellido">
       </div>
-      <div class="input-group">
-        <label for="telefono">Telefono:</label>
-        <input class="input" type="text" id="telefono" name="telefono" placeholder="Telefono" [(ngModel)]="telefono">
+      <!-- Telefono -->
+      <div class="d-flex flex-column m-1">
+        <input class="form-control" type="text" id="telefono" name="telefono" placeholder="Telefono" [(ngModel)]="telefono">
       </div>
-      <div class="input-group">
-        <label for="email">Email:</label>
-        <input class="input" type="text" id="email" name="email" placeholder="E-Mail" [(ngModel)]="email">
+      <!-- Email -->
+      <div class="d-flex flex-column m-1">
+        <input class="form-control" type="text" id="email" name="email" placeholder="E-Mail" [(ngModel)]="email">
       </div>
-      <div class="input-group">
-        <label for="direccion">Direccion:</label>
-        <input class="input" type="text" id="direccion" name="direccion" placeholder="Direccion" [(ngModel)]="direccion">
+      <!-- Direccion -->
+      <div class="d-flex flex-column m-1">
+        <input class="form-control" type="text" id="direccion" name="direccion" placeholder="Direccion" [(ngModel)]="direccion">
       </div>
-      <div class="input-group">
-        <label for="dni">DNI:</label>
-        <input class="input" type="text" id="dni" name="dni" placeholder="DNI" [(ngModel)]="dni">
+      <!-- DNI -->
+      <div class="d-flex flex-column m-1">
+        <input class="form-control" type="text" id="dni" name="dni" placeholder="DNI" [(ngModel)]="dni" required>
       </div>
-      <div class="input-group">
-        <label for="selecRol">Rol:</label>
-        <select class="seleccionador" id="selecRol" name="rol" placeholder="ROL" [(ngModel)]="rol">
+      <!-- Rol -->
+      <div class="d-flex flex-column m-1">
+        <select class="form-select" id="selecRol" name="rol" placeholder="ROL" [(ngModel)]="rol">
           <option type="number" id="empleado">Empleado</option>
           <option type="number" id="administrador">Administrador</option>
         </select>
       </div>
-      <div class="input-group">
-        <label for="password">Password:</label>
-        <input class="input" type="text" id="password" name="password" placeholder="Password" [(ngModel)]="password">
+      <!-- Password -->
+      <div class="d-flex flex-column m-1">
+        <input class="form-control" type="text" id="password" name="password" placeholder="Password" [(ngModel)]="password">
       </div>
-      <button class="boton agregar" (click)="agregarNuevoEmpleado()">Agregar</button>
+      <!-- Boton Agregar -->
+      <button class="btn m-1 btn-primary" 
+      (click)="agregarNuevoEmpleado()"
+      [disabled]="!formempleado.form.valid"
+      >Agregar
+      </button>
     </form>
   </div>
-  <div class="grilla">
-    <div class="columnas">
-      <span>Id</span>
-      <span>Nombre</span>
-      <span>Apellido</span>
-      <span>Telefono</span>
-      <span>Email</span>
-      <span>Direccion</span>
-      <span>DNI</span>
-      <span>Categoria</span>
-      <span>Password</span>
-      <span>Acciones</span>
-  
-    </div>
-    <div class="items" *ngFor="let emp of empleados">
-      <div class="datos">
-        <span>{{emp.idEmpleado}}</span>
-        <span>{{emp.nombre}}</span>
-        <span>{{emp.apellido}}</span>
-        <span>{{emp.telefono}}</span>
-        <span>{{emp.email}}</span>
-        <span>{{emp.direccion}}</span>
-        <span>{{emp.dni}}</span>
-        <span>{{emp.idRol}}</span>
-        <span>{{emp.password}}</span>
-        <div class="editarborrar">
-          <button class="boton editar">Editar</button>
-          <button class="boton borrar">Borrar</button>
-        </div>
-      </div>
-    </div>
-  </div>
+
+  <!-- tabla -->
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Email</th>
+        <th scope="col">Direccion</th>
+        <th scope="col">DNI</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Password</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of empleados">
+        <th scope="row">{{emp.idEmpleado}}</th>
+        <td>{{emp.nombre}}</td>
+        <td>{{emp.apellido}}</td>
+        <td>{{emp.telefono}}</td>
+        <td>{{emp.email}}</td>
+        <td>{{emp.direccion}}</td>
+        <td>{{emp.dni}}</td>
+        <td>{{emp.idRol}}</td>
+        <td>{{emp.password}}</td>
+        <td>
+          <button class="btn btn-secondary btn-sm">Editar</button>
+          <button class="btn btn-danger btn-sm">Borrar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </body>
 </html>
