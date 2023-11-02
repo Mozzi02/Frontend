@@ -30,4 +30,7 @@ export class TipoproductoComponent {
     this.tipoService.agregarTipo(tipo);
     this.tipos.push(tipo);
   }
+  tipoProductoSubmit() {
+    this.descripcion = '';
+  }
 }

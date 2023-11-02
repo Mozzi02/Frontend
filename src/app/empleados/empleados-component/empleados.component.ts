@@ -8,6 +8,7 @@ import { EmpleadoService } from '../empleado.service';
   styleUrls: ['./empleados.component.css']
 })
 export class EmpleadosComponent {
+
   constructor (private empleadoService: EmpleadoService) {}
 
   ngOnInit(): void {
@@ -53,4 +54,14 @@ export class EmpleadosComponent {
     this.empleadoService.agregarEmpleado(empleado);
     this.empleados.push(empleado);
   }
+  empleadoSubmit() {
+    this.nombre = '';
+    this.apellido = '';
+    this.telefono = '';
+    this.email = '';
+    this.direccion = '';
+    this.dni = '';
+    this.rol = '';
+    this.password = '';
+}
 }
