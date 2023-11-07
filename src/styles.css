@@ -1,8 +1,9 @@
 html {
   font-family: 'Noto Serif', serif;
+  background-color: #212529;
   font-size: 16px;
   color: white;
-  background-color: #212529;
+  
 }
 
 .boton {

@@ -10,12 +10,13 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class ProductoService {
   constructor(private http: HttpClient) { }
 
-  private productosUrl = 'http://localhost:3000/api/productos';
+  private productosUrl = 'api/productos'
   httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   getProductos(): Observable<Producto[]>{
+    console.log("getprodenService");
     return this.http.get<Producto[]>(this.productosUrl)
     .pipe(
       catchError(this.handleError<Producto[]>('getProductos', []))

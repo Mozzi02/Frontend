@@ -21,11 +21,12 @@
       </div>
       <!-- Tipo de Producto -->
       <div class="d-flex flex-column m-1">
-        <select class="form-select" id="selecTipo" name="tipo" placeholder="Tipo de Producto" [(ngModel)]="tipo" required>
-          <option type="number" id="campera">Campera</option>
-          <option type="number" id="gorro">Gorro</option>
-          <option type="number" id="calzado">Calzado</option>
-          <option type="number" id="pantalon">Pantalon</option>
+        <select class="form-select" id="tipo" name="tipo" placeholder="Tipo" [(ngModel)]="tipo" required>
+          <option type="number" id="tipo">Otro</option>
+          <option type="number" id="tipo">Gorro</option>
+          <option type="number" id="tipo">Calzado</option>
+          <option type="number" id="tipo">Pantalon</option>
+          <option type="number" id="tipo">Campera</option>
         </select>
       </div>
       <!-- Stock -->
@@ -37,7 +38,7 @@
         <input class="form-control" type="text" id="imagen" name="imagen" placeholder="URL de la Imagen" [(ngModel)]="imagen">
       </div>
       <!-- Boton Agregar -->
-      <button class="btn m-1 btn-primary" 
+      <button class="btn m-1 btn-primary" type="submit"
       (click)="agregarNuevoProducto()"
       [disabled]="!formproducto.form.valid"
       >Agregar
@@ -68,6 +69,7 @@
         <td *ngIf="prod.idTipo == 2">Gorro</td>
         <td *ngIf="prod.idTipo == 3">Calzado</td>
         <td *ngIf="prod.idTipo == 4">Pantalon</td>
+        <td *ngIf="prod.idTipo == 0">Otro</td>
         <td>{{prod.stock}}</td>
         <td>
           <img class="imgprod" src={{prod.imagen}} alt="Imagen del producto" />
@@ -75,7 +77,7 @@
         <!-- Botones -->
         <td>
           <button class="btn btn-secondary btn-sm">Editar</button>
-          <button class="btn btn-danger btn-sm">Borrar</button>
+          <button class="btn btn-danger btn-sm ms-2">Borrar</button>
         </td>
       </tr>
     </tbody>

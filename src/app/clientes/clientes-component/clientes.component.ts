@@ -9,7 +9,7 @@ import { ClienteService } from '../cliente.service';
 })
 export class ClientesComponent {
   constructor (private clienteService: ClienteService) {}
-
+  
   ngOnInit(): void {
     this.getClientes();
   }
@@ -20,8 +20,9 @@ export class ClientesComponent {
   email: string = '';
   direccion: string = '';
   cuit: string = '';
-  categoria: string = '';
+  categoria: string = 'Minorista';
   clientes: Cliente[] = []
+  idCategoria: number = 0;
 
   getClientes(): void {
     this.clienteService.getClientes().subscribe(clientes => this.clientes = clientes);
@@ -35,22 +36,14 @@ export class ClientesComponent {
     const email = this.email;
     const direccion = this.direccion;
     const cuit = this.cuit;
-    let idCategoria = 0;
-    switch (this.categoria) {
-      case 'Minorista':
-        idCategoria = 1
-        break;
+    const idCategoria: number= (this.categoria == 'Minorista') ? 1 : (this.categoria == 'Mayorista') ? 2: 0;
 
-      case 'Mayorista':
-        idCategoria = 2
-        break;
-    }
     const cliente:Cliente = {idCliente, nombre, apellido, telefono, email, direccion, cuit, idCategoria}
 
     this.clienteService.agregarCliente(cliente);
     this.clientes.push(cliente);
-// estos ultimos 2 van en agregarCliente o en clienteSubmit ??
   }
+
   clienteSubmit(){
     this.nombre = '';
     this.apellido = '';
@@ -58,6 +51,6 @@ export class ClientesComponent {
     this.email = '';
     this.direccion = '';
     this.cuit = '';
-    this.categoria = '';
+    this.categoria = 'Minorista';
   }
 }
