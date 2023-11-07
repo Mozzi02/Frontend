@@ -48,7 +48,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {idPedido: 5, fechaPedido: "2023-07-18 00:00:00", idEmpleado: 3, idProveedor: 2, cantidad: 10, idProducto: 5}
     ];
 
-    /* const productos = [
+    const productos = [
       {idProducto: 1, descripcion: "Campera Carmela Jean", precio: 49250, idTipo: 1, stock: 10, imagen: "https://acdn.mitiendanube.com/stores/002/038/548/products/ac73e644-c71e-4ded-8645-3a604bf31071-587174e9e6b529f7ff16474526427284-640-0.jpeg"},
       {idProducto: 2, descripcion: "Campera Malaika", precio: 35000, idTipo: 1, stock: 10, imagen: "https://acdn.mitiendanube.com/stores/002/038/548/products/53ccce25-6f41-4b1e-ba75-7a11b190c264-f7d1cd94eff3c038db16449445677288-320-0.jpeg"},
       {idProducto: 3, descripcion: "Gorrito Dublin Negro", precio: 6200, idTipo: 2, stock: 10, imagen: "https://acdn.mitiendanube.com/stores/002/038/548/products/b57316f7-af4d-403f-b433-2c907d3f7bbb-60c8f6bdc4a20d358f16538532292346-320-0.jpeg"},
@@ -57,7 +57,7 @@ export class InMemoryDataService implements InMemoryDbService {
       {idProducto: 6, descripcion: "Texanas Valentina Mazzi", precio: 41500, idTipo: 3, stock: 10, imagen: "https://acdn.mitiendanube.com/stores/002/038/548/products/img_51351-30c7555ef0e561592a16927413544056-320-0.webp"},
       {idProducto: 7, descripcion: "Mom Zaira", precio: 25500, idTipo: 4, stock: 10, imagen: "https://acdn.mitiendanube.com/stores/002/038/548/products/img_1046_jpg1-05ece270132c022f3416886063761656-320-0.webp"},
       {idProducto: 8, descripcion: "Mom Canario Desplumado Negro", precio: 21900, idTipo: 4, stock: 10, imagen: "https://acdn.mitiendanube.com/stores/002/038/548/products/005e64c9-cf0e-4c84-82da-b3f75dcbbf141-7ace1c3c73276103e916776099711641-320-0.webp"}
-    ]; */
+    ];
 
     const proveedores = [
       {idProveedor: 1, cuit: "111", razonSocial: "Tráigame Eso", telefono: "3411212121", email: "traigameeso@gmail.com"},

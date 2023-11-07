@@ -37,14 +37,14 @@
       </div>
       <!-- Categoria -->
       <div class="d-flex flex-column m-1">
-        <select class="form-select" id="selecCategoria" name="categoria" placeholder="Categoria" [(ngModel)]="categoria" required>
-          <option type="number" id="minorista">Minorista</option>
-          <option type="number" id="minorista">Mayorista</option>
+        <select class="form-select" id="categoria" name="categoria" placeholder="Categoria" [(ngModel)]="categoria" required>
+          <option type="number" id="categoria">Minorista</option>
+          <option type="number" id="categoria">Mayorista</option>
         </select>
       </div>
       <!-- Boton Agregar -->
       <button class="btn m-1 btn-primary" type="submit"  
-      (click)="agregarNuevoCliente()"
+      (click)="agregarNuevoCliente()" 
       [disabled]="!formcliente.form.valid"
       >Agregar
       </button>
@@ -78,7 +78,7 @@
         <td>{{cli.idCategoria}}</td>
         <td>
           <button class="btn btn-secondary btn-sm">Editar</button>
-          <button class="btn btn-danger btn-sm">Borrar</button>
+          <button class="btn btn-danger btn-sm ms-2">Borrar</button>
         </td>
       </tr>
     </tbody>

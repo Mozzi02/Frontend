@@ -46,13 +46,13 @@
     <tbody>
       <tr *ngFor="let pro of proveedores">
         <th scope="row">{{pro.idProveedor}}</th>
-        <th>{{pro.cuit}}</th>
-        <th>{{pro.razonSocial}}</th>
-        <th>{{pro.telefono}}</th>
-        <th>{{pro.email}}</th>
+        <td>{{pro.cuit}}</td>
+        <td>{{pro.razonSocial}}</td>
+        <td>{{pro.telefono}}</td>
+        <td>{{pro.email}}</td>
         <td>
           <button class="btn btn-secondary btn-sm">Editar</button>
-          <button class="btn btn-danger btn-sm">Borrar</button>
+          <button class="btn btn-danger btn-sm ms-2">Borrar</button>
         </td>
       </tr>
     </tbody>

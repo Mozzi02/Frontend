@@ -8,17 +8,18 @@ import { ProveedorService } from '../proveedor.service';
   styleUrls: ['./proveedores.component.css']
 })
 export class ProveedoresComponent {
+  
   constructor (private proveedorService: ProveedorService) {}
-
-  ngOnInit(): void {
-    this.getProveedores();
-  }
 
   cuit: string = '';
   razonSocial: string = '';
   telefono: string = '';
   email: string = '';
   proveedores: Proveedor[] = []
+  
+  ngOnInit(): void {
+    this.getProveedores();
+  }
 
   getProveedores(): void {
     this.proveedorService.getProveedores().subscribe(proveedores => this.proveedores = proveedores);
@@ -35,6 +36,7 @@ export class ProveedoresComponent {
 
     this.proveedorService.agregarProveedor(proveedor);
     this.proveedores.push(proveedor);
+    
   }
   proveedorSubmit() {
     this.cuit = '';
