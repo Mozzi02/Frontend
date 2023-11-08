@@ -12,11 +12,14 @@ import { TipoproductoComponent } from './tipoproducto/tipoproducto-component/tip
 import { MiperfilComponent } from './miperfil/miperfil.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { ProductosEditarComponent } from './productos/productos-editar/productos-editar.component';
+import { ClientesEditarComponent } from './clientes/clientes-editar/clientes-editar.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent},
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'clientes', component: ClientesComponent },
+  { path: 'clientes/:idCliente', component: ClientesEditarComponent },
+  
   { path: 'productos', component: ProductosComponent },
   { path: 'productos/:idProducto', component: ProductosEditarComponent },
   { path: 'ventas', component: VentasComponent },
@@ -27,6 +30,7 @@ const routes: Routes = [
   { path: 'proveedores', component: ProveedoresComponent },
   { path: 'tipos', component: TipoproductoComponent },
   { path: 'perfil', component: MiperfilComponent },
+
 ];
 
 @NgModule({

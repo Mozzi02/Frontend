@@ -23,6 +23,7 @@ import { ProductosEditarComponent } from './productos/productos-editar/productos
 import { ProductosBusquedaComponent } from './productos/productos-busqueda/productos-busqueda.component';
 import { ProveedoresBusquedaComponent } from './proveedores/proveedores-busqueda/proveedores-busqueda.component';
 import { LineadeventaComponent } from './lineadeventa/lineadeventa-component/lineadeventa.component';
+import { ClientesEditarComponent } from './clientes/clientes-editar/clientes-editar.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { LineadeventaComponent } from './lineadeventa/lineadeventa-component/lin
     ProductosBusquedaComponent,
     ProveedoresBusquedaComponent,
     LineadeventaComponent,
+    ClientesEditarComponent,
 
   ],
   imports: [
