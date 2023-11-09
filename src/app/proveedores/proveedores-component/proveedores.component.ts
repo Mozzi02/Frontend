@@ -8,7 +8,6 @@ import { ProveedorService } from '../proveedor.service';
   styleUrls: ['./proveedores.component.css']
 })
 export class ProveedoresComponent {
-  
   constructor (private proveedorService: ProveedorService) {}
 
   cuit: string = '';

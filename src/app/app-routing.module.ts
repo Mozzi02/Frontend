@@ -13,6 +13,7 @@ import { MiperfilComponent } from './miperfil/miperfil.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { ProductosEditarComponent } from './productos/productos-editar/productos-editar.component';
 import { ClientesEditarComponent } from './clientes/clientes-editar/clientes-editar.component';
+import { ProveedoresEditarComponent } from './proveedores/proveedores-editar/proveedores-editar.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent},
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'roles', component: RolesComponent },
   { path: 'pedidos', component: PedidosComponent },
   { path: 'proveedores', component: ProveedoresComponent },
+  { path: 'proveedores/:idProveedor', component: ProveedoresEditarComponent },
   { path: 'tipos', component: TipoproductoComponent },
   { path: 'perfil', component: MiperfilComponent },
 
