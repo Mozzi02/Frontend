@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Proveedor } from '../iproveedor';
 import { ProveedorService } from '../proveedor.service';
+import { NgModule } from '@angular/core';
 
 @Component({
   selector: 'app-proveedores',
@@ -43,5 +44,8 @@ export class ProveedoresComponent {
     this.telefono = '';
     this.email = '';
   }
-  
+
+  borrarProveedor(idProveedor:number){
+    this.proveedores.splice(idProveedor,1);
+}
 }
