@@ -44,16 +44,21 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let pro of proveedores">
+  
+      <tr *ngFor="let pro of proveedores, let idProveedor = index">
         <th scope="row">{{pro.idProveedor}}</th>
         <td>{{pro.cuit}}</td>
-        <td>{{pro.razonSocial}}</td>
+        <td >{{pro.razonSocial}}</td>
         <td>{{pro.telefono}}</td>
         <td>{{pro.email}}</td>
         <td>
           <button class="btn btn-secondary btn-sm"
-          routerLink="/proveedores/{{pro.idProveedor}}">Editar</button>
-          <button class="btn btn-danger btn-sm ms-2">Borrar</button>
+          routerLink="/proveedores/{{pro.idProveedor}}"
+          >Editar
+          </button>
+          <button class="btn btn-danger btn-sm ms-2"
+          (click)="borrarProveedor(idProveedor)"
+          >Borrar</button>
         </td>
       </tr>
     </tbody>
