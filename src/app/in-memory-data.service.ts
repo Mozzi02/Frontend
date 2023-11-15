@@ -9,10 +9,10 @@ export class InMemoryDataService implements InMemoryDbService {
   constructor() { }
 
   createDb() {
-    const categorias = [
+    /* const categorias = [
       {idCategoria: 1, descripcion: "Minorista"},
       {idCategoria: 2, descripcion: "Mayorista"}
-    ];
+    ]; */
 
     const clientes = [
       {idCliente: 1, nombre: "John", apellido: "Doe", telefono: "341 1111111", email: "johndoe@gmail.com", direccion: "Salta 1500", cuit: "111", idCategoria: 1},
@@ -89,6 +89,6 @@ export class InMemoryDataService implements InMemoryDbService {
       {idVenta: 6, fechaVenta: "2023-07-12 00:00:00", idCliente: 4, idEmpleado: 2},
     ];
 
-    return {categorias, clientes, empleados, lineasdeventa, pedidos, proveedores, roles, tipos, ventas};
+    return {clientes, empleados, lineasdeventa, pedidos, proveedores, roles, tipos, ventas};
   }
 }
