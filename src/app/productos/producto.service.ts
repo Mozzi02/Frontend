@@ -10,7 +10,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class ProductoService {
   constructor(private http: HttpClient) { }
 
-  private productosUrl = 'api/productos'
+  private productosUrl = 'http://localhost:3000/api/productos'
   httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
