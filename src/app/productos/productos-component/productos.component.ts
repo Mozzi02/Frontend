@@ -24,9 +24,7 @@ export class ProductosComponent implements  OnInit{
   productos: Producto[] = []
 
   getProductos(): void {
-    console.log("getprod1");
     this.productoService.getProductos().subscribe(productos => this.productos = productos);
-    console.log("getprod2");
   }
 
   agregarNuevoProducto(){

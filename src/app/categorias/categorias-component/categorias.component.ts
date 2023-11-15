@@ -19,7 +19,7 @@ export class CategoriasComponent {
   categorias: Categoria[] = []
 
   getCategorias(): void {
-    this.categoriaService.getCategorias().subscribe(categorias => this.categorias = categorias);
+    this.categoriaService.getCategorias();
   }
 
   agregarNuevaCategoria(): void {

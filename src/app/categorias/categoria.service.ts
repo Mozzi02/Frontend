@@ -10,16 +10,17 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class CategoriaService {
   constructor(private http: HttpClient) { }
 
-  private categoriasUls = 'api/categorias'
+  categorias: Categoria[] = []
+
+  private categoriasUls = 'http://localhost:3000/api/categorias'
   httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  getCategorias(): Observable<Categoria[]>{
-    return this.http.get<Categoria[]>(this.categoriasUls)
-    .pipe(
-      catchError(this.handleError<Categoria[]>('getCategorias', []))
-    );
+  getCategorias(): void{
+    this.http.get<any>(this.categoriasUls).subscribe(data => {
+      this.categorias = data.total;
+   });
   }
 
   agregarCategoria(categoria: Categoria): Observable<Categoria>{
