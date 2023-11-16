@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Categoria } from '../icategoria';
+import { Categoria, RespuestaCategorias } from '../icategoria';
 import { CategoriaService } from '../categoria.service';
 
 @Component({
@@ -16,19 +16,19 @@ export class CategoriasComponent {
   }
 
   descripcion: string = '';
-  categorias: Categoria[] = []
+  categorias: RespuestaCategorias = { message: '', data: [] };
 
   getCategorias(): void {
-    this.categoriaService.getCategorias();
+    this.categoriaService.getCategorias().subscribe(response => {this.categorias = response, console.log('Categorías en el componente:', this.categorias)});
   }
 
   agregarNuevaCategoria(): void {
-    const idCategoria = (this.categorias.length) + 1;
+    // const idCategoria = (this.categorias.length) + 1;
     const descripcion = this.descripcion;
-    const categoria:Categoria = {idCategoria, descripcion}
+    // const categoria:Categoria = {idCategoria, descripcion}
 
-    this.categoriaService.agregarCategoria(categoria);
-    this.categorias.push(categoria);
+    // this.categoriaService.agregarCategoria(categoria);
+    // this.categorias.push(categoria);
   }
   categoriaSubmit() {
     this.descripcion = '';
