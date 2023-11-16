@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Categoria } from './icategoria';
+import { Categoria, RespuestaCategorias } from './icategoria';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -10,21 +10,22 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class CategoriaService {
   constructor(private http: HttpClient) { }
 
-  categorias: Categoria[] = []
-
-  private categoriasUls = 'http://localhost:3000/api/categorias'
+  private categoriasUrl = 'http://localhost:3000/api/categorias'
   httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  getCategorias(): void{
-    this.http.get<any>(this.categoriasUls).subscribe(data => {
-      this.categorias = data.total;
-   });
+  getCategorias(): Observable<RespuestaCategorias>{
+    console.log('Haciendo solicitud a', this.categoriasUrl);
+    return this.http.get<RespuestaCategorias>(this.categoriasUrl)
+    .pipe(
+      catchError(this.handleError<RespuestaCategorias>('getCategorias', { message: '', data: [] }))
+    );
   }
+  
 
   agregarCategoria(categoria: Categoria): Observable<Categoria>{
-    return this.http.post<Categoria>(this.categoriasUls, categoria, this.httpOptions)
+    return this.http.post<Categoria>(this.categoriasUrl, categoria, this.httpOptions)
       .pipe(catchError(this.handleError<Categoria>('agregarCategoria'))
       );
   }
