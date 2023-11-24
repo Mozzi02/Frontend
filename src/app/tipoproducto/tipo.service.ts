@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TipoProducto } from './itipo';
+import { RespuestaTipos, TipoProducto } from './itipo';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -10,15 +10,16 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class TipoService {
   constructor(private http: HttpClient) { }
 
-  private tiposUrl = 'api/tipos';
+  private tiposUrl = 'http://localhost:3000/api/tipos-producto';
   httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  getTipos(): Observable<TipoProducto[]>{
-    return this.http.get<TipoProducto[]>(this.tiposUrl)
+  getTipos(): Observable<RespuestaTipos>{
+    console.log('Haciendo solicitud a', this.tiposUrl);
+    return this.http.get<RespuestaTipos>(this.tiposUrl)
     .pipe(
-      catchError(this.handleError<TipoProducto[]>('getTipos', []))
+      catchError(this.handleError<RespuestaTipos>('getTipos', { message: '', data: [] }))
     );
   }
 

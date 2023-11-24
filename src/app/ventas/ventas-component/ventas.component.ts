@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Venta } from '../iventa';
+import { RespuestaVentas, Venta } from '../iventa';
 import { VentaService } from '../venta.service';
 
 @Component({
@@ -18,13 +18,14 @@ export class VentasComponent {
   fechaVenta: string = '';
   idCliente: string = '';
   idEmpleado: string = '';
-  ventas: Venta[] = []
+  ventas: RespuestaVentas = { message: '', data: [] };
 
   getVentas(): void {
-    this.ventaService.getVentas().subscribe(ventas => this.ventas = ventas);
+    this.ventaService.getVentas().subscribe(response => {this.ventas = response, console.log('Ventas en el componente:', this.ventas)});
   }
 
     agregarNuevaVenta(): void {
+      /*
     const idVenta = (this.ventas.length) + 1;
     const fechaVenta = this.fechaVenta;
     const idCliente = Number(this.idCliente);
@@ -34,10 +35,13 @@ export class VentasComponent {
 
     this.ventaService.agregarVenta(venta);
     this.ventas.push(venta);
+    */
   }
   ventaSubmit() {
+    /*
     this.fechaVenta = '';
     this.idCliente = '';
     this.idEmpleado = '';
+    */
 } 
 }

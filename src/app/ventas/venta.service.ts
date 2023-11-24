@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Venta } from './iventa';
+import { RespuestaVentas, Venta } from './iventa';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -10,16 +10,17 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class VentaService {
   constructor(private http: HttpClient) { }
 
-  ventasUrl = 'api/ventas';
+  ventasUrl = 'http://localhost:3000/api/ventas';
   httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
 
-  getVentas(): Observable<Venta[]>{
-    return this.http.get<Venta[]>(this.ventasUrl)
+  getVentas(): Observable<RespuestaVentas>{
+    console.log('Haciendo solicitud a', this.ventasUrl);
+    return this.http.get<RespuestaVentas>(this.ventasUrl)
     .pipe(
-      catchError(this.handleError<Venta[]>('getVentas', []))
+      catchError(this.handleError<RespuestaVentas>('getVentas', { message: '', data: [] }))
     );
   }
 
