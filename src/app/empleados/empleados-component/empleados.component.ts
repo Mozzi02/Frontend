@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Empleado } from '../iempleado';
+import { Empleado, RespuestaEmpleados } from '../iempleado';
 import { EmpleadoService } from '../empleado.service';
 
 @Component({
@@ -23,14 +23,16 @@ export class EmpleadosComponent {
   dni: string = '';
   rol: string = '';
   password: string = '';
-  empleados: Empleado[] = []
+  empleados: RespuestaEmpleados = { message: '', data: [] };
+
 
   getEmpleados(): void {
-    this.empleadoService.getEmpleados().subscribe(empleados => this.empleados = empleados);
+    this.empleadoService.getEmpleados().subscribe(response => {this.empleados = response, console.log('Empleados en el componente:', this.empleados)});
   }
   
+
   agregarNuevoEmpleado(): void {
-    const idEmpleado = (this.empleados.length) + 1;
+    /* const idEmpleado = (this.empleados.length) + 1;
     const nombre = this.nombre;
     const apellido = this.apellido;
     const telefono = this.telefono;
@@ -53,6 +55,8 @@ export class EmpleadosComponent {
 
     this.empleadoService.agregarEmpleado(empleado);
     this.empleados.push(empleado);
+
+    */
   }
   empleadoSubmit() {
     this.nombre = '';

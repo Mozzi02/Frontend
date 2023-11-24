@@ -1,3 +1,5 @@
+import { Categoria } from "../categorias/icategoria";
+
 export interface Cliente {
   idCliente: number,
   nombre: string,
@@ -6,5 +8,10 @@ export interface Cliente {
   email: string,
   direccion: string,
   cuit: string,
-  idCategoria: number
+  categoria: Categoria
+}
+
+export interface RespuestaClientes {
+  message: string;
+  data: Cliente[];
 }

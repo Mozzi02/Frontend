@@ -45,7 +45,7 @@
     </thead>
     <tbody>
   
-      <tr *ngFor="let pro of proveedores, let idProveedor = index">
+      <tr *ngFor="let pro of proveedores.data, let idProveedor = index">
         <th scope="row">{{pro.idProveedor}}</th>
         <td>{{pro.cuit}}</td>
         <td >{{pro.razonSocial}}</td>

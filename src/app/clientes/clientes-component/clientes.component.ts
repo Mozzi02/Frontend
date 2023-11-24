@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Cliente } from '../icliente';
+import { Cliente, RespuestaClientes } from '../icliente';
 import { ClienteService } from '../cliente.service';
 
 @Component({
@@ -21,15 +21,17 @@ export class ClientesComponent {
   direccion: string = '';
   cuit: string = '';
   categoria: string = 'Minorista';
-  clientes: Cliente[] = []
   idCategoria: number = 0;
+  clientes: RespuestaClientes = { message: '', data: [] };
+
 
   getClientes(): void {
-    this.clienteService.getClientes().subscribe(clientes => this.clientes = clientes);
+    this.clienteService.getClientes().subscribe(response => {this.clientes = response, console.log('Clientes en el componente:', this.clientes)});
   }
   
+
   agregarNuevoCliente(): void{
-    const idCliente = (this.clientes.length) + 1;
+    /* const idCliente = (this.clientes.length) + 1;
     const nombre = this.nombre;
     const apellido = this.apellido;
     const telefono = this.telefono;
@@ -42,6 +44,7 @@ export class ClientesComponent {
 
     this.clienteService.agregarCliente(cliente);
     this.clientes.push(cliente);
+    */
   }
 
   clienteSubmit(){

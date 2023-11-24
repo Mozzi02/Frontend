@@ -23,15 +23,16 @@ export class CategoriasComponent {
   }
 
   agregarNuevaCategoria(): void {
-    // const idCategoria = (this.categorias.length) + 1;
+    console.log("Iniciando agregar");
+    const idCategoria = (this.categorias.data.length) + 1;
     const descripcion = this.descripcion;
-    // const categoria:Categoria = {idCategoria, descripcion}
-
-    // this.categoriaService.agregarCategoria(categoria);
-    // this.categorias.push(categoria);
+    const categoria:Categoria = {idCategoria, descripcion}
+    this.categoriaService.agregarCategoria(categoria);
+    console.log("Ya terminó el agregar");
   }
+  
   categoriaSubmit() {
     this.descripcion = '';
-}
+  }
   
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Proveedor } from '../iproveedor';
+import { Proveedor, RespuestaProveedores } from '../iproveedor';
 import { ProveedorService } from '../proveedor.service';
 import { NgModule } from '@angular/core';
 
@@ -11,21 +11,22 @@ import { NgModule } from '@angular/core';
 export class ProveedoresComponent {
   constructor (private proveedorService: ProveedorService) {}
 
-  cuit: string = '';
-  razonSocial: string = '';
-  telefono: string = '';
-  email: string = '';
-  proveedores: Proveedor[] = []
-  
   ngOnInit(): void {
     this.getProveedores();
   }
 
+  cuit: string = '';
+  razonSocial: string = '';
+  telefono: string = '';
+  email: string = '';
+  proveedores: RespuestaProveedores = { message: '', data: [] };
+
   getProveedores(): void {
-    this.proveedorService.getProveedores().subscribe(proveedores => this.proveedores = proveedores);
+    this.proveedorService.getProveedores().subscribe(response => {this.proveedores = response, console.log('Proveedores en el componente:', this.proveedores)});
   }
 
   agregarNuevoProveedor(): void {
+    /* 
     const idProveedor = (this.proveedores.length) + 1;
     const cuit = this.cuit;
     const razonSocial = this.razonSocial;
@@ -36,16 +37,21 @@ export class ProveedoresComponent {
 
     this.proveedorService.agregarProveedor(proveedor);
     this.proveedores.push(proveedor);
+    */
     
   }
   proveedorSubmit() {
+    /*
     this.cuit = '';
     this.razonSocial = '';
     this.telefono = '';
     this.email = '';
+    */
   }
 
   borrarProveedor(idProveedor:number){
+    /*
     this.proveedores.splice(idProveedor,1);
+    */
 }
 }

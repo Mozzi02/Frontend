@@ -5,3 +5,8 @@ export interface Proveedor {
   telefono: string,
   email: string
 }
+
+export interface RespuestaProveedores {
+  message: string;
+  data: Proveedor[];
+}

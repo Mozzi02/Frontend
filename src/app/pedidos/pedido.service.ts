@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Pedido } from './ipedido';
+import { Pedido, RespuestaPedidos } from './ipedido';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -10,17 +10,20 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class PedidoService {
   constructor(private http: HttpClient) { }
 
-  private pedidosUrl = 'api/pedidos'
+  private pedidosUrl = 'http://localhost:3000/api/pedidos'
   httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
   
-  getPedidos(): Observable<Pedido[]>{
-    return this.http.get<Pedido[]>(this.pedidosUrl)
+
+  getPedidos(): Observable<RespuestaPedidos>{
+    console.log('Haciendo solicitud a', this.pedidosUrl);
+    return this.http.get<RespuestaPedidos>(this.pedidosUrl)
     .pipe(
-      catchError(this.handleError<Pedido[]>('getPedidos', []))
+      catchError(this.handleError<RespuestaPedidos>('getPedidos', { message: '', data: [] }))
     );
   }
+
 
   agregarPedido(pedido: Pedido): Observable<Pedido>{
     return this.http.post<Pedido>(this.pedidosUrl, pedido, this.httpOptions)
