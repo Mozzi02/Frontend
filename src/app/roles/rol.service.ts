@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Rol } from './irol';
+import { RespuestaRoles, Rol } from './irol';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -10,15 +10,16 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class RolService {
   constructor(private http: HttpClient) { }
 
-  private rolesUrl = 'api/roles'
+  private rolesUrl = 'http://localhost:3000/api/roles'
   httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  getRoles(): Observable<Rol[]>{
-    return this.http.get<Rol[]>(this.rolesUrl)
+  getRoles(): Observable<RespuestaRoles>{
+    console.log('Haciendo solicitud a', this.rolesUrl);
+    return this.http.get<RespuestaRoles>(this.rolesUrl)
     .pipe(
-      catchError(this.handleError<Rol[]>('getRoles', []))
+      catchError(this.handleError<RespuestaRoles>('getRoles', { message: '', data: [] }))
     );
   }
 

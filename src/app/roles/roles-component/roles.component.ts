@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Rol } from '../irol';
+import { RespuestaRoles, Rol } from '../irol';
 import { RolService } from '../rol.service';
 
 @Component({
@@ -16,13 +16,14 @@ export class RolesComponent {
   }
 
   descripcion: string = '';
-  roles: Rol[] = []
+  roles: RespuestaRoles = { message: '', data: [] };
 
   getRoles(): void {
-    this.rolService.getRoles().subscribe(roles => this.roles = roles);
+    this.rolService.getRoles().subscribe(response => {this.roles = response, console.log('Roles en el componente:', this.roles)});
   }
 
   agregarNuevoRol(): void {
+    /*
     const idRol = (this.roles.length) + 1;
     const descripcion = this.descripcion;
 
@@ -30,8 +31,11 @@ export class RolesComponent {
 
     this.rolService.agregarRol(rol);
     this.roles.push(rol);
+    */
   }
   rolSubmit() {
+    /*
     this.descripcion = '';
+    */
   }
 }

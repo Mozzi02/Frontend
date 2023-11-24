@@ -42,11 +42,11 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let ven of ventas">
+      <tr *ngFor="let ven of ventas.data">
         <th scope="row">{{ven.idVenta}}</th>
         <td>{{ven.fechaVenta}}</td>
-        <td>{{ven.idCliente}}</td>
-        <td>{{ven.idEmpleado}}</td>
+        <td>{{ven.cliente.apellido}}, {{ven.cliente.nombre}}</td>
+        <td>{{ven.empleado.apellido}}, {{ven.empleado.nombre}}</td>
         <!-- Botones -->
         <td>
           <button class="btn btn-secondary btn-sm">Editar</button>
