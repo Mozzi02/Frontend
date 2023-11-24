@@ -71,7 +71,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let emp of empleados">
+      <tr *ngFor="let emp of empleados.data">
         <th scope="row">{{emp.idEmpleado}}</th>
         <td>{{emp.nombre}}</td>
         <td>{{emp.apellido}}</td>
@@ -79,7 +79,7 @@
         <td>{{emp.email}}</td>
         <td>{{emp.direccion}}</td>
         <td>{{emp.dni}}</td>
-        <td>{{emp.idRol}}</td>
+        <td>{{emp.rol.descripcion}}</td>
         <td>{{emp.password}}</td>
         <td>
           <button class="btn btn-secondary btn-sm">Editar</button>

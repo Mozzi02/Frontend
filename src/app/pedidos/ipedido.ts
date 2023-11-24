@@ -1,8 +1,18 @@
+import { Empleado } from "../empleados/iempleado";
+import { Producto } from "../productos/iproducto";
+import { Proveedor } from "../proveedores/iproveedor";
+
 export interface Pedido {
   idPedido: number,
   fechaPedido: string,
-  idEmpleado: number,
-  idProveedor: number,
+  empleado: Empleado,
+  proveedor: Proveedor,
   cantidad: number,
-  idProducto: number
+  producto: Producto
+}
+
+
+export interface RespuestaPedidos {
+  message: string;
+  data: Pedido[];
 }

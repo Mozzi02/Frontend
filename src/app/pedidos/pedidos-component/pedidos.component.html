@@ -46,13 +46,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let ped of pedidos">
+      <tr *ngFor="let ped of pedidos.data">
         <th scope="row">{{ped.idPedido}}</th>
         <td>{{ped.fechaPedido}}</td>
-        <td>{{ped.idEmpleado}}</td>
-        <td>{{ped.idProveedor}}</td>
+        <td>{{ped.empleado.apellido}}, {{ped.empleado.nombre}}</td>
+        <td>{{ped.proveedor.razonSocial}}</td>
         <td>{{ped.cantidad}}</td>
-        <td>{{ped.idProducto}}</td>
+        <td>{{ped.producto.descripcion}}</td>
         <td>
           <button class="btn btn-secondary btn-sm">Editar</button>
           <button class="btn btn-danger btn-sm ms-2">Borrar</button>

@@ -1,3 +1,5 @@
+import { Rol } from "../roles/irol";
+
 export interface Empleado {
   idEmpleado: number,
   nombre: string,
@@ -6,6 +8,11 @@ export interface Empleado {
   email: string,
   direccion: string,
   dni: string,
-  idRol: number,
+  rol: Rol,
   password: string
+}
+
+export interface RespuestaEmpleados {
+  message: string;
+  data: Empleado[];
 }

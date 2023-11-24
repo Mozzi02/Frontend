@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Empleado } from './iempleado';
+import { Empleado, RespuestaEmpleados } from './iempleado';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -10,17 +10,20 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class EmpleadoService {
   constructor(private http: HttpClient) { }
  
-  private empleadosUrl = 'api/empleados';
+  private empleadosUrl = 'http://localhost:3000/api/empleados'
   httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  getEmpleados(): Observable<Empleado[]>{
-    return this.http.get<Empleado[]>(this.empleadosUrl)
+
+  getEmpleados(): Observable<RespuestaEmpleados>{
+    console.log('Haciendo solicitud a', this.empleadosUrl);
+    return this.http.get<RespuestaEmpleados>(this.empleadosUrl)
     .pipe(
-      catchError(this.handleError<Empleado[]>('getEmpleados', []))
+      catchError(this.handleError<RespuestaEmpleados>('getEmpleados', { message: '', data: [] }))
     );
   }
+
 
   agregarEmpleado(empleado: Empleado): Observable<Empleado>{
     return this.http.post<Empleado>(this.empleadosUrl, empleado, this.httpOptions)

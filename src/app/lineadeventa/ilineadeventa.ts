@@ -1,6 +1,9 @@
+import { Producto } from "../productos/iproducto";
+import { Venta } from "../ventas/iventa";
+
 export interface Linea_de_venta {
   idLineaVenta: number,
   cantProducto: number,
-  idVenta: number,
-  idProducto: number
+  venta: Venta,
+  producto: Producto
 }

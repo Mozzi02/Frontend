@@ -67,7 +67,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let cli of clientes">
+      <tr *ngFor="let cli of clientes.data">
         <th scope="row">{{cli.idCliente}}</th>
         <td>{{cli.nombre}}</td>
         <td>{{cli.apellido}}</td>
@@ -75,7 +75,7 @@
         <td>{{cli.email}}</td>
         <td>{{cli.direccion}}</td>
         <td>{{cli.cuit}}</td>
-        <td>{{cli.idCategoria}}</td>
+        <td>{{cli.categoria.descripcion}}</td>
         <td>
           <button class="btn btn-secondary btn-sm"
           routerLink="/clientes/{{cli.idCliente}}" >Editar</button>

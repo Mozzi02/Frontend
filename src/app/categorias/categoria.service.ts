@@ -25,6 +25,7 @@ export class CategoriaService {
   
 
   agregarCategoria(categoria: Categoria): Observable<Categoria>{
+    console.log("Inicia agregar del service");
     return this.http.post<Categoria>(this.categoriasUrl, categoria, this.httpOptions)
       .pipe(catchError(this.handleError<Categoria>('agregarCategoria'))
       );

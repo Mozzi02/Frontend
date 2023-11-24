@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Proveedor } from './iproveedor';
+import { Proveedor, RespuestaProveedores } from './iproveedor';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -10,15 +10,16 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class ProveedorService {
   constructor(private http: HttpClient) { }
 
-  private proveedoresUrl = 'api/proveedores'
+  private proveedoresUrl = 'http://localhost:3000/api/proveedores'
   httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  getProveedores(): Observable<Proveedor[]>{
-    return this.http.get<Proveedor[]>(this.proveedoresUrl)
+  getProveedores(): Observable<RespuestaProveedores>{
+    console.log('Haciendo solicitud a', this.proveedoresUrl);
+    return this.http.get<RespuestaProveedores>(this.proveedoresUrl)
     .pipe(
-      catchError(this.handleError<Proveedor[]>('getProveedores', []))
+      catchError(this.handleError<RespuestaProveedores>('getProveedores', { message: '', data: [] }))
     );
   }
 

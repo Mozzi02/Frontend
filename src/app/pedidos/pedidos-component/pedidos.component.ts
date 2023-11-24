@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Pedido } from '../ipedido';
+import { Pedido, RespuestaPedidos } from '../ipedido';
 import { PedidoService } from '../pedido.service';
 
 @Component({
@@ -19,14 +19,15 @@ export class PedidosComponent {
   idProveedor: string = '';
   cantidad: string = '';
   idProducto: string = '';
-  pedidos: Pedido[] = []
+  pedidos: RespuestaPedidos = { message: '', data: [] };
+
 
   getPedidos(): void {
-    this.pedidoService.getPedidos().subscribe(pedidos => this.pedidos = pedidos);
+    this.pedidoService.getPedidos().subscribe(response => {this.pedidos = response, console.log('Pedidos en el componente:', this.pedidos)});
   }
   
     agregarNuevoPedido(): void {
-    const idPedido = (this.pedidos.length) + 1;
+    /* const idPedido = (this.pedidos.length) + 1;
     const fechaPedido = this.fechaPedido;
     const idEmpleado = Number(this.idEmpleado);
     const idProveedor = Number(this.idProveedor);
@@ -37,7 +38,10 @@ export class PedidosComponent {
 
     this.pedidoService.agregarPedido(pedido);
     this.pedidos.push(pedido);
+    */
   }
+
+
   pedidoSubmit() {
     this.fechaPedido = '';
     this.idEmpleado = '';

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Cliente } from './icliente';
+import { Cliente, RespuestaClientes } from './icliente';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -10,15 +10,16 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class ClienteService {
   constructor(private http: HttpClient) { }
 
-  private clientesUrl = 'api/clientes'
+  private clientesUrl = 'http://localhost:3000/api/clientes'
   httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  getClientes(): Observable<Cliente[]>{
-    return this.http.get<Cliente[]>(this.clientesUrl)
+  getClientes(): Observable<RespuestaClientes>{
+    console.log('Haciendo solicitud a', this.clientesUrl);
+    return this.http.get<RespuestaClientes>(this.clientesUrl)
     .pipe(
-      catchError(this.handleError<Cliente[]>('getClientes', []))
+      catchError(this.handleError<RespuestaClientes>('getClientes', { message: '', data: [] }))
     );
   }
 
