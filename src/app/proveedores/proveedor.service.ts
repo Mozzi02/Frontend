@@ -29,6 +29,14 @@ export class ProveedorService {
       );
   }
 
+  borrarProveedor(idProveedor: number): Observable<Proveedor>{
+    const url = `${this.proveedoresUrl}/${idProveedor}`;
+    
+    return this.http.delete<Proveedor>(url, this.httpOptions)
+    .pipe(catchError(this.handleError<Proveedor>('borrarProveedor'))
+      );
+  }
+
   buscarProveedores(term: string): Observable<Proveedor[]> {
     if (!term.trim()) {
       return of([]);

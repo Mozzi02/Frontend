@@ -16,6 +16,7 @@ export class RolesComponent {
   }
 
   descripcion: string = '';
+
   roles: RespuestaRoles = { message: '', data: [] };
 
   getRoles(): void {
@@ -23,19 +24,17 @@ export class RolesComponent {
   }
 
   agregarNuevoRol(): void {
-    /*
-    const idRol = (this.roles.length) + 1;
+    const idRol = (this.roles.data.reduce((max, rol) => (rol.idRol > max ? rol.idRol: max), this.roles.data[0].idRol)) + 1;
     const descripcion = this.descripcion;
 
     const rol:Rol = {idRol, descripcion}
 
-    this.rolService.agregarRol(rol);
-    this.roles.push(rol);
-    */
+    this.rolService.agregarRol(rol).subscribe((data) => {return data})
+    this.getRoles();
   }
-  rolSubmit() {
-    /*
-    this.descripcion = '';
-    */
+
+  borrarRol(rol: Rol): void {
+    this.rolService.borrarRol(rol.idRol).subscribe((data) => {return data})
+    this.getRoles();
   }
 }

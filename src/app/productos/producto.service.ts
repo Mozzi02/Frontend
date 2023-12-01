@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Producto } from './iproducto';
+import { Producto, RespuestaProductos } from './iproducto';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -15,11 +15,10 @@ export class ProductoService {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  getProductos(): Observable<Producto[]>{
-    console.log("getprodenService");
-    return this.http.get<Producto[]>(this.productosUrl)
+  getProductos(): Observable<RespuestaProductos>{
+    return this.http.get<RespuestaProductos>(this.productosUrl)
     .pipe(
-      catchError(this.handleError<Producto[]>('getProductos', []))
+      catchError(this.handleError<RespuestaProductos>('getProductos', { message: '', data: [] }))
     );
   }
 
@@ -36,12 +35,20 @@ export class ProductoService {
       );
   }
 
-  buscarProductos(term: string): Observable<Producto[]> {
-    if (!term.trim()) {
-      return of([]);
-    }
-    return this.http.get<Producto[]>(`${this.productosUrl}/?descripcion=${term}`).pipe(
-      catchError(this.handleError<Producto[]>('buscarProductos', []))
+  borrarProducto(idProducto: number): Observable<Producto>{
+    const url = `${this.productosUrl}/${idProducto}`;
+    
+    return this.http.delete<Producto>(url, this.httpOptions)
+    .pipe(catchError(this.handleError<Producto>('borrarProducto'))
+      );
+  }
+
+  buscarProductos(term: string): Observable<RespuestaProductos> {
+    const url = `${this.productosUrl}/?descripcion=${term}`;
+
+    return this.http.get<RespuestaProductos>(url)
+    .pipe(
+      catchError(this.handleError<RespuestaProductos>('buscarProductos', { message: '', data: [] }))
     );
   }
 

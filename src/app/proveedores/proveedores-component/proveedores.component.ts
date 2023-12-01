@@ -19,6 +19,7 @@ export class ProveedoresComponent {
   razonSocial: string = '';
   telefono: string = '';
   email: string = '';
+
   proveedores: RespuestaProveedores = { message: '', data: [] };
 
   getProveedores(): void {
@@ -26,8 +27,7 @@ export class ProveedoresComponent {
   }
 
   agregarNuevoProveedor(): void {
-    /* 
-    const idProveedor = (this.proveedores.length) + 1;
+    const idProveedor = (this.proveedores.data.reduce((max, proveedor) => (proveedor.idProveedor > max ? proveedor.idProveedor: max), this.proveedores.data[0].idProveedor)) + 1;
     const cuit = this.cuit;
     const razonSocial = this.razonSocial;
     const telefono = this.telefono;
@@ -35,23 +35,12 @@ export class ProveedoresComponent {
 
     const proveedor:Proveedor = {idProveedor, cuit, razonSocial, telefono, email}
 
-    this.proveedorService.agregarProveedor(proveedor);
-    this.proveedores.push(proveedor);
-    */
-    
-  }
-  proveedorSubmit() {
-    /*
-    this.cuit = '';
-    this.razonSocial = '';
-    this.telefono = '';
-    this.email = '';
-    */
+    this.proveedorService.agregarProveedor(proveedor).subscribe((data) => {return data});
+    this.getProveedores();
   }
 
-  borrarProveedor(idProveedor:number){
-    /*
-    this.proveedores.splice(idProveedor,1);
-    */
+  borrarProveedor(proveedor: Proveedor){
+    this.proveedorService.borrarProveedor(proveedor.idProveedor).subscribe((data) => {return data});
+    this.getProveedores();
 }
 }

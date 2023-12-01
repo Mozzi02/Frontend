@@ -16,7 +16,6 @@ export class RolService {
   };
 
   getRoles(): Observable<RespuestaRoles>{
-    console.log('Haciendo solicitud a', this.rolesUrl);
     return this.http.get<RespuestaRoles>(this.rolesUrl)
     .pipe(
       catchError(this.handleError<RespuestaRoles>('getRoles', { message: '', data: [] }))
@@ -26,6 +25,14 @@ export class RolService {
   agregarRol(rol: Rol): Observable<Rol>{
     return this.http.post<Rol>(this.rolesUrl, rol, this.httpOptions)
       .pipe(catchError(this.handleError<Rol>('agregarRol'))
+      );
+  }
+
+  borrarRol(idRol: number): Observable<Rol>{
+    const url = `${this.rolesUrl}/${idRol}`
+
+    return this.http.delete<Rol>(url, this.httpOptions)
+      .pipe(catchError(this.handleError<Rol>('borrarRol'))
       );
   }
 

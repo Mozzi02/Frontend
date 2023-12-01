@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Producto } from '../iproducto';
+import { Producto, RespuestaProductos } from '../iproducto';
 import { ProductoService } from '../producto.service';
+import { RespuestaTipos, TipoProducto } from 'src/app/tipoproducto/itipo';
+import { TipoService } from 'src/app/tipoproducto/tipo.service';
 
 @Component({
   selector: 'app-productos',
@@ -9,42 +11,50 @@ import { ProductoService } from '../producto.service';
 })
 export class ProductosComponent implements  OnInit{
   
-  constructor (private productoService: ProductoService) {}
+  constructor (private productoService: ProductoService, private tipoService: TipoService) {}
   
   ngOnInit(): void {
-    console.log("asd");
     this.getProductos();
+    this.tipoService.getTipos().subscribe(response => {this.tipos = response, console.log('Tipos en el componente:', this.tipos)});
   }
 
   descripcion: string = '';
+  descripcionParcial: string = '';
   precio: string = '';
-  tipo: string = 'otro';
   stock: string = '';
   imagen: string = '';
-  productos: Producto[] = []
+
+  productos: RespuestaProductos = { message: '', data: [] };
+  tipos: RespuestaTipos = { message: '', data: []};
+
+  tipoProducto: TipoProducto = {idTipo: 0, descripcion: ''};
 
   getProductos(): void {
-    this.productoService.getProductos().subscribe(productos => this.productos = productos);
+    this.productoService.getProductos().subscribe(response => {this.productos = response, console.log('Productos en el componente:', this.productos)});
   }
 
-  agregarNuevoProducto(){
-    const idProducto = (this.productos.length) + 1;
+  agregarNuevoProducto(): void {
+    const idProducto = (this.productos.data.reduce((max, producto) => (producto.idProducto > max ? producto.idProducto: max), this.productos.data[0].idProducto)) + 1;
     const descripcion = this.descripcion;
     const precio = Number(this.precio);
-    const idTipo:number = (this.tipo =='Campera') ? 1 : (this.tipo =='Gorro') ? 2 : (this.tipo =='Calzado') ? 3 : (this.tipo=='Pantalon') ? 4 : (this.tipo == 'otro')?0:0;
+    const tipoProducto = this.tipoProducto
     const stock = Number(this.stock);
     const imagen = this.imagen;
     
-    const producto:Producto = {idProducto, descripcion, precio, idTipo, stock, imagen}
+    const producto:Producto = {idProducto, descripcion, precio, tipoProducto, stock, imagen}
 
-    this.productoService.agregarProducto(producto);
-    this.productos.push(producto);
+    this.productoService.agregarProducto(producto).subscribe((data) => {return data});
+    this.getProductos();
   }
-  productoSubmit(){
-    this.descripcion = '';
-    this.precio = '';
-    this.tipo = 'otro';
-    this.stock = '';
-    this.imagen = '';
+
+  borrarProducto(producto: Producto): void {
+    this.productoService.borrarProducto(producto.idProducto).subscribe((data) => {return data});
+    this.getProductos();
+  }
+
+  buscarProductos(): void {
+    const descripcionParcial = this.descripcionParcial;
+
+    this.productoService.buscarProductos(descripcionParcial).subscribe(response => {this.productos = response, console.log('Productos de la búsqueda:', this.productos)});
   }
 }
