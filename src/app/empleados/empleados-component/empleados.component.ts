@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Empleado, RespuestaEmpleados } from '../iempleado';
 import { EmpleadoService } from '../empleado.service';
+import { RespuestaRoles, Rol } from 'src/app/roles/irol';
+import { RolService } from 'src/app/roles/rol.service';
 
 @Component({
   selector: 'app-empleados',
@@ -9,10 +11,11 @@ import { EmpleadoService } from '../empleado.service';
 })
 export class EmpleadosComponent {
 
-  constructor (private empleadoService: EmpleadoService) {}
+  constructor (private empleadoService: EmpleadoService, private rolService: RolService) {}
 
   ngOnInit(): void {
     this.getEmpleados();
+    this.getRoles();
   }
 
   nombre: string = '';
@@ -21,51 +24,43 @@ export class EmpleadosComponent {
   email: string = '';
   direccion: string = '';
   dni: string = '';
-  rol: string = '';
+  rol: Rol = {idRol: 1, descripcion: ''}
   password: string = '';
+
   empleados: RespuestaEmpleados = { message: '', data: [] };
+  
+  roles: RespuestaRoles = { message: '', data: []};
 
 
   getEmpleados(): void {
     this.empleadoService.getEmpleados().subscribe(response => {this.empleados = response, console.log('Empleados en el componente:', this.empleados)});
   }
-  
+
+  getRoles(): void {
+    this.rolService.getRoles().subscribe(response => {this.roles = response, console.log('Roles en el componente:', this.roles)});
+  }
 
   agregarNuevoEmpleado(): void {
-    /* const idEmpleado = (this.empleados.length) + 1;
+    const idEmpleado = (this.empleados.data.reduce((max, empleado) => (empleado.idEmpleado > max ? empleado.idEmpleado: max), this.empleados.data[0].idEmpleado)) + 1;
     const nombre = this.nombre;
     const apellido = this.apellido;
     const telefono = this.telefono;
     const email = this.email;
     const direccion = this.direccion;
     const dni = this.dni;
-    let idRol = 0;
-    switch (this.rol) {
-      case 'Administrador':
-        idRol = 1
-        break;
-
-      case 'Empleado':
-        idRol = 2
-        break;
-    }
+    const rol = this.rol;
     const password = this.password;
 
-    const empleado:Empleado = {idEmpleado, nombre, apellido, telefono, email, direccion, dni, idRol, password}
+    const empleado:Empleado = {idEmpleado, nombre, apellido, telefono, email, direccion, dni, rol, password}
 
-    this.empleadoService.agregarEmpleado(empleado);
-    this.empleados.push(empleado);
+    console.log("Empleado:", empleado);
 
-    */
+    this.empleadoService.agregarEmpleado(empleado).subscribe((data) => {return data});
+    this.getEmpleados();
   }
-  empleadoSubmit() {
-    this.nombre = '';
-    this.apellido = '';
-    this.telefono = '';
-    this.email = '';
-    this.direccion = '';
-    this.dni = '';
-    this.rol = '';
-    this.password = '';
-}
+
+  borrarEmpleado(empleado: Empleado): void {
+    this.empleadoService.borrarEmpleado(empleado.idEmpleado).subscribe((data) => {return data});
+    this.getEmpleados();
+  }
 }

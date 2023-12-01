@@ -31,6 +31,13 @@ export class EmpleadoService {
       );
   }
 
+  borrarEmpleado(idEmpleado: number): Observable<Empleado>{
+    const url = `${this.empleadosUrl}/${idEmpleado}`
+    return this.http.delete<Empleado>(url, this.httpOptions)
+      .pipe(catchError(this.handleError<Empleado>('borrarEmpleado'))
+      );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

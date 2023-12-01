@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Cliente, RespuestaClientes } from '../icliente';
 import { ClienteService } from '../cliente.service';
+import { Categoria, RespuestaCategorias } from 'src/app/categorias/icategoria';
+import { CategoriaService } from 'src/app/categorias/categoria.service';
 
 @Component({
   selector: 'app-clientes',
@@ -8,10 +10,11 @@ import { ClienteService } from '../cliente.service';
   styleUrls: ['./clientes.component.css']
 })
 export class ClientesComponent {
-  constructor (private clienteService: ClienteService) {}
+  constructor (private clienteService: ClienteService, private categoriaService: CategoriaService) {}
   
   ngOnInit(): void {
     this.getClientes();
+    this.categoriaService.getCategorias().subscribe(response => {this.categorias = response, console.log('Categorías en el componente:', this.categorias)});
   }
 
   nombre: string = '';
@@ -20,40 +23,37 @@ export class ClientesComponent {
   email: string = '';
   direccion: string = '';
   cuit: string = '';
-  categoria: string = 'Minorista';
-  idCategoria: number = 0;
+  
   clientes: RespuestaClientes = { message: '', data: [] };
+
+  categoria: Categoria = {idCategoria: 1, descripcion: ''}
+  categorias: RespuestaCategorias = { message: '', data: []};
 
 
   getClientes(): void {
     this.clienteService.getClientes().subscribe(response => {this.clientes = response, console.log('Clientes en el componente:', this.clientes)});
   }
-  
 
   agregarNuevoCliente(): void{
-    /* const idCliente = (this.clientes.length) + 1;
+    const idCliente = (this.clientes.data.reduce((max, cliente) => (cliente.idCliente > max ? cliente.idCliente: max), this.clientes.data[0].idCliente)) + 1;
     const nombre = this.nombre;
     const apellido = this.apellido;
     const telefono = this.telefono;
     const email = this.email;
     const direccion = this.direccion;
     const cuit = this.cuit;
-    const idCategoria: number= (this.categoria == 'Minorista') ? 1 : (this.categoria == 'Mayorista') ? 2: 0;
+    const categoria = this.categoria;
 
-    const cliente:Cliente = {idCliente, nombre, apellido, telefono, email, direccion, cuit, idCategoria}
+    const cliente:Cliente = {idCliente, nombre, apellido, telefono, email, direccion, cuit, categoria}
 
-    this.clienteService.agregarCliente(cliente);
-    this.clientes.push(cliente);
-    */
+    console.log("Cliente:", cliente);
+
+    this.clienteService.agregarCliente(cliente).subscribe((data) => {return data});
+    this.getClientes();
   }
 
-  clienteSubmit(){
-    this.nombre = '';
-    this.apellido = '';
-    this.telefono = '';
-    this.email = '';
-    this.direccion = '';
-    this.cuit = '';
-    this.categoria = 'Minorista';
+  borrarCliente(cliente: Cliente): void{
+    this.clienteService.borrarCliente(cliente.idCliente).subscribe((data) => {return data});
+    this.getClientes();
   }
 }

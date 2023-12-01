@@ -16,6 +16,7 @@ export class CategoriasComponent {
   }
 
   descripcion: string = '';
+  
   categorias: RespuestaCategorias = { message: '', data: [] };
 
   getCategorias(): void {
@@ -23,16 +24,17 @@ export class CategoriasComponent {
   }
 
   agregarNuevaCategoria(): void {
-    console.log("Iniciando agregar");
-    const idCategoria = (this.categorias.data.length) + 1;
+    const idCategoria = (this.categorias.data.reduce((max, categoria) => (categoria.idCategoria > max ? categoria.idCategoria: max), this.categorias.data[0].idCategoria)) + 1;
     const descripcion = this.descripcion;
+
     const categoria:Categoria = {idCategoria, descripcion}
-    this.categoriaService.agregarCategoria(categoria);
-    console.log("Ya terminó el agregar");
+
+    this.categoriaService.agregarCategoria(categoria).subscribe((data) => {return data});
+    this.getCategorias();
   }
   
-  categoriaSubmit() {
-    this.descripcion = '';
+  borrarCategoria(categoria: Categoria): void {
+    this.categoriaService.borrarCategoria(categoria.idCategoria).subscribe((data) => {return data});
+    this.getCategorias();
   }
-  
 }
