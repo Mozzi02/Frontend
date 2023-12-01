@@ -31,6 +31,13 @@ export class PedidoService {
       );
   }
 
+  borrarPedido(idPedido: number): Observable<Pedido>{
+    const url = `${this.pedidosUrl}/${idPedido}`
+    return this.http.delete<Pedido>(url, this.httpOptions)
+      .pipe(catchError(this.handleError<Pedido>('borrarPedido'))
+      );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

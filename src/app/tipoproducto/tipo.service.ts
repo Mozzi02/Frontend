@@ -16,7 +16,6 @@ export class TipoService {
   };
 
   getTipos(): Observable<RespuestaTipos>{
-    console.log('Haciendo solicitud a', this.tiposUrl);
     return this.http.get<RespuestaTipos>(this.tiposUrl)
     .pipe(
       catchError(this.handleError<RespuestaTipos>('getTipos', { message: '', data: [] }))
@@ -26,6 +25,14 @@ export class TipoService {
   agregarTipo(tipo: TipoProducto): Observable<TipoProducto>{
     return this.http.post<TipoProducto>(this.tiposUrl, tipo, this.httpOptions)
       .pipe(catchError(this.handleError<TipoProducto>('agregarTipo'))
+      );
+  }
+
+  borrarTipo(idTipo: number): Observable<TipoProducto> {
+    const url = `${this.tiposUrl}/${idTipo}`
+
+    return this.http.delete<TipoProducto>(url, this.httpOptions)
+      .pipe(catchError(this.handleError<TipoProducto>('borrarTipo'))
       );
   }
 

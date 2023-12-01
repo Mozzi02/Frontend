@@ -20,10 +20,12 @@ export class ProductosBusquedaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /*
     this.productos$ = this.terminosBusqueda.pipe(
       debounceTime(300),
       distinctUntilChanged(),
       switchMap((term: string) => this.productoService.buscarProductos(term)),
     );
+    */
   }
 }

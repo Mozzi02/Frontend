@@ -1,6 +1,14 @@
 import { Component } from '@angular/core';
 import { Pedido, RespuestaPedidos } from '../ipedido';
 import { PedidoService } from '../pedido.service';
+import { EmpleadoService } from 'src/app/empleados/empleado.service';
+import { ProveedorService } from 'src/app/proveedores/proveedor.service';
+import { ProductoService } from 'src/app/productos/producto.service';
+import { Empleado, RespuestaEmpleados } from 'src/app/empleados/iempleado';
+import { Rol } from 'src/app/roles/irol';
+import { Proveedor, RespuestaProveedores } from 'src/app/proveedores/iproveedor';
+import { Producto, RespuestaProductos } from 'src/app/productos/iproducto';
+import { TipoProducto } from 'src/app/tipoproducto/itipo';
 
 @Component({
   selector: 'app-pedidos',
@@ -8,45 +16,50 @@ import { PedidoService } from '../pedido.service';
   styleUrls: ['./pedidos.component.css']
 })
 export class PedidosComponent {
-  constructor (private pedidoService: PedidoService) {}
+  constructor (private pedidoService: PedidoService, private empleadoService: EmpleadoService, private proveedorService: ProveedorService, private productoService: ProductoService) {}
 
   ngOnInit(): void {
     this.getPedidos();
+    this.empleadoService.getEmpleados().subscribe(response => {this.empleados = response, console.log('Empleados en el componente:', this.empleados)});
+    this.proveedorService.getProveedores().subscribe(response => {this.proveedores = response, console.log('Proveedores en el componente:', this.proveedores)});
+    this.productoService.getProductos().subscribe(response => {this.productos = response, console.log('Productos en el componente:', this.productos)});
   }
 
-  fechaPedido: string = '';
-  idEmpleado: string = '';
-  idProveedor: string = '';
   cantidad: string = '';
-  idProducto: string = '';
-  pedidos: RespuestaPedidos = { message: '', data: [] };
 
+  pedidos: RespuestaPedidos = { message: '', data: [] };
+  empleados: RespuestaEmpleados = {message: '', data: []};
+  proveedores: RespuestaProveedores = {message: '', data: []};
+  productos: RespuestaProductos = {message: '', data: []};
+
+  rol: Rol = {idRol: 0, descripcion: ''};
+  empleado: Empleado = {idEmpleado: 0, nombre: '', apellido: '', telefono: '', email: '', direccion: '', dni: '', rol: this.rol, password: ''}
+
+  proveedor: Proveedor = {idProveedor: 0, cuit: '', razonSocial: '', telefono: '', email: ''};
+
+  tipoProducto: TipoProducto = {idTipo: 0, descripcion: ''}
+  producto: Producto = {idProducto: 0, descripcion: '', precio: 0, tipoProducto: this.tipoProducto, stock: 0, imagen: ''}
 
   getPedidos(): void {
     this.pedidoService.getPedidos().subscribe(response => {this.pedidos = response, console.log('Pedidos en el componente:', this.pedidos)});
   }
   
-    agregarNuevoPedido(): void {
-    /* const idPedido = (this.pedidos.length) + 1;
-    const fechaPedido = this.fechaPedido;
-    const idEmpleado = Number(this.idEmpleado);
-    const idProveedor = Number(this.idProveedor);
+  agregarNuevoPedido(): void {
+    const idPedido = (this.pedidos.data.reduce((max, pedido) => (pedido.idPedido > max ? pedido.idPedido: max), this.pedidos.data[0].idPedido)) + 1;
+    const fechaPedido: Date = new Date();
+    const empleado = this.empleado;
+    const proveedor = this.proveedor;
     const cantidad = Number(this.cantidad);
-    const idProducto = Number(this.idProducto);
+    const producto = this.producto;
 
-    const pedido:Pedido = {idPedido, fechaPedido, idEmpleado, idProveedor, cantidad, idProducto}
+    const pedido:Pedido = {idPedido, fechaPedido, empleado, proveedor, cantidad, producto}
 
-    this.pedidoService.agregarPedido(pedido);
-    this.pedidos.push(pedido);
-    */
+    this.pedidoService.agregarPedido(pedido).subscribe((data) => {return data});
+    this.getPedidos();
   }
 
-
-  pedidoSubmit() {
-    this.fechaPedido = '';
-    this.idEmpleado = '';
-    this.idProveedor = '';
-    this.cantidad = '';
-    this.idProducto = '';
+  borrarPedido(pedido: Pedido): void {
+    this.pedidoService.borrarPedido(pedido.idPedido).subscribe((data) => {return data});
+    this.getPedidos();
   }
 }

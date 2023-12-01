@@ -4,7 +4,7 @@ import { Proveedor } from "../proveedores/iproveedor";
 
 export interface Pedido {
   idPedido: number,
-  fechaPedido: string,
+  fechaPedido: Date,
   empleado: Empleado,
   proveedor: Proveedor,
   cantidad: number,

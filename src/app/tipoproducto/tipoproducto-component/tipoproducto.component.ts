@@ -15,6 +15,7 @@ export class TipoproductoComponent {
   }
 
   descripcion: string = '';
+
   tipos: RespuestaTipos = { message: '', data: [] };
 
   getTipos(): void {
@@ -22,19 +23,17 @@ export class TipoproductoComponent {
   }
 
   agregarNuevoTipo(): void {
-    /* 
-    const idTipo = (this.tipos.length) + 1;
+    const idTipo = (this.tipos.data.reduce((max, tipo) => (tipo.idTipo > max ? tipo.idTipo: max), this.tipos.data[0].idTipo)) + 1;
     const descripcion = this.descripcion;
 
     const tipo:TipoProducto = {idTipo, descripcion}
 
-    this.tipoService.agregarTipo(tipo);
-    this.tipos.push(tipo);
-    */
+    this.tipoService.agregarTipo(tipo).subscribe((data) => {return data})
+    this.getTipos();
   }
-  tipoProductoSubmit() {
-    /*
-    this.descripcion = '';
-    */
+
+  borrarTipo(tipo: TipoProducto): void {
+    this.tipoService.borrarTipo(tipo.idTipo).subscribe((data) => {return data})
+    this.getTipos();
   }
 }
