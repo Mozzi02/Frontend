@@ -24,8 +24,16 @@ export class ClienteService {
   }
 
   agregarCliente(cliente: Cliente): Observable<Cliente>{
+    console.log("Cliente a agregar:", cliente);
     return this.http.post<Cliente>(this.clientesUrl, cliente, this.httpOptions)
       .pipe(catchError(this.handleError<Cliente>('agregarCliente'))
+      );
+  }
+
+  borrarCliente(idCliente: number): Observable<Cliente>{
+    const url = `${this.clientesUrl}/${idCliente}`
+    return this.http.delete<Cliente>(url, this.httpOptions)
+      .pipe(catchError(this.handleError<Cliente>('borrarCliente'))
       );
   }
 

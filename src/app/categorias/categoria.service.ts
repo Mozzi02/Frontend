@@ -31,6 +31,13 @@ export class CategoriaService {
       );
   }
 
+  borrarCategoria(idCategoria: number): Observable<Categoria>{
+    const url = `${this.categoriasUrl}/${idCategoria}`
+    return this.http.delete<Categoria>(url, this.httpOptions)
+      .pipe(catchError(this.handleError<Categoria>('borrarCategoria'))
+      );
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
