@@ -23,7 +23,8 @@
         <input class="form-control" type="text" id="empleado" name="empleado" placeholder="Empleado" [(ngModel)]="idEmpleado" required>
       </div>
       <!-- Boton Agregar -->
-      <button class="btn m-1 btn-primary" 
+      <button class="btn m-1 btn-primary"
+      routerLink="/lineadeventa" 
       (click)="agregarNuevaVenta()"
       [disabled]="!formventa.form.valid"
       >Agregar

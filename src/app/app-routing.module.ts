@@ -14,25 +14,33 @@ import { InicioComponent } from './inicio/inicio.component';
 import { ProductosEditarComponent } from './productos/productos-editar/productos-editar.component';
 import { ClientesEditarComponent } from './clientes/clientes-editar/clientes-editar.component';
 import { ProveedoresEditarComponent } from './proveedores/proveedores-editar/proveedores-editar.component';
+import { CategoriasEditarComponent } from './categorias/categorias-editar/categorias-editar.component';
+import { EmpleadosEditarComponent } from './empleados/empleados-editar/empleados-editar.component';
+import { PedidosEditarComponent } from './pedidos/pedidos-editar/pedidos-editar.component';
+import { RolesEditarComponent } from './roles/roles-editar/roles-editar.component';
+import { LineadeventaComponent } from './lineadeventa/lineadeventa-component/lineadeventa.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent},
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
   { path: 'clientes', component: ClientesComponent },
   { path: 'clientes/:idCliente', component: ClientesEditarComponent },
-  
   { path: 'productos', component: ProductosComponent },
   { path: 'productos/:idProducto', component: ProductosEditarComponent },
   { path: 'ventas', component: VentasComponent },
   { path: 'empleados', component: EmpleadosComponent },
+  { path: 'empleados/:idEmpleado', component: EmpleadosEditarComponent },
   { path: 'categorias', component: CategoriasComponent },
+  { path: 'categorias/:idCategoria', component: CategoriasEditarComponent },
   { path: 'roles', component: RolesComponent },
+  { path: 'roles/:idRol', component: RolesEditarComponent },
   { path: 'pedidos', component: PedidosComponent },
+  { path: 'pedidos/:idPedido', component: PedidosEditarComponent},
   { path: 'proveedores', component: ProveedoresComponent },
   { path: 'proveedores/:idProveedor', component: ProveedoresEditarComponent },
   { path: 'tipos', component: TipoproductoComponent },
   { path: 'perfil', component: MiperfilComponent },
-
+  { path: 'lineadeventa', component: LineadeventaComponent }
 ];
 
 @NgModule({

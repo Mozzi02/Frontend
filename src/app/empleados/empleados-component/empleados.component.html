@@ -12,45 +12,37 @@
     <form class="d-flex align-middle p-3 g-col-10" #formempleado="ngForm">
       <!-- Nombre -->
       <div class="d-flex flex-column m-1">
-        <label for="nombre">Nombre:</label>
-        <input class="form-control" type="text" id="nombre" name="nombre" [(ngModel)]="nombre">
+        <input class="form-control" type="text" id="nombre" name="nombre" placeholder="Nombre" [(ngModel)]="nombre">
       </div>
       <!-- Apellido -->
       <div class="d-flex flex-column m-1">
-        <label for="apellido">Apellido:</label>
-        <input class="form-control" type="text" id="apellido" name="apellido" [(ngModel)]="apellido">
+        <input class="form-control" type="text" id="apellido" name="apellido" placeholder="Apellido" [(ngModel)]="apellido">
       </div>
       <!-- Telefono -->
       <div class="d-flex flex-column m-1">
-        <label for="telefono">Telefono:</label>
-        <input class="form-control" type="text" id="telefono" name="telefono" [(ngModel)]="telefono">
+        <input class="form-control" type="text" id="telefono" name="telefono" placeholder="Telefono" [(ngModel)]="telefono">
       </div>
       <!-- Email -->
       <div class="d-flex flex-column m-1">
-        <label for="email">E-Mail:</label>
-        <input class="form-control" type="text" id="email" name="email" [(ngModel)]="email">
+        <input class="form-control" type="text" id="email" name="email" placeholder="E-Mail" [(ngModel)]="email">
       </div>
       <!-- Direccion -->
       <div class="d-flex flex-column m-1">
-        <label for="direccion">Direccion:</label>
-        <input class="form-control" type="text" id="direccion" name="direccion" [(ngModel)]="direccion">
+        <input class="form-control" type="text" id="direccion" name="direccion" placeholder="Direccion" [(ngModel)]="direccion">
       </div>
       <!-- DNI -->
       <div class="d-flex flex-column m-1">
-        <label for="dni">DNI:</label>
-        <input class="form-control" type="text" id="dni" name="dni" [(ngModel)]="dni" required>
+        <input class="form-control" type="text" id="dni" name="dni" placeholder="DNI" [(ngModel)]="dni" required>
       </div>
       <!-- Rol -->
       <div class="d-flex flex-column m-1">
-        <label for="rol">Rol:</label>
         <select class="form-select" id="selecRol" name="rol" [(ngModel)]="rol">
           <option *ngFor="let rol of roles.data" [ngValue]="rol" type="number" id="rol">{{rol.descripcion}}</option>
         </select>
       </div>
       <!-- Password -->
       <div class="d-flex flex-column m-1">
-        <label for="password">Password:</label>
-        <input class="form-control" type="text" id="password" name="password" [(ngModel)]="password">
+        <input class="form-control" type="text" id="password" name="password" placeholder="Password" aria-describedby="passwordHelpInline" [(ngModel)]="password">
       </div>
       <!-- Boton Agregar -->
       <button class="btn m-1 btn-primary" 
@@ -89,7 +81,7 @@
         <td>{{emp.rol.descripcion}}</td>
         <td>{{emp.password}}</td>
         <td>
-          <button class="btn btn-secondary btn-sm">Editar</button>
+          <button class="btn btn-secondary btn-sm" routerLink="/empleados/{{emp.idEmpleado}}">Editar</button>
           <button class="btn btn-danger btn-sm ms-2" (click)="borrarEmpleado(emp)">Borrar</button>
         </td>
       </tr>
