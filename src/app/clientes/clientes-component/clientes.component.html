@@ -13,39 +13,32 @@
     <form class="d-flex align-middle p-3 g-col-10" #formcliente="ngForm">
       <!-- Nombre -->
       <div class="d-flex flex-column m-1">
-        <label for="nombre">Nombre:</label>
-        <input class="form-control" type="text" name="nombre" [(ngModel)]="nombre">
+        <input class="form-control" type="text" name="nombre" placeholder="Nombre" [(ngModel)]="nombre">
       </div>
       <!-- Apellido -->
       <div class="d-flex flex-column m-1">
-        <label for="apellido">Apellido:</label>
-        <input class="form-control" type="text" id="apellido" name="apellido" [(ngModel)]="apellido">
+        <input class="form-control" type="text" id="apellido" name="apellido" placeholder="Apellido" [(ngModel)]="apellido">
       </div>
       <!-- Telefono -->
       <div class="d-flex flex-column m-1">
-        <label for="telefono">Telefono:</label>
-        <input class="form-control" type="text" id="telefono" name="telefono" [(ngModel)]="telefono">
+        <input class="form-control" type="text" id="telefono" name="telefono" placeholder="Telefono" [(ngModel)]="telefono">
       </div>
       <!-- Email -->
       <div class="d-flex flex-column m-1">
-        <label for="email">E-Mail:</label>
-        <input class="form-control" type="text" id="email" name="email" [(ngModel)]="email">
+        <input class="form-control" type="text" id="email" name="email" placeholder="E-Mail" [(ngModel)]="email">
       </div>
       <!-- Direccion -->
       <div class="d-flex flex-column m-1">
-        <label for="direccion">Direccion:</label>
-        <input class="form-control" type="text" id="direccion" name="direccion" [(ngModel)]="direccion">
+        <input class="form-control" type="text" id="direccion" name="direccion" placeholder="Direccion" [(ngModel)]="direccion">
       </div>
       <!-- CUIT -->
       <div class="d-flex flex-column m-1">
-        <label for="cuit">CUIT:</label>
-        <input class="form-control" type="text" id="cuit" name="cuit" [(ngModel)]="cuit" required>
+        <input class="form-control" type="text" id="cuit" name="cuit" placeholder="CUIT" [(ngModel)]="cuit" required>
       </div>
       <!-- Categoria -->
       <div class="d-flex flex-column m-1">
-        <label for="categoria">Categoria:</label>
-        <select class="form-select" id="categoria" name="categoria" placeholder="Categoria" [(ngModel)]="categoria" required>
-            <option *ngFor = "let cat of categorias.data" [ngValue]="cat" type="number" id="categoria">{{cat.descripcion}}</option>
+        <select class="form-select" id="categoria" name="categoria" [(ngModel)]="categoria" required>
+          <option *ngFor = "let cat of categorias.data" [ngValue]="cat" type="number" id="categoria">{{cat.descripcion}}</option>
         </select>
       </div>
       <!-- Boton Agregar -->

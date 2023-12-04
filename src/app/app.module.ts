@@ -23,6 +23,11 @@ import { ProveedoresBusquedaComponent } from './proveedores/proveedores-busqueda
 import { LineadeventaComponent } from './lineadeventa/lineadeventa-component/lineadeventa.component';
 import { ClientesEditarComponent } from './clientes/clientes-editar/clientes-editar.component';
 import { ProveedoresEditarComponent } from './proveedores/proveedores-editar/proveedores-editar.component';
+import { CategoriasEditarComponent } from './categorias/categorias-editar/categorias-editar.component';
+import { EmpleadosEditarComponent } from './empleados/empleados-editar/empleados-editar.component';
+import { PedidosEditarComponent } from './pedidos/pedidos-editar/pedidos-editar.component';
+import { RolesEditarComponent } from './roles/roles-editar/roles-editar.component';
+import { TipoproductoEditarComponent } from './tipoproducto/tipoproducto-editar/tipoproducto-editar.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +50,11 @@ import { ProveedoresEditarComponent } from './proveedores/proveedores-editar/pro
     LineadeventaComponent,
     ClientesEditarComponent,
     ProveedoresEditarComponent,
+    CategoriasEditarComponent,
+    EmpleadosEditarComponent,
+    PedidosEditarComponent,
+    RolesEditarComponent,
+    TipoproductoEditarComponent,
 
   ],
   imports: [
