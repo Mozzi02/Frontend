@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { ProductoService } from '../producto.service';
 import { Producto } from '../iproducto';
+import { TipoService } from 'src/app/tipoproducto/tipo.service';
+import { RespuestaTipos, TipoProducto } from 'src/app/tipoproducto/itipo';
 
 @Component({
   selector: 'app-productos-editar',
@@ -10,20 +12,27 @@ import { Producto } from '../iproducto';
   styleUrls: ['./productos-editar.component.css']
 })
 export class ProductosEditarComponent {
-  constructor(private route: ActivatedRoute, private productoService: ProductoService, private location: Location){ }
+  constructor(private router: Router, private productoService: ProductoService, private tipoService: TipoService){ }
+
+  tipos: RespuestaTipos = {message: '', data: []};
+  tipoProducto: TipoProducto = {idTipo: 0, descripcion: ''}
+
+  producto: Producto = {idProducto: 0, descripcion: '', precio: 0, tipoProducto: this.tipoProducto, stock: 0, imagen: ''}
+
+  cargandoProducto: boolean = true;
 
   ngOnInit(): void {
-    this.getProducto();
-  }
+    this.tipoService.getTipos().subscribe(response => {this.tipos = response});
 
-  producto: Producto = {} as Producto;
-
-  getProducto(): void {
-    const idProducto = Number(this.route.snapshot.paramMap.get('idProducto'));
-    this.productoService.getProducto(idProducto).subscribe(producto => {
+    const producto = history.state.producto;
+    if (producto) {
       this.producto = producto;
-      console.log(this.producto)
-    });
+      this.cargandoProducto = false;
+    }
   }
 
+  confirmarCambios(): void {
+    this.productoService.editarProducto(this.producto).subscribe((data) => {return data});
+    this.router.navigate(['/productos']);
+  }
 }

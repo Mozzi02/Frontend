@@ -3,6 +3,7 @@ import { Producto, RespuestaProductos } from '../iproducto';
 import { ProductoService } from '../producto.service';
 import { RespuestaTipos, TipoProducto } from 'src/app/tipoproducto/itipo';
 import { TipoService } from 'src/app/tipoproducto/tipo.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-productos',
@@ -11,11 +12,11 @@ import { TipoService } from 'src/app/tipoproducto/tipo.service';
 })
 export class ProductosComponent implements  OnInit{
   
-  constructor (private productoService: ProductoService, private tipoService: TipoService) {}
+  constructor (private router: Router, private productoService: ProductoService, private tipoService: TipoService) {}
   
   ngOnInit(): void {
     this.getProductos();
-    this.tipoService.getTipos().subscribe(response => {this.tipos = response, console.log('Tipos en el componente:', this.tipos)});
+    this.tipoService.getTipos().subscribe(response => {this.tipos = response});
   }
 
   descripcion: string = '';
@@ -30,7 +31,7 @@ export class ProductosComponent implements  OnInit{
   tipoProducto: TipoProducto = {idTipo: 0, descripcion: ''};
 
   getProductos(): void {
-    this.productoService.getProductos().subscribe(response => {this.productos = response, console.log('Productos en el componente:', this.productos)});
+    this.productoService.getProductos().subscribe(response => {this.productos = response});
   }
 
   agregarNuevoProducto(): void {
@@ -47,6 +48,10 @@ export class ProductosComponent implements  OnInit{
     this.getProductos();
   }
 
+  editarProducto(producto: Producto): void {
+    this.router.navigate(['/productos', producto.idProducto], {state: {producto}})
+  }
+
   borrarProducto(producto: Producto): void {
     this.productoService.borrarProducto(producto.idProducto).subscribe((data) => {return data});
     this.getProductos();
@@ -54,7 +59,8 @@ export class ProductosComponent implements  OnInit{
 
   buscarProductos(): void {
     const descripcionParcial = this.descripcionParcial;
-
-    this.productoService.buscarProductos(descripcionParcial).subscribe(response => {this.productos = response, console.log('Productos de la búsqueda:', this.productos)});
+    if (descripcionParcial){
+    this.productoService.findSome(descripcionParcial).subscribe(response => {this.productos = response});
+    }
   }
 }

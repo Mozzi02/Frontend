@@ -16,7 +16,6 @@ export class ProveedorService {
   };
 
   getProveedores(): Observable<RespuestaProveedores>{
-    console.log('Haciendo solicitud a', this.proveedoresUrl);
     return this.http.get<RespuestaProveedores>(this.proveedoresUrl)
     .pipe(
       catchError(this.handleError<RespuestaProveedores>('getProveedores', { message: '', data: [] }))
@@ -29,6 +28,14 @@ export class ProveedorService {
       );
   }
 
+  editarProveedor(proveedor: Proveedor): Observable<Proveedor>{
+    const url = `${this.proveedoresUrl}/${proveedor.idProveedor}`;
+
+    return this.http.put<Proveedor>(url, proveedor, this.httpOptions)
+      .pipe(catchError(this.handleError<Proveedor>('editarProveedor'))
+      );
+  }
+
   borrarProveedor(idProveedor: number): Observable<Proveedor>{
     const url = `${this.proveedoresUrl}/${idProveedor}`;
     
@@ -37,12 +44,12 @@ export class ProveedorService {
       );
   }
 
-  buscarProveedores(term: string): Observable<Proveedor[]> {
-    if (!term.trim()) {
-      return of([]);
-    }
-    return this.http.get<Proveedor[]>(`${this.proveedoresUrl}/?razonSocial=${term}`).pipe(
-      catchError(this.handleError<Proveedor[]>('buscarProveedores', []))
+  findSome(razonSocial: string): Observable<RespuestaProveedores> {
+    const url = `${this.proveedoresUrl}/buscar/${razonSocial}`;
+
+    return this.http.get<RespuestaProveedores>(url)
+    .pipe(
+      catchError(this.handleError<RespuestaProveedores>('buscarProveedores', {message: '', data: []}))
     );
   }
 

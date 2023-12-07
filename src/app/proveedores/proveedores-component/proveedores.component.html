@@ -6,21 +6,24 @@
     <title>Document</title>
 </head>
 <body>
-  <!-- form -->
   <div class="p-3 bg-dark align-middle text-white">
     <h4 class="text-white">Nuevo Proveedor</h4>
     <form class="d-flex align-middle p-3 g-col-10" #formproveedor = "ngForm">
       <div class="d-flex flex-column m-1">
-        <input class="form-control" type="text" id="cuit" name="cuit" placeholder="CUIT" [(ngModel)]="cuit" required>
+        <label for="cuit">CUIT:</label>
+        <input class="form-control" type="text" id="cuit" name="cuit" [(ngModel)]="cuit" required>
       </div>
       <div class="d-flex flex-column m-1">
-        <input class="form-control" type="text" id="razonSocial" name="razonSocial" placeholder="Razon social" [(ngModel)]="razonSocial">
+        <label for="razonSocial">Razón Social:</label>
+        <input class="form-control" type="text" id="razonSocial" name="razonSocial" [(ngModel)]="razonSocial">
       </div>
       <div class="d-flex flex-column m-1">
-        <input class="form-control" type="text" id="telefono" name="telefono" placeholder="Telefono" [(ngModel)]="telefono">
+        <label for="telefono">Teléfono:</label>
+        <input class="form-control" type="text" id="telefono" name="telefono" [(ngModel)]="telefono">
       </div>
       <div class="d-flex flex-column m-1">
-        <input class="form-control" type="text" id="email" name="email" placeholder="E-mail" [(ngModel)]="email">
+        <label for="email">E-Mail:</label>
+        <input class="form-control" type="text" id="email" name="email" [(ngModel)]="email">
       </div>
       <button class="btn m-1 btn-primary" 
       (click)="agregarNuevoProveedor()"
@@ -29,9 +32,17 @@
       </button>
     </form>
   </div>
-<!-- buscar -->
-  <app-proveedores-busqueda></app-proveedores-busqueda>
-<!-- tabla -->
+  <div class="p-3 bg-dark align-middle text-white">
+    <h4 class="text-white">Buscar Proveedores</h4>
+    <div class="d-flex align-middle p-3 g-col-10">
+      <div class="d-flex flex-column m-1">
+        <input class="form-control" type="text" name="razonSocialParcial" placeholder="Razon Social del Proveedor"
+          [(ngModel)]="razonSocialParcial" required>
+      </div>
+      <button class="btn m-1 btn-primary" type="submit" (click)="buscarProveedores()">Buscar
+      </button>
+    </div>
+  </div>
   <table class="table table-dark table-striped">
     <thead>
       <tr>
@@ -52,13 +63,8 @@
         <td>{{pro.telefono}}</td>
         <td>{{pro.email}}</td>
         <td>
-          <button class="btn btn-secondary btn-sm"
-          routerLink="/proveedores/{{pro.idProveedor}}"
-          >Editar
-          </button>
-          <button class="btn btn-danger btn-sm ms-2"
-          (click)="borrarProveedor(pro)"
-          >Borrar</button>
+          <button class="btn btn-secondary btn-sm" (click)="editarProveedor(pro)">Editar</button>
+          <button class="btn btn-danger btn-sm ms-2" (click)="borrarProveedor(pro)">Borrar</button>
         </td>
       </tr>
     </tbody>

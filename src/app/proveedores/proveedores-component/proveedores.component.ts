@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Proveedor, RespuestaProveedores } from '../iproveedor';
 import { ProveedorService } from '../proveedor.service';
 import { NgModule } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-proveedores',
@@ -9,7 +10,7 @@ import { NgModule } from '@angular/core';
   styleUrls: ['./proveedores.component.css']
 })
 export class ProveedoresComponent {
-  constructor (private proveedorService: ProveedorService) {}
+  constructor (private proveedorService: ProveedorService, private router: Router) {}
 
   ngOnInit(): void {
     this.getProveedores();
@@ -17,13 +18,14 @@ export class ProveedoresComponent {
 
   cuit: string = '';
   razonSocial: string = '';
+  razonSocialParcial: string = '';
   telefono: string = '';
   email: string = '';
 
   proveedores: RespuestaProveedores = { message: '', data: [] };
 
   getProveedores(): void {
-    this.proveedorService.getProveedores().subscribe(response => {this.proveedores = response, console.log('Proveedores en el componente:', this.proveedores)});
+    this.proveedorService.getProveedores().subscribe(response => {this.proveedores = response});
   }
 
   agregarNuevoProveedor(): void {
@@ -36,11 +38,23 @@ export class ProveedoresComponent {
     const proveedor:Proveedor = {idProveedor, cuit, razonSocial, telefono, email}
 
     this.proveedorService.agregarProveedor(proveedor).subscribe((data) => {return data});
-    this.getProveedores();
+    location.reload();
   }
 
-  borrarProveedor(proveedor: Proveedor){
+  editarProveedor(proveedor: Proveedor): void {
+    this.router.navigate(['/proveedores', proveedor.idProveedor], {state: {proveedor}})
+  }
+
+  borrarProveedor(proveedor: Proveedor): void {
     this.proveedorService.borrarProveedor(proveedor.idProveedor).subscribe((data) => {return data});
-    this.getProveedores();
-}
+    location.reload();
+  }
+
+  buscarProveedores(): void {
+    const razonSocialParcial = this.razonSocialParcial;
+    if (razonSocialParcial){
+    this.proveedorService.findSome(razonSocialParcial).subscribe(response => {this.proveedores = response});
+    }
+  }
+  
 }

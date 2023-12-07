@@ -28,6 +28,14 @@ export class TipoService {
       );
   }
 
+  editarTipo(tipo: TipoProducto): Observable<TipoProducto> {
+    const url = `${this.tiposUrl}/${tipo.idTipo}`
+
+    return this.http.put<TipoProducto>(url, tipo, this.httpOptions)
+      .pipe(catchError(this.handleError<TipoProducto>('editarTipo'))
+      );
+  }
+
   borrarTipo(idTipo: number): Observable<TipoProducto> {
     const url = `${this.tiposUrl}/${idTipo}`
 

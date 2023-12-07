@@ -17,7 +17,6 @@ export class VentaService {
 
 
   getVentas(): Observable<RespuestaVentas>{
-    console.log('Haciendo solicitud a', this.ventasUrl);
     return this.http.get<RespuestaVentas>(this.ventasUrl)
     .pipe(
       catchError(this.handleError<RespuestaVentas>('getVentas', { message: '', data: [] }))
@@ -30,6 +29,21 @@ export class VentaService {
       );
   }
 
+  editarVenta(venta: Venta): Observable<Venta>{
+    const url = `${this.ventasUrl}/${venta.idVenta}`;
+
+    return this.http.put<Venta>(url, venta, this.httpOptions)
+      .pipe(catchError(this.handleError<Venta>('agregarVenta'))
+      );
+  }
+
+  borrarVenta(idVenta: number): Observable<Venta>{
+    const url = `${this.ventasUrl}/${idVenta}`;
+
+    return this.http.delete<Venta>(url, this.httpOptions)
+      .pipe(catchError(this.handleError<Venta>('borrarVenta'))
+      );
+  }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

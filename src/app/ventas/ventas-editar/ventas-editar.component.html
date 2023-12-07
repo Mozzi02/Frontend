@@ -1,0 +1,59 @@
+<div *ngIf="!cargandoVenta">
+  <div class="p-3 bg-dark align-middle text-white d-flex flex-column">
+    <h4 class="text-white">Editar Venta</h4>
+    <form class="d-flex align-middle p-3 g-col-10" #formpeditarventa="ngForm">
+      <div class="d-flex flex-column m-1">
+        <label for="empleado">Empleado:</label>
+        <select class="form-select" id="empleado" name="empleado" aria-label="Default select example"
+          [(ngModel)]="venta.empleado" required>
+          <option [value]="venta.empleado" hidden>{{venta.empleado.apellido}}, {{venta.empleado.nombre}}</option>
+          <option *ngFor="let emp of empleados.data" [ngValue]="emp" type="number" id="empleado">{{emp.apellido}},
+            {{emp.nombre}}</option>
+        </select>
+      </div>
+      <div class="d-flex flex-column m-1">
+        <label for="cliente">Cliente:</label>
+        <select class="form-select" id="cliente" name="cliente" aria-label="Default select example"
+          [(ngModel)]="venta.cliente" required>
+          <option [value]="venta.cliente" hidden>{{venta.cliente.apellido}}, {{venta.cliente.nombre}}</option>
+          <option *ngFor="let cli of clientes.data" [ngValue]="cli" type="number" id="cliente">{{cli.apellido}}, {{cli.nombre}}
+          </option>
+        </select>
+      </div>
+    </form>
+  </div>
+
+<table class="table table-dark table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Id Linea</th>
+      <th scope="col">Producto</th>
+      <th scope="col">Cantidad</th>
+      <th scope="col">Subtotal</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let lin of lineas.data, let idLineaVenta = index">
+      <th scope="row">{{lin.idLineaVenta}}</th>
+      <td>{{lin.producto.descripcion}}</td>
+      <td>{{lin.cantidad}}</td>
+      <td>${{lin.cantidad * lin.producto.precio}}</td>
+      <td>
+        <button class="btn btn-secondary btn-sm" (click)="editarLinea(lin)">Editar
+        </button>
+        <button class="btn btn-danger btn-sm ms-2" (click)="borrarLinea(lin)">Borrar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+  <div class="d-flex flex-row ">
+    <button class="btn m-1 btn-primary" [disabled]="!formpeditarventa.form.valid"
+      (click)="confirmarCambios()">Confirmar
+    </button>
+    <button class="btn m-1 btn-secondary" routerLink="/ventas">Cancelar
+    </button>
+  </div>
+</div>
