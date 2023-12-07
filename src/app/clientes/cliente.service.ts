@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Cliente, RespuestaClientes } from './icliente';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,6 @@ export class ClienteService {
   };
 
   getClientes(): Observable<RespuestaClientes>{
-    console.log('Haciendo solicitud a', this.clientesUrl);
     return this.http.get<RespuestaClientes>(this.clientesUrl)
     .pipe(
       catchError(this.handleError<RespuestaClientes>('getClientes', { message: '', data: [] }))
@@ -24,9 +23,16 @@ export class ClienteService {
   }
 
   agregarCliente(cliente: Cliente): Observable<Cliente>{
-    console.log("Cliente a agregar:", cliente);
     return this.http.post<Cliente>(this.clientesUrl, cliente, this.httpOptions)
       .pipe(catchError(this.handleError<Cliente>('agregarCliente'))
+      );
+  }
+
+  editarCliente(cliente: Cliente): Observable<Cliente>{
+    const url = `${this.clientesUrl}/${cliente.idCliente}`
+
+    return this.http.put<Cliente>(url, cliente, this.httpOptions)
+      .pipe(catchError(this.handleError<Cliente>('editarCliente'))
       );
   }
 

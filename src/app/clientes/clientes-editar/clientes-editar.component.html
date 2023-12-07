@@ -1,43 +1,45 @@
+<div *ngIf="!cargandoCliente">
 <div class="p-3 bg-dark align-middle text-white d-flex flex-column">
-  <h4 class="text-white">Editar Cliente <!--{{proveedor.idProveedor}}--></h4>
+  <h4 class="text-white">Editar Cliente</h4>
   <form class="d-flex align-middle p-3 g-col-10" #formpeditarcliente="ngForm">
-    <!-- Nombre -->
     <div class="d-flex flex-column m-1">
-      <input class="form-control" type="text" name="nombre" placeholder="Nombre">
+      <label for="nombre">Nombre:</label>
+      <input class="form-control" type="text" id="nombre" [(ngModel)]="cliente.nombre" name="nombre" required>
     </div>
-    <!-- Apellido -->
     <div class="d-flex flex-column m-1">
-      <input class="form-control" type="text" id="apellido" name="apellido" placeholder="Apellido">
+      <label for="apellido">Apellido:</label>
+      <input class="form-control" type="text" id="apellido" [(ngModel)]="cliente.apellido" name="apellido" required>
     </div>
-    <!-- Telefono -->
     <div class="d-flex flex-column m-1">
-      <input class="form-control" type="text" id="telefono" name="telefono" placeholder="Telefono">
+      <label for="Telefono">Telefono:</label>
+      <input class="form-control" type="text" id="telefono" [(ngModel)]="cliente.telefono" name="telefono" required>
     </div>
-    <!-- Email -->
     <div class="d-flex flex-column m-1">
-      <input class="form-control" type="text" id="email" name="email" placeholder="E-Mail">
+      <label for="email">E-Mail:</label>
+      <input class="form-control" type="text" id="email" [(ngModel)]="cliente.email" name="email" required>
     </div>
-    <!-- Direccion -->
     <div class="d-flex flex-column m-1">
-      <input class="form-control" type="text" id="direccion" name="direccion" placeholder="Direccion">
+      <label for="direccion">Direccion:</label>
+      <input class="form-control" type="text" id="direccion" [(ngModel)]="cliente.direccion" name="direccion" required>
     </div>
-    <!-- CUIT -->
     <div class="d-flex flex-column m-1">
-      <input class="form-control" type="text" id="cuit" name="cuit" placeholder="CUIT" required>
+      <label for="cuit">CUIT:</label>
+      <input class="form-control" type="text" id="cuit" [(ngModel)]="cliente.cuit" name="cuit" required>
     </div>
-    <!-- Categoria -->
     <div class="d-flex flex-column m-1">
-      <select class="form-select" id="categoria" name="categoria" placeholder="Categoria" required>
-        <option type="number" id="categoria">Minorista</option>
-        <option type="number" id="categoria">Mayorista</option>
+      <label for="nombre">Categoria:</label>
+      <select class="form-select" id="categoria" name="categoria" [(ngModel)]="cliente.categoria" required>
+        <option [value]="cliente.categoria" hidden>{{cliente.categoria.descripcion}}</option>
+        <option *ngFor="let cat of categorias.data" [ngValue]="cat" type="number" id="categoria">{{cat.descripcion}}</option>
       </select>
     </div>
 
   </form>
 </div>
 <div class="d-flex flex-row ">
-  <button class="btn m-1 btn-primary" [disabled]="!formpeditarcliente.form.valid">Confirmar
+  <button class="btn m-1 btn-primary" [disabled]="!formpeditarcliente.form.valid" (click)="confirmarCambios()">Confirmar
   </button>
   <button class="btn m-1 btn-secondary" routerLink="/clientes">Cancelar
   </button>
+</div>
 </div>
