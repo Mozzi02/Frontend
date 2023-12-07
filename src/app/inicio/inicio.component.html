@@ -11,5 +11,11 @@
             BIENVENIDO A KESSIA
         </button>
     </div>
+    <div style="display: block;">
+        <h1 class="titulo">Ventas por mes (2023):</h1>
+        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+            [legend]="barChartLegend" [type]="barChartType">
+        </canvas>
+    </div>
 </body>
 </html>

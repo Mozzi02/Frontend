@@ -1,12 +1,4 @@
-html,
-body {
-  height: 100%;
-  margin-top: 100px;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 div{
   align-content: center;
   justify-content: center;
@@ -53,4 +45,23 @@ button:after {
   transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
   transition-duration: 400ms;
   transition-property: width, left;
+}
+
+:host{
+  display: block;
+}
+
+canvas {
+  width: 100%;
+  max-width: 800px;
+  max-height: 600px;
+  margin: 0 auto;
+  margin-top: 30px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.titulo {
+  margin-top: 20px;
+  color: #fff
 }
