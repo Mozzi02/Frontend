@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Categoria, RespuestaCategorias } from '../icategoria';
 import { CategoriaService } from '../categoria.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-categorias',
@@ -9,7 +10,7 @@ import { CategoriaService } from '../categoria.service';
 })
 export class CategoriasComponent {
 
-  constructor (private categoriaService: CategoriaService) {}
+  constructor (private categoriaService: CategoriaService, private router: Router) {}
 
   ngOnInit(): void {
     this.getCategorias();
@@ -18,9 +19,10 @@ export class CategoriasComponent {
   descripcion: string = '';
   
   categorias: RespuestaCategorias = { message: '', data: [] };
+  categoria: Categoria = {idCategoria: 0, descripcion: ''};
 
   getCategorias(): void {
-    this.categoriaService.getCategorias().subscribe(response => {this.categorias = response, console.log('Categorías en el componente:', this.categorias)});
+    this.categoriaService.getCategorias().subscribe(response => {this.categorias = response});
   }
 
   agregarNuevaCategoria(): void {
@@ -30,11 +32,17 @@ export class CategoriasComponent {
     const categoria:Categoria = {idCategoria, descripcion}
 
     this.categoriaService.agregarCategoria(categoria).subscribe((data) => {return data});
-    this.getCategorias();
+
+    location.reload();
   }
   
+  editarCategoria(categoria: Categoria): void {
+    this.router.navigate(['/categorias', categoria.idCategoria], {state: {categoria}});
+  }
+
   borrarCategoria(categoria: Categoria): void {
     this.categoriaService.borrarCategoria(categoria.idCategoria).subscribe((data) => {return data});
-    this.getCategorias();
+    
+    location.reload();
   }
 }

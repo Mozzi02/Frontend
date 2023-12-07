@@ -1,14 +1,27 @@
-<div class="p-3 bg-dark align-middle text-white d-flex flex-column">
-  <h4 class="text-white">Editar Categoria <!--{{proveedor.idProveedor}}--></h4>
-  <form class="d-flex align-middle p-3 g-col-10" #formpeditarcategoria="ngForm">
-    <div class="d-flex flex-column m-1">
-      <input class="form-control" type="text" id="descripcion" name="descripcion" placeholder="descripcion" required>
-    </div>
-  </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+<div *ngIf="!cargandoCategoria">
+  <div class="p-3 bg-dark align-middle text-white d-flex flex-column">
+    <h4 class="text-white">Editar Categoria </h4>
+    <form class="d-flex align-middle p-3 g-col-10" #formpeditarcategoria="ngForm">
+      <div class="d-flex flex-column m-1">
+        <label for="descripcion">Descripcion:</label>
+        <input class="form-control" type="text" id="descripcion" [(ngModel)]="categoria.descripcion" name="descripcion" required>
+      </div>
+    </form>
+  </div>
+  <div class="bg-dark d-flex flex-row ">
+    <button class="btn m-1 btn-primary" [disabled]="!formpeditarcategoria.form.valid" (click)="confirmarCambios()">Confirmar
+    </button>
+    <button class="btn m-1 btn-secondary" routerLink="/categorias">Cancelar
+    </button>
+  </div>
 </div>
-<div class="d-flex flex-row ">
-  <button class="btn m-1 btn-primary" [disabled]="!formpeditarcategoria.form.valid">Confirmar
-  </button>
-  <button class="btn m-1 btn-secondary" routerLink="/categorias">Cancelar
-  </button>
-</div>
+</body>
+</html>

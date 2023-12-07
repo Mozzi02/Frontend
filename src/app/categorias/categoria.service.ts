@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Categoria, RespuestaCategorias } from './icategoria';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,23 +16,38 @@ export class CategoriaService {
   };
 
   getCategorias(): Observable<RespuestaCategorias>{
-    console.log('Haciendo solicitud a', this.categoriasUrl);
     return this.http.get<RespuestaCategorias>(this.categoriasUrl)
     .pipe(
       catchError(this.handleError<RespuestaCategorias>('getCategorias', { message: '', data: [] }))
     );
   }
+
+  getCategoria(idCategoria: number): Observable<Categoria>{
+  const url = `${this.categoriasUrl}/${idCategoria}`
+
+    return this.http.get<Categoria>(url, this.httpOptions)
+      .pipe(catchError(this.handleError<Categoria>('getCategoria'))
+      );
+  }
   
 
   agregarCategoria(categoria: Categoria): Observable<Categoria>{
-    console.log("Inicia agregar del service");
     return this.http.post<Categoria>(this.categoriasUrl, categoria, this.httpOptions)
       .pipe(catchError(this.handleError<Categoria>('agregarCategoria'))
       );
   }
 
+  editarCategoria(categoria:Categoria): Observable<Categoria>{
+    const url = `${this.categoriasUrl}/${categoria.idCategoria}`
+
+    return this.http.put<Categoria>(url, categoria, this.httpOptions)
+      .pipe(catchError(this.handleError<Categoria>('editarCategoria'))
+      );
+  }
+
   borrarCategoria(idCategoria: number): Observable<Categoria>{
     const url = `${this.categoriasUrl}/${idCategoria}`
+    
     return this.http.delete<Categoria>(url, this.httpOptions)
       .pipe(catchError(this.handleError<Categoria>('borrarCategoria'))
       );
