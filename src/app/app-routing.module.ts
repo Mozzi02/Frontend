@@ -19,6 +19,9 @@ import { EmpleadosEditarComponent } from './empleados/empleados-editar/empleados
 import { PedidosEditarComponent } from './pedidos/pedidos-editar/pedidos-editar.component';
 import { RolesEditarComponent } from './roles/roles-editar/roles-editar.component';
 import { LineadeventaComponent } from './lineadeventa/lineadeventa-component/lineadeventa.component';
+import { TipoproductoEditarComponent } from './tipoproducto/tipoproducto-editar/tipoproducto-editar.component';
+import { VentasEditarComponent } from './ventas/ventas-editar/ventas-editar.component';
+import { LineadeventaEditarComponent } from './lineadeventa/lineadeventa-editar/lineadeventa-editar.component';
 
 const routes: Routes = [
   { path: 'inicio', component: InicioComponent},
@@ -28,6 +31,7 @@ const routes: Routes = [
   { path: 'productos', component: ProductosComponent },
   { path: 'productos/:idProducto', component: ProductosEditarComponent },
   { path: 'ventas', component: VentasComponent },
+  {path: 'ventas/:idVenta', component: VentasEditarComponent},
   { path: 'empleados', component: EmpleadosComponent },
   { path: 'empleados/:idEmpleado', component: EmpleadosEditarComponent },
   { path: 'categorias', component: CategoriasComponent },
@@ -39,8 +43,10 @@ const routes: Routes = [
   { path: 'proveedores', component: ProveedoresComponent },
   { path: 'proveedores/:idProveedor', component: ProveedoresEditarComponent },
   { path: 'tipos', component: TipoproductoComponent },
+  { path: 'tipos/:idTipo', component: TipoproductoEditarComponent},
   { path: 'perfil', component: MiperfilComponent },
-  { path: 'lineadeventa', component: LineadeventaComponent }
+  { path: 'lineas', component: LineadeventaComponent },
+  { path: 'lineas/:idLineaVenta', component: LineadeventaEditarComponent}
 ];
 
 @NgModule({

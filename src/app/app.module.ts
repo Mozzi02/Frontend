@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { NgChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductosComponent } from './productos/productos-component/productos.component';
@@ -18,8 +18,6 @@ import { MiperfilComponent } from './miperfil/miperfil.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProductosEditarComponent } from './productos/productos-editar/productos-editar.component';
-import { ProductosBusquedaComponent } from './productos/productos-busqueda/productos-busqueda.component';
-import { ProveedoresBusquedaComponent } from './proveedores/proveedores-busqueda/proveedores-busqueda.component';
 import { LineadeventaComponent } from './lineadeventa/lineadeventa-component/lineadeventa.component';
 import { ClientesEditarComponent } from './clientes/clientes-editar/clientes-editar.component';
 import { ProveedoresEditarComponent } from './proveedores/proveedores-editar/proveedores-editar.component';
@@ -28,6 +26,8 @@ import { EmpleadosEditarComponent } from './empleados/empleados-editar/empleados
 import { PedidosEditarComponent } from './pedidos/pedidos-editar/pedidos-editar.component';
 import { RolesEditarComponent } from './roles/roles-editar/roles-editar.component';
 import { TipoproductoEditarComponent } from './tipoproducto/tipoproducto-editar/tipoproducto-editar.component';
+import { VentasEditarComponent } from './ventas/ventas-editar/ventas-editar.component';
+import { LineadeventaEditarComponent } from './lineadeventa/lineadeventa-editar/lineadeventa-editar.component';
 
 @NgModule({
   declarations: [
@@ -45,8 +45,6 @@ import { TipoproductoEditarComponent } from './tipoproducto/tipoproducto-editar/
     InicioComponent,
     NavbarComponent,
     ProductosEditarComponent,
-    ProductosBusquedaComponent,
-    ProveedoresBusquedaComponent,
     LineadeventaComponent,
     ClientesEditarComponent,
     ProveedoresEditarComponent,
@@ -55,13 +53,16 @@ import { TipoproductoEditarComponent } from './tipoproducto/tipoproducto-editar/
     PedidosEditarComponent,
     RolesEditarComponent,
     TipoproductoEditarComponent,
+    VentasEditarComponent,
+    LineadeventaEditarComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
