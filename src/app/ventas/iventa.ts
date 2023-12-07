@@ -3,7 +3,7 @@ import { Empleado } from "../empleados/iempleado";
 
 export interface Venta {
   idVenta: number,
-  fechaVenta: string,
+  fechaVenta: Date,
   cliente: Cliente,
   empleado: Empleado
 }

@@ -35,6 +35,14 @@ export class ProductoService {
       );
   }
 
+  editarProducto(producto: Producto): Observable<Producto>{
+    const url = `${this.productosUrl}/${producto.idProducto}`;
+
+    return this.http.put<Producto>(url, producto, this.httpOptions)
+      .pipe(catchError(this.handleError<Producto>('editarProducto'))
+      );
+  }
+
   borrarProducto(idProducto: number): Observable<Producto>{
     const url = `${this.productosUrl}/${idProducto}`;
     
@@ -43,8 +51,8 @@ export class ProductoService {
       );
   }
 
-  buscarProductos(term: string): Observable<RespuestaProductos> {
-    const url = `${this.productosUrl}/?descripcion=${term}`;
+  findSome(descripcion: string): Observable<RespuestaProductos> {
+    const url = `${this.productosUrl}/buscar/${descripcion}`;
 
     return this.http.get<RespuestaProductos>(url)
     .pipe(

@@ -7,34 +7,31 @@
 </head>
 
 <body>
-  <!-- form -->
   <div class="p-3 bg-dark align-middle text-white">
     <h4 class="text-white">Nuevo Producto</h4>
     <form class="d-flex align-middle p-3 g-col-10" #formproducto = "ngForm">
-      <!-- Descripcion -->
       <div class="d-flex flex-column m-1">
-        <input class="form-control" type="text" name="descripcion" placeholder="Descripcion" [(ngModel)]="descripcion" required>
+        <label for="descripcion">Descripcion:</label>
+        <input class="form-control" type="text" name="descripcion" [(ngModel)]="descripcion" required>
       </div>
-      <!-- Precio -->
       <div class="d-flex flex-column m-1">
-        <input class="form-control" type="text" id="precio" name="precio" placeholder="Precio" [(ngModel)]="precio" required>
+        <label for="precio">Precio:</label>
+        <input class="form-control" type="text" id="precio" name="precio" [(ngModel)]="precio" required>
       </div>
-      <!-- Tipo de Producto -->
       <div class="d-flex flex-column m-1">
+        <label for="tipo">Tipo de Producto:</label>
         <select class="form-select" id="tipo" name="tipo" aria-label="default select example" [(ngModel)]="tipoProducto" required>
-          <option disabled selected>Tipo de Producto</option>
           <option *ngFor="let tipo of tipos.data" [ngValue]="tipo" type="number" id="tipo">{{tipo.descripcion}}</option>
         </select>
       </div>
-      <!-- Stock -->
       <div class="d-flex flex-column m-1">
-        <input class="form-control" type="text" id="stock" name="stock" placeholder="Stock" [(ngModel)]="stock">
+        <label for="stock">Stock:</label>
+        <input class="form-control" type="text" id="stock" name="stock" [(ngModel)]="stock">
       </div>
-      <!-- Imagen -->
       <div class="d-flex flex-column m-1">
-        <input class="form-control" type="text" id="imagen" name="imagen" placeholder="URL de imagen" [(ngModel)]="imagen">
+        <label for="imagen">URL de la Imagen:</label>
+        <input class="form-control" type="text" id="imagen" name="imagen" [(ngModel)]="imagen">
       </div>
-      <!-- Boton Agregar -->
       <button class="btn m-1 btn-primary" type="submit"
       (click)="agregarNuevoProducto()"
       [disabled]="!formproducto.form.valid"
@@ -42,20 +39,16 @@
       </button>
     </form>
   </div>
-<!-- buscar -->
-  <!-- Descripcion Parcial -->
   <div class="p-3 bg-dark align-middle text-white">
     <h4 class="text-white">Buscar Productos</h4>
     <div class="d-flex align-middle p-3 g-col-10">
       <div class="d-flex flex-column m-1">
         <input class="form-control" type="text" name="descripcionParcial" placeholder="Descripcion del Producto" [(ngModel)]="descripcionParcial" required>
       </div>
-      <!-- Boton Agregar -->
     <button class="btn m-1 btn-primary" type="submit" (click)="buscarProductos()">Buscar
     </button>
     </div>
   </div>
-<!-- tabla -->
   <table class="table table-dark table-striped">
     <thead>
       <tr>
@@ -78,9 +71,8 @@
         <td>
           <img class="imgprod" src={{prod.imagen}} alt="Imagen del producto" />
         </td>
-        <!-- Botones -->
         <td>
-          <button class="btn btn-secondary btn-sm" routerLink="/productos/{{prod.idProducto}}">Editar</button>
+          <button class="btn btn-secondary btn-sm" (click)="editarProducto(prod)">Editar</button>
           <button class="btn btn-danger btn-sm ms-2" (click)="borrarProducto(prod)">Borrar</button>
         </td>
       </tr>

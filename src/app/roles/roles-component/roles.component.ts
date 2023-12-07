@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RespuestaRoles, Rol } from '../irol';
 import { RolService } from '../rol.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-roles',
@@ -9,7 +10,7 @@ import { RolService } from '../rol.service';
 })
 export class RolesComponent {
 
-  constructor (private rolService: RolService) {}
+  constructor (private rolService: RolService, private router: Router) {}
 
   ngOnInit(): void {
     this.getRoles();
@@ -20,7 +21,7 @@ export class RolesComponent {
   roles: RespuestaRoles = { message: '', data: [] };
 
   getRoles(): void {
-    this.rolService.getRoles().subscribe(response => {this.roles = response, console.log('Roles en el componente:', this.roles)});
+    this.rolService.getRoles().subscribe(response => {this.roles = response});
   }
 
   agregarNuevoRol(): void {
@@ -30,11 +31,15 @@ export class RolesComponent {
     const rol:Rol = {idRol, descripcion}
 
     this.rolService.agregarRol(rol).subscribe((data) => {return data})
-    this.getRoles();
+    location.reload();
+  }
+
+  editarRol(rol: Rol): void {
+    this.router.navigate(['/roles', rol.idRol], {state: {rol}});
   }
 
   borrarRol(rol: Rol): void {
     this.rolService.borrarRol(rol.idRol).subscribe((data) => {return data})
-    this.getRoles();
+    location.reload();
   }
 }

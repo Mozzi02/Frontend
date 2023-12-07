@@ -28,6 +28,14 @@ export class RolService {
       );
   }
 
+  editarRol(rol: Rol): Observable<Rol>{
+    const url = `${this.rolesUrl}/${rol.idRol}`
+    
+    return this.http.put<Rol>(url, rol, this.httpOptions)
+      .pipe(catchError(this.handleError<Rol>('editarRol'))
+      );
+  }
+
   borrarRol(idRol: number): Observable<Rol>{
     const url = `${this.rolesUrl}/${idRol}`
 
