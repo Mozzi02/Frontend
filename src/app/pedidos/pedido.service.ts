@@ -17,7 +17,6 @@ export class PedidoService {
   
 
   getPedidos(): Observable<RespuestaPedidos>{
-    console.log('Haciendo solicitud a', this.pedidosUrl);
     return this.http.get<RespuestaPedidos>(this.pedidosUrl)
     .pipe(
       catchError(this.handleError<RespuestaPedidos>('getPedidos', { message: '', data: [] }))
@@ -28,6 +27,14 @@ export class PedidoService {
   agregarPedido(pedido: Pedido): Observable<Pedido>{
     return this.http.post<Pedido>(this.pedidosUrl, pedido, this.httpOptions)
       .pipe(catchError(this.handleError<Pedido>('agregarPedido'))
+      );
+  }
+
+  editarPedido(pedido: Pedido): Observable<Pedido>{
+  const url = `${this.pedidosUrl}/${pedido.idPedido}`
+
+    return this.http.put<Pedido>(url, pedido, this.httpOptions)
+      .pipe(catchError(this.handleError<Pedido>('editarPedido'))
       );
   }
 

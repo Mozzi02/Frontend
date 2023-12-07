@@ -9,6 +9,7 @@ import { Rol } from 'src/app/roles/irol';
 import { Proveedor, RespuestaProveedores } from 'src/app/proveedores/iproveedor';
 import { Producto, RespuestaProductos } from 'src/app/productos/iproducto';
 import { TipoProducto } from 'src/app/tipoproducto/itipo';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pedidos',
@@ -16,13 +17,13 @@ import { TipoProducto } from 'src/app/tipoproducto/itipo';
   styleUrls: ['./pedidos.component.css']
 })
 export class PedidosComponent {
-  constructor (private pedidoService: PedidoService, private empleadoService: EmpleadoService, private proveedorService: ProveedorService, private productoService: ProductoService) {}
+  constructor (private pedidoService: PedidoService, private empleadoService: EmpleadoService, private proveedorService: ProveedorService, private productoService: ProductoService, private router: Router) {}
 
   ngOnInit(): void {
     this.getPedidos();
-    this.empleadoService.getEmpleados().subscribe(response => {this.empleados = response, console.log('Empleados en el componente:', this.empleados)});
-    this.proveedorService.getProveedores().subscribe(response => {this.proveedores = response, console.log('Proveedores en el componente:', this.proveedores)});
-    this.productoService.getProductos().subscribe(response => {this.productos = response, console.log('Productos en el componente:', this.productos)});
+    this.empleadoService.getEmpleados().subscribe(response => {this.empleados = response});
+    this.proveedorService.getProveedores().subscribe(response => {this.proveedores = response});
+    this.productoService.getProductos().subscribe(response => {this.productos = response});
   }
 
   cantidad: string = '';
@@ -41,7 +42,7 @@ export class PedidosComponent {
   producto: Producto = {idProducto: 0, descripcion: '', precio: 0, tipoProducto: this.tipoProducto, stock: 0, imagen: ''}
 
   getPedidos(): void {
-    this.pedidoService.getPedidos().subscribe(response => {this.pedidos = response, console.log('Pedidos en el componente:', this.pedidos)});
+    this.pedidoService.getPedidos().subscribe(response => {this.pedidos = response});
   }
   
   agregarNuevoPedido(): void {
@@ -55,11 +56,17 @@ export class PedidosComponent {
     const pedido:Pedido = {idPedido, fechaPedido, empleado, proveedor, cantidad, producto}
 
     this.pedidoService.agregarPedido(pedido).subscribe((data) => {return data});
-    this.getPedidos();
+
+    location.reload();
+  }
+
+  editarPedido(pedido: Pedido): void {
+    this.router.navigate(['/pedidos', pedido.idPedido], {state: {pedido}})
   }
 
   borrarPedido(pedido: Pedido): void {
     this.pedidoService.borrarPedido(pedido.idPedido).subscribe((data) => {return data});
-    this.getPedidos();
+    
+    location.reload();
   }
 }

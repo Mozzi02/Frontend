@@ -17,7 +17,6 @@ export class EmpleadoService {
 
 
   getEmpleados(): Observable<RespuestaEmpleados>{
-    console.log('Haciendo solicitud a', this.empleadosUrl);
     return this.http.get<RespuestaEmpleados>(this.empleadosUrl)
     .pipe(
       catchError(this.handleError<RespuestaEmpleados>('getEmpleados', { message: '', data: [] }))
@@ -28,6 +27,14 @@ export class EmpleadoService {
   agregarEmpleado(empleado: Empleado): Observable<Empleado>{
     return this.http.post<Empleado>(this.empleadosUrl, empleado, this.httpOptions)
       .pipe(catchError(this.handleError<Empleado>('agregarEmpleado'))
+      );
+  }
+
+  editarEmpleado(empleado: Empleado): Observable<Empleado>{
+    const url = `${this.empleadosUrl}/${empleado.idEmpleado}`
+
+    return this.http.put<Empleado>(url, empleado, this.httpOptions)
+      .pipe(catchError(this.handleError<Empleado>('editarEmpleado'))
       );
   }
 

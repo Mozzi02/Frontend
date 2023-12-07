@@ -6,32 +6,28 @@
     <title>Document</title>
 </head>
 <body>
-  <!-- form -->
   <div class="p-3 bg-dark align-middle text-white">
     <h4 class="text-white">Nuevo Pedido</h4>
     <form class="d-flex align-middle p-3 g-col-10" #formpedido="ngForm">
-      <!-- Empleado -->
       <div class="d-flex flex-column m-1">
+        <label for="empleado">Empleado:</label>
         <select class="form-select" id="empleado" name="empleado" aria-label="Default select example" [(ngModel)]="empleado" required>
-          <option selected disabled>Empleado</option>
           <option *ngFor="let emp of empleados.data" [ngValue]="emp" type="number" id="empleado">{{emp.apellido}}, {{emp.nombre}}</option>
         </select>
       </div>
-      <!-- Proveedor -->
       <div class="d-flex flex-column m-1">
+        <label for="proveedor">Proveedor:</label>
         <select class="form-select" id="proveedor" name="proveedor" aria-label="Default select example" [(ngModel)]="proveedor" required>
-          <option selected disabled>Proveedor</option>
           <option *ngFor="let pro of proveedores.data" [ngValue]="pro" type="number" id="proveedor">{{pro.razonSocial}}</option>
         </select>
       </div>
-      <!-- Cantidad -->
       <div class="d-flex flex-column m-1">
-        <input class="form-control" type="text" id="cantidad" name="cantidad" placeholder="Cantidad" [(ngModel)]="cantidad" required>
+        <label for="cantidad">Cantidad:</label>
+        <input class="form-control" type="text" id="cantidad" name="cantidad" [(ngModel)]="cantidad" required>
       </div>
-      <!-- Producto -->
       <div class="d-flex flex-column m-1">
+        <label for="producto">Producto:</label>
         <select class="form-select" id="producto" name="producto" aria-label="Default select example" [(ngModel)]="producto" required>
-          <option selected disabled>Producto</option>
           <option *ngFor="let prod of productos.data" [ngValue]="prod" type="number" id="producto">{{prod.descripcion}}</option>
         </select>
       </div>
@@ -42,7 +38,6 @@
     </form>
   </div>
 
-  <!-- tabla -->
   <table class="table table-dark table-striped">
     <thead>
       <tr>
@@ -64,7 +59,7 @@
         <td>{{ped.cantidad}}</td>
         <td>{{ped.producto.descripcion}}</td>
         <td>
-          <button class="btn btn-secondary btn-sm" routerLink="/pedidos/{{ped.idPedido}}">Editar</button>
+          <button class="btn btn-secondary btn-sm" (click)="editarPedido(ped)">Editar</button>
           <button class="btn btn-danger btn-sm ms-2" (click)="borrarPedido(ped)">Borrar</button>
         </td>
       </tr>

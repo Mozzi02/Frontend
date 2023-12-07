@@ -3,6 +3,7 @@ import { Empleado, RespuestaEmpleados } from '../iempleado';
 import { EmpleadoService } from '../empleado.service';
 import { RespuestaRoles, Rol } from 'src/app/roles/irol';
 import { RolService } from 'src/app/roles/rol.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-empleados',
@@ -11,11 +12,11 @@ import { RolService } from 'src/app/roles/rol.service';
 })
 export class EmpleadosComponent {
 
-  constructor (private empleadoService: EmpleadoService, private rolService: RolService) {}
+  constructor (private empleadoService: EmpleadoService, private rolService: RolService, private router: Router) {}
 
   ngOnInit(): void {
     this.getEmpleados();
-    this.getRoles();
+    this.rolService.getRoles().subscribe(response => {this.roles = response});
   }
 
   nombre: string = '';
@@ -33,11 +34,7 @@ export class EmpleadosComponent {
 
 
   getEmpleados(): void {
-    this.empleadoService.getEmpleados().subscribe(response => {this.empleados = response, console.log('Empleados en el componente:', this.empleados)});
-  }
-
-  getRoles(): void {
-    this.rolService.getRoles().subscribe(response => {this.roles = response, console.log('Roles en el componente:', this.roles)});
+    this.empleadoService.getEmpleados().subscribe(response => {this.empleados = response});
   }
 
   agregarNuevoEmpleado(): void {
@@ -53,14 +50,18 @@ export class EmpleadosComponent {
 
     const empleado:Empleado = {idEmpleado, nombre, apellido, telefono, email, direccion, dni, rol, password}
 
-    console.log("Empleado:", empleado);
-
     this.empleadoService.agregarEmpleado(empleado).subscribe((data) => {return data});
-    this.getEmpleados();
+    
+    location.reload();
+  }
+
+  editarEmpleado(empleado: Empleado): void {
+    this.router.navigate(['/empleados', empleado.idEmpleado], {state: {empleado}});
   }
 
   borrarEmpleado(empleado: Empleado): void {
     this.empleadoService.borrarEmpleado(empleado.idEmpleado).subscribe((data) => {return data});
-    this.getEmpleados();
+    
+    location.reload();
   }
 }

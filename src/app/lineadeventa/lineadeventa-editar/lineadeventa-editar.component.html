@@ -1,0 +1,26 @@
+<div *ngIf="!cargandoLinea">
+  <div class="p-3 bg-dark align-middle text-white d-flex flex-column">
+    <h4 class="text-white">Editar Linea</h4>
+    <form class="d-flex align-middle p-3 g-col-10" #formpeditarlinea="ngForm">
+      <div class="d-flex flex-column m-1">
+        <label for="producto">Producto:</label>
+        <select class="form-select" id="producto" name="producto" aria-label="Default select example"
+          [(ngModel)]="linea.producto" required>
+          <option [value]="linea.producto" hidden>{{linea.producto.descripcion}}</option>
+          <option *ngFor="let prod of productos.data" [ngValue]="prod" type="number" id="producto">{{prod.descripcion}}</option>
+        </select>
+      </div>
+      <div class="d-flex flex-column m-1">
+        <label for="cantidad">Cantidad:</label>
+        <input class="form-control" type="text" id="cantidad" name="cantidad" [(ngModel)]="linea.cantidad" required>
+      </div>
+    </form>
+  </div>
+  <div class="d-flex flex-row ">
+    <button class="btn m-1 btn-primary" [disabled]="!formpeditarlinea.form.valid"
+      (click)="confirmarCambios()">Confirmar
+    </button>
+    <button class="btn m-1 btn-secondary" routerLink="/ventas">Cancelar
+    </button>
+  </div>
+</div>
