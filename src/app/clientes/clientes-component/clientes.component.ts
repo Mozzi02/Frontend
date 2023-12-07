@@ -3,6 +3,7 @@ import { Cliente, RespuestaClientes } from '../icliente';
 import { ClienteService } from '../cliente.service';
 import { Categoria, RespuestaCategorias } from 'src/app/categorias/icategoria';
 import { CategoriaService } from 'src/app/categorias/categoria.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-clientes',
@@ -10,11 +11,11 @@ import { CategoriaService } from 'src/app/categorias/categoria.service';
   styleUrls: ['./clientes.component.css']
 })
 export class ClientesComponent {
-  constructor (private clienteService: ClienteService, private categoriaService: CategoriaService) {}
+  constructor (private clienteService: ClienteService, private categoriaService: CategoriaService, private router: Router) {}
   
   ngOnInit(): void {
     this.getClientes();
-    this.categoriaService.getCategorias().subscribe(response => {this.categorias = response, console.log('Categorías en el componente:', this.categorias)});
+    this.categoriaService.getCategorias().subscribe(response => {this.categorias = response});
   }
 
   nombre: string = '';
@@ -29,9 +30,8 @@ export class ClientesComponent {
   categoria: Categoria = {idCategoria: 1, descripcion: ''}
   categorias: RespuestaCategorias = { message: '', data: []};
 
-
   getClientes(): void {
-    this.clienteService.getClientes().subscribe(response => {this.clientes = response, console.log('Clientes en el componente:', this.clientes)});
+    this.clienteService.getClientes().subscribe(response => {this.clientes = response});
   }
 
   agregarNuevoCliente(): void{
@@ -46,14 +46,18 @@ export class ClientesComponent {
 
     const cliente:Cliente = {idCliente, nombre, apellido, telefono, email, direccion, cuit, categoria}
 
-    console.log("Cliente:", cliente);
-
     this.clienteService.agregarCliente(cliente).subscribe((data) => {return data});
-    this.getClientes();
+
+    location.reload();
+  }
+
+  editarCliente(cliente: Cliente): void{
+    this.router.navigate(['/clientes', cliente.idCliente], {state: {cliente}})
   }
 
   borrarCliente(cliente: Cliente): void{
     this.clienteService.borrarCliente(cliente.idCliente).subscribe((data) => {return data});
-    this.getClientes();
+    
+    location.reload();
   }
 }
