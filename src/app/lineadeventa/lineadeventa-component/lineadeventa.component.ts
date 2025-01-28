@@ -40,6 +40,9 @@ export class LineadeventaComponent {
 
   cantidad: number = 0;
 
+  mensajeError: string = '';
+  mostrarMensaje: boolean = false;
+
   ngOnInit(): void {
     this.lineasAux = [];
     this.getLineas();
@@ -62,15 +65,45 @@ export class LineadeventaComponent {
   }
 
   agregarNuevaLinea(): void {
-    const idLineaVenta = (this.lineas.data.reduce((max, linea) => (linea.idLineaVenta > max ? linea.idLineaVenta: max), this.lineas.data[0].idLineaVenta)) + 1;
-    const producto = this.producto;
-    const cantidad = this.cantidad;
+    if (this.lineasAux.some(linea => linea.producto.idProducto === this.producto.idProducto)){
+      this.lineasAux = this.lineasAux.map(linea => {
+        if (linea.producto.idProducto === this.producto.idProducto){
+          if (this.producto.stock >= (linea.cantidad + this.cantidad)){
+            linea.cantidad = linea.cantidad + this.cantidad
+            this.mensajeError = '';
+            this.mostrarMensaje = false;
+          } else {
+            this.mensajeError = 'Stock insuficiente';
+            this.mostrarMensaje = true;
+            setTimeout(() => {
+              this.mostrarMensaje = false;
+            }, 3000);
+          }
+        }
+        return linea;
+      })
+    } else {
+      if (this.producto.stock >= this.cantidad){
+      const idLineaVenta = (this.lineas.data.reduce((max, linea) => (linea.idLineaVenta > max ? linea.idLineaVenta: max), this.lineas.data[0].idLineaVenta)) + 1;
+      const producto = this.producto;
+      const cantidad = this.cantidad;
 
-    const linea: Linea_de_venta = {idLineaVenta, cantidad, venta: this.venta, producto}
+      const linea: Linea_de_venta = {idLineaVenta, cantidad, venta: this.venta, producto}
     
-    this.lineasAux.push(linea);
-    this.lineas.data.push(linea);
-    this.lineasDeLaVenta.data.push(linea);
+      this.lineasAux.push(linea);
+      this.lineas.data.push(linea);
+      this.lineasDeLaVenta.data.push(linea);
+
+      this.mensajeError = '';
+      this.mostrarMensaje = false;
+      } else {
+        this.mensajeError = 'Stock insuficiente';
+        this.mostrarMensaje = true;
+        setTimeout(() => {
+          this.mostrarMensaje = false;
+        }, 3000);
+      }
+    }
   }
 
   editarLinea(linea: Linea_de_venta): void{
@@ -86,7 +119,9 @@ export class LineadeventaComponent {
   finalizarVenta(): void {
     this.ventaService.agregarVenta(this.venta).pipe(
       map(() => this.lineasAux.forEach((linea: Linea_de_venta) => {
-        this.lineaService.agregarLinea(linea).subscribe((data) => {return data})
+        this.lineaService.agregarLinea(linea).subscribe((data) => {return data}),
+        linea.producto.stock = linea.producto.stock - linea.cantidad,
+        this.productoService.editarProducto(linea.producto).subscribe((data) => {return data})
       }))
     )
     .subscribe((data) => {return data});
