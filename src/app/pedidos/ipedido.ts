@@ -8,7 +8,8 @@ export interface Pedido {
   empleado: Empleado,
   proveedor: Proveedor,
   cantidad: number,
-  producto: Producto
+  producto: Producto,
+  estado: string
 }
 
 

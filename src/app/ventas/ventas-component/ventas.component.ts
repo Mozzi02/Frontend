@@ -35,7 +35,12 @@ export class VentasComponent {
   empleados: RespuestaEmpleados = { message: '', data: []};
 
   getVentas(): void {
-    this.ventaService.getVentas().subscribe(response => {this.ventas = response});
+    this.ventaService.getVentas().subscribe(response => {
+      this.ventas = response
+      this.ventas.data = this.ventas.data.slice().sort((a, b) => new Date(b.fechaVenta).getTime() - new Date(a.fechaVenta).getTime());
+    });
+
+    
   }
 
   agregarNuevaVenta(): void {

@@ -42,7 +42,10 @@ export class PedidosComponent {
   producto: Producto = {idProducto: 0, descripcion: '', precio: 0, tipoProducto: this.tipoProducto, stock: 0, imagen: ''}
 
   getPedidos(): void {
-    this.pedidoService.getPedidos().subscribe(response => {this.pedidos = response});
+    this.pedidoService.getPedidos().subscribe(response => {
+      this.pedidos = response
+      this.pedidos.data = this.pedidos.data.slice().sort((a, b) => new Date(b.fechaPedido).getTime() - new Date(a.fechaPedido).getTime());
+    });
   }
   
   agregarNuevoPedido(): void {
@@ -52,11 +55,23 @@ export class PedidosComponent {
     const proveedor = this.proveedor;
     const cantidad = Number(this.cantidad);
     const producto = this.producto;
+    const estado = "En espera";
 
-    const pedido:Pedido = {idPedido, fechaPedido, empleado, proveedor, cantidad, producto}
+    const pedido:Pedido = {idPedido, fechaPedido, empleado, proveedor, cantidad, producto, estado}
 
     this.pedidoService.agregarPedido(pedido).subscribe((data) => {return data});
 
+    location.reload();
+  }
+
+  confirmarPedido(pedido: Pedido): void{
+    pedido.estado = "Confirmado"
+    this.pedidoService.editarPedido(pedido).subscribe((data) => {return data});
+
+    const producto = pedido.producto
+    producto.stock = producto.stock + pedido.cantidad
+    this.productoService.editarProducto(producto).subscribe((data) => {return data});
+    
     location.reload();
   }
 

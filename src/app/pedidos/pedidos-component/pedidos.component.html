@@ -47,6 +47,7 @@
         <th scope="col">Proveedor</th>
         <th scope="col">Cantidad</th>
         <th scope="col">Producto</th>
+        <th scope="col">Estado</th>
         <th scope="col">Acciones</th>
       </tr>
     </thead>
@@ -58,7 +59,9 @@
         <td>{{ped.proveedor.razonSocial}}</td>
         <td>{{ped.cantidad}}</td>
         <td>{{ped.producto.descripcion}}</td>
+        <td>{{ped.estado}}</td>
         <td>
+          <button *ngIf="ped.estado === 'En espera'" class="btn btn-success btn-sm me-2" (click)="confirmarPedido(ped)">Confirmar</button>
           <button class="btn btn-secondary btn-sm" (click)="editarPedido(ped)">Editar</button>
           <button class="btn btn-danger btn-sm ms-2" (click)="borrarPedido(ped)">Borrar</button>
         </td>
