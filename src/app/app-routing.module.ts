@@ -22,31 +22,34 @@ import { LineadeventaComponent } from './lineadeventa/lineadeventa-component/lin
 import { TipoproductoEditarComponent } from './tipoproducto/tipoproducto-editar/tipoproducto-editar.component';
 import { VentasEditarComponent } from './ventas/ventas-editar/ventas-editar.component';
 import { LineadeventaEditarComponent } from './lineadeventa/lineadeventa-editar/lineadeventa-editar.component';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-  { path: 'inicio', component: InicioComponent},
+  { path: 'login', component: LoginComponent},
+  { path: 'inicio', component: InicioComponent, canActivate: [AuthGuard]},
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },
-  { path: 'clientes', component: ClientesComponent },
-  { path: 'clientes/:idCliente', component: ClientesEditarComponent },
-  { path: 'productos', component: ProductosComponent },
-  { path: 'productos/:idProducto', component: ProductosEditarComponent },
-  { path: 'ventas', component: VentasComponent },
-  {path: 'ventas/:idVenta', component: VentasEditarComponent},
-  { path: 'empleados', component: EmpleadosComponent },
-  { path: 'empleados/:idEmpleado', component: EmpleadosEditarComponent },
-  { path: 'categorias', component: CategoriasComponent },
-  { path: 'categorias/:idCategoria', component: CategoriasEditarComponent },
-  { path: 'roles', component: RolesComponent },
-  { path: 'roles/:idRol', component: RolesEditarComponent },
-  { path: 'pedidos', component: PedidosComponent },
-  { path: 'pedidos/:idPedido', component: PedidosEditarComponent},
-  { path: 'proveedores', component: ProveedoresComponent },
-  { path: 'proveedores/:idProveedor', component: ProveedoresEditarComponent },
-  { path: 'tipos', component: TipoproductoComponent },
-  { path: 'tipos/:idTipo', component: TipoproductoEditarComponent},
-  { path: 'perfil', component: MiperfilComponent },
-  { path: 'lineas', component: LineadeventaComponent },
-  { path: 'lineas/:idLineaVenta', component: LineadeventaEditarComponent}
+  { path: 'clientes', component: ClientesComponent, canActivate: [AuthGuard] },
+  { path: 'clientes/:idCliente', component: ClientesEditarComponent, canActivate: [AuthGuard] },
+  { path: 'productos', component: ProductosComponent, canActivate: [AuthGuard] },
+  { path: 'productos/:idProducto', component: ProductosEditarComponent, canActivate: [AuthGuard] },
+  { path: 'ventas', component: VentasComponent, canActivate: [AuthGuard] },
+  { path: 'ventas/:idVenta', component: VentasEditarComponent, canActivate: [AuthGuard]},
+  { path: 'empleados', component: EmpleadosComponent, canActivate: [AuthGuard] },
+  { path: 'empleados/:idEmpleado', component: EmpleadosEditarComponent, canActivate: [AuthGuard] },
+  { path: 'categorias', component: CategoriasComponent, canActivate: [AuthGuard] },
+  { path: 'categorias/:idCategoria', component: CategoriasEditarComponent, canActivate: [AuthGuard] },
+  { path: 'roles', component: RolesComponent, canActivate: [AuthGuard] },
+  { path: 'roles/:idRol', component: RolesEditarComponent, canActivate: [AuthGuard] },
+  { path: 'pedidos', component: PedidosComponent, canActivate: [AuthGuard] },
+  { path: 'pedidos/:idPedido', component: PedidosEditarComponent, canActivate: [AuthGuard]},
+  { path: 'proveedores', component: ProveedoresComponent, canActivate: [AuthGuard] },
+  { path: 'proveedores/:idProveedor', component: ProveedoresEditarComponent, canActivate: [AuthGuard] },
+  { path: 'tipos', component: TipoproductoComponent, canActivate: [AuthGuard] },
+  { path: 'tipos/:idTipo', component: TipoproductoEditarComponent, canActivate: [AuthGuard]},
+  { path: 'perfil', component: MiperfilComponent, canActivate: [AuthGuard] },
+  { path: 'lineas', component: LineadeventaComponent, canActivate: [AuthGuard] },
+  { path: 'lineas/:idLineaVenta', component: LineadeventaEditarComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

@@ -13,11 +13,14 @@ export class LineaService {
 
   lineasUrl = 'http://localhost:3000/api/lineas';
   httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token') || ''}` // Agrega el token
+  })
   };
 
   getLineas(): Observable<RespuestaLineas> {
-    return this.http.get<RespuestaLineas>(this.lineasUrl)
+    return this.http.get<RespuestaLineas>(this.lineasUrl, this.httpOptions)
     .pipe(
       catchError(this.handleError<RespuestaLineas>('getLineas', { message: '', data: [] }))
     );
@@ -26,7 +29,7 @@ export class LineaService {
   getLineasDeLaVenta(venta: Venta): Observable<RespuestaLineas>{
     const url = `${this.lineasUrl}/venta/${venta.idVenta}`;
 
-    return this.http.get<RespuestaLineas>(url)
+    return this.http.get<RespuestaLineas>(url, this.httpOptions)
     .pipe(
       catchError(this.handleError<RespuestaLineas>('getLineasDeLaVenta', { message: '', data: [] }))
     );

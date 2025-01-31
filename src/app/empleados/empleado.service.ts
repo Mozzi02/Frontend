@@ -12,12 +12,15 @@ export class EmpleadoService {
  
   private empleadosUrl = 'http://localhost:3000/api/empleados'
   httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token') || ''}` // Agrega el token
+  })
   };
 
 
   getEmpleados(): Observable<RespuestaEmpleados>{
-    return this.http.get<RespuestaEmpleados>(this.empleadosUrl)
+    return this.http.get<RespuestaEmpleados>(this.empleadosUrl, this.httpOptions)
     .pipe(
       catchError(this.handleError<RespuestaEmpleados>('getEmpleados', { message: '', data: [] }))
     );

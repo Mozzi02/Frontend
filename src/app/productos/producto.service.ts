@@ -12,20 +12,24 @@ export class ProductoService {
 
   private productosUrl = 'http://localhost:3000/api/productos'
   httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token') || ''}` // Agrega el token
+  })
   };
 
   getProductos(): Observable<RespuestaProductos>{
-    return this.http.get<RespuestaProductos>(this.productosUrl)
+    return this.http.get<RespuestaProductos>(this.productosUrl, this.httpOptions)
     .pipe(
       catchError(this.handleError<RespuestaProductos>('getProductos', { message: '', data: [] }))
     );
   }
 
   getProducto(idProducto: number): Observable<Producto> {
-  const url = `${this.productosUrl}/${idProducto}`;
-  return this.http.get<Producto>(url).pipe(
-    catchError(this.handleError<Producto>(`getProducto idProducto=${idProducto}`))
+    const url = `${this.productosUrl}/${idProducto}`;
+    return this.http.get<Producto>(url, this.httpOptions)
+    .pipe(
+      catchError(this.handleError<Producto>(`getProducto idProducto=${idProducto}`))
     );
   }
   
@@ -54,7 +58,7 @@ export class ProductoService {
   findSome(descripcion: string): Observable<RespuestaProductos> {
     const url = `${this.productosUrl}/buscar/${descripcion}`;
 
-    return this.http.get<RespuestaProductos>(url)
+    return this.http.get<RespuestaProductos>(url, this.httpOptions)
     .pipe(
       catchError(this.handleError<RespuestaProductos>('buscarProductos', { message: '', data: [] }))
     );

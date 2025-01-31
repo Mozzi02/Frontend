@@ -12,11 +12,14 @@ export class CategoriaService {
 
   private categoriasUrl = 'http://localhost:3000/api/categorias'
   httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token') || ''}` // Agrega el token
+  })
   };
 
   getCategorias(): Observable<RespuestaCategorias>{
-    return this.http.get<RespuestaCategorias>(this.categoriasUrl)
+    return this.http.get<RespuestaCategorias>(this.categoriasUrl, this.httpOptions)
     .pipe(
       catchError(this.handleError<RespuestaCategorias>('getCategorias', { message: '', data: [] }))
     );

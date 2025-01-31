@@ -12,12 +12,15 @@ export class PedidoService {
 
   private pedidosUrl = 'http://localhost:3000/api/pedidos'
   httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token') || ''}` // Agrega el token
+  })
   };
   
 
   getPedidos(): Observable<RespuestaPedidos>{
-    return this.http.get<RespuestaPedidos>(this.pedidosUrl)
+    return this.http.get<RespuestaPedidos>(this.pedidosUrl, this.httpOptions)
     .pipe(
       catchError(this.handleError<RespuestaPedidos>('getPedidos', { message: '', data: [] }))
     );

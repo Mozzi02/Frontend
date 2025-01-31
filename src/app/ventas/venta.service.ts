@@ -12,12 +12,15 @@ export class VentaService {
 
   ventasUrl = 'http://localhost:3000/api/ventas';
   httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token') || ''}` // Agrega el token
+  })
   };
 
 
   getVentas(): Observable<RespuestaVentas>{
-    return this.http.get<RespuestaVentas>(this.ventasUrl)
+    return this.http.get<RespuestaVentas>(this.ventasUrl, this.httpOptions)
     .pipe(
       catchError(this.handleError<RespuestaVentas>('getVentas', { message: '', data: [] }))
     );

@@ -28,6 +28,8 @@ import { RolesEditarComponent } from './roles/roles-editar/roles-editar.componen
 import { TipoproductoEditarComponent } from './tipoproducto/tipoproducto-editar/tipoproducto-editar.component';
 import { VentasEditarComponent } from './ventas/ventas-editar/ventas-editar.component';
 import { LineadeventaEditarComponent } from './lineadeventa/lineadeventa-editar/lineadeventa-editar.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +57,7 @@ import { LineadeventaEditarComponent } from './lineadeventa/lineadeventa-editar/
     TipoproductoEditarComponent,
     VentasEditarComponent,
     LineadeventaEditarComponent,
+    LoginComponent,
 
   ],
   imports: [
@@ -62,7 +65,14 @@ import { LineadeventaEditarComponent } from './lineadeventa/lineadeventa-editar/
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgChartsModule
+    NgChartsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem('jwt'), // Define cómo obtener el token (desde el localStorage)
+        allowedDomains: ['http://localhost:3000'], // Define tu dominio permitido (ajusta esto a tu servidor)
+        disallowedRoutes: [] // Aquí puedes agregar rutas que no necesiten token
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

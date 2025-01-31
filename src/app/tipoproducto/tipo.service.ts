@@ -12,11 +12,14 @@ export class TipoService {
 
   private tiposUrl = 'http://localhost:3000/api/tipos-producto';
   httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token') || ''}` // Agrega el token
+  })
   };
 
   getTipos(): Observable<RespuestaTipos>{
-    return this.http.get<RespuestaTipos>(this.tiposUrl)
+    return this.http.get<RespuestaTipos>(this.tiposUrl, this.httpOptions)
     .pipe(
       catchError(this.handleError<RespuestaTipos>('getTipos', { message: '', data: [] }))
     );

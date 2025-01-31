@@ -12,11 +12,14 @@ export class ClienteService {
 
   private clientesUrl = 'http://localhost:3000/api/clientes'
   httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token') || ''}` // Agrega el token
+  })
   };
 
   getClientes(): Observable<RespuestaClientes>{
-    return this.http.get<RespuestaClientes>(this.clientesUrl)
+    return this.http.get<RespuestaClientes>(this.clientesUrl, this.httpOptions)
     .pipe(
       catchError(this.handleError<RespuestaClientes>('getClientes', { message: '', data: [] }))
     );

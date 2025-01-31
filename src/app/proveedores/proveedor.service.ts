@@ -12,11 +12,14 @@ export class ProveedorService {
 
   private proveedoresUrl = 'http://localhost:3000/api/proveedores'
   httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('token') || ''}` // Agrega el token
+    })
   };
 
   getProveedores(): Observable<RespuestaProveedores>{
-    return this.http.get<RespuestaProveedores>(this.proveedoresUrl)
+    return this.http.get<RespuestaProveedores>(this.proveedoresUrl, this.httpOptions)
     .pipe(
       catchError(this.handleError<RespuestaProveedores>('getProveedores', { message: '', data: [] }))
     );
@@ -47,7 +50,7 @@ export class ProveedorService {
   findSome(razonSocial: string): Observable<RespuestaProveedores> {
     const url = `${this.proveedoresUrl}/buscar/${razonSocial}`;
 
-    return this.http.get<RespuestaProveedores>(url)
+    return this.http.get<RespuestaProveedores>(url, this.httpOptions)
     .pipe(
       catchError(this.handleError<RespuestaProveedores>('buscarProveedores', {message: '', data: []}))
     );

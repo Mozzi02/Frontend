@@ -12,11 +12,14 @@ export class RolService {
 
   private rolesUrl = 'http://localhost:3000/api/roles'
   httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${localStorage.getItem('token') || ''}` // Agrega el token
+  })
   };
 
   getRoles(): Observable<RespuestaRoles>{
-    return this.http.get<RespuestaRoles>(this.rolesUrl)
+    return this.http.get<RespuestaRoles>(this.rolesUrl, this.httpOptions)
     .pipe(
       catchError(this.handleError<RespuestaRoles>('getRoles', { message: '', data: [] }))
     );
