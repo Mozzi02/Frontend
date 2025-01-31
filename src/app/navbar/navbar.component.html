@@ -12,16 +12,19 @@
       <a class="btn btn-dark" routerLink="/clientes">Clientes</a>
       <a class="btn btn-dark" routerLink="/productos">Productos</a>
       <a class="btn btn-dark" routerLink="/ventas">Ventas</a>
-      <a class="btn btn-dark" routerLink="/empleados">Empleados</a>
+      <a class="btn btn-dark" *ngIf="isAdmin" routerLink="/empleados">Empleados</a>
       <a class="btn btn-dark" routerLink="/categorias">Categorías</a>
-      <a class="btn btn-dark" routerLink="/roles">Roles</a>
-      <a class="btn btn-dark" routerLink="/pedidos">Pedidos</a>
-      <a class="btn btn-dark" routerLink="/proveedores">Proveedores</a>
+      <a class="btn btn-dark" *ngIf="isAdmin" routerLink="/roles">Roles</a>
+      <a class="btn btn-dark" *ngIf="isAdmin" routerLink="/pedidos">Pedidos</a>
+      <a class="btn btn-dark" *ngIf="isAdmin" routerLink="/proveedores">Proveedores</a>
       <a class="btn btn-dark" routerLink="/tipos">Tipos de Producto</a>
-      <a class="btn btn-dark" routerLink="/perfil">
-        <span>Mi Perfil</span>
+      <div class="navbar-item" (click)="toggleMenu()" [ngClass]="{'active': menuVisible}">
         <img class="icono" src="https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small/profile-icon-design-free-vector.jpg" alt="Icono de perfil">
-      </a>
+        <span>Mi Perfil</span>
+        <div class="dropdown-content" *ngIf="menuVisible">
+          <a class="dropdown-item text-danger" (click)="logout()">Cerrar Sesión</a>
+        </div>
+      </div>
     </div>
   </nav>
 </body>

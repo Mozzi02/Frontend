@@ -1,0 +1,23 @@
+.error-bubble{
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #f44336; /* Rojo de alerta */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    z-index: 9999; /* Para asegurarse de que esté por encima de otros elementos */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.error-bubble.show{
+    opacity: 1;
+}
+
+.error-bubble.hide{
+    opacity: 0;
+}

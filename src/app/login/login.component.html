@@ -6,21 +6,22 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="login-form">
-        <h2>Login</h2>
-        <form (ngSubmit)="onLogin()">
-          <div>
-            <label for="email">Email</label>
-            <input type="email" id="email" [(ngModel)]="email" name="email" required />
+    <div class="d-flex justify-content-center align-items-center vh-100 bg-dark">
+      <div class="p-4 bg-dark text-white w-100" style="max-width: 400px;">
+        <h2 class="text-center mb-4">Login</h2>
+        <form class="d-flex flex-column align-items-center" (ngSubmit)="onLogin()">
+          <div class="d-flex flex-column mb-3 w-100">
+            <label for="email" class="mb-1">Email</label>
+            <input class="form-control" type="text" id="email" [(ngModel)]="email" name="email" required placeholder="Ingresá tu dirección de email" />
           </div>
-          <div>
-            <label for="password">Password</label>
-            <input type="password" id="password" [(ngModel)]="password" name="password" required />
+          <div class="d-flex flex-column mb-3 w-100">
+            <label for="password" class="mb-1">Password</label>
+            <input class="form-control" type="text" id="password" [(ngModel)]="password" name="password" required placeholder="Ingresá tu contraseña"/>
           </div>
-          <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-          <button type="submit">Login</button>
+          <div *ngIf="errorMessage" [ngClass]="{'error-bubble': true, 'show': mostrarMensaje, 'hide': !mostrarMensaje}">{{ errorMessage }}</div>
+          <button class="btn m-1 btn-primary w-100 mt-3" type="submit">Login</button>
         </form>
       </div>
-      
+    </div>
 </body>
 </html>

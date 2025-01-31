@@ -14,7 +14,6 @@ import { RolesComponent } from './roles/roles-component/roles.component';
 import { PedidosComponent } from './pedidos/pedidos-component/pedidos.component';
 import { ProveedoresComponent } from './proveedores/proveedores-component/proveedores.component';
 import { TipoproductoComponent } from './tipoproducto/tipoproducto-component/tipoproducto.component';
-import { MiperfilComponent } from './miperfil/miperfil.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ProductosEditarComponent } from './productos/productos-editar/productos-editar.component';
@@ -43,7 +42,6 @@ import { LoginComponent } from './login/login.component';
     PedidosComponent,
     ProveedoresComponent,
     TipoproductoComponent,
-    MiperfilComponent,
     InicioComponent,
     NavbarComponent,
     ProductosEditarComponent,

@@ -9,7 +9,6 @@ import { CategoriasComponent } from './categorias/categorias-component/categoria
 import { RolesComponent } from './roles/roles-component/roles.component';
 import { ProveedoresComponent } from './proveedores/proveedores-component/proveedores.component';
 import { TipoproductoComponent } from './tipoproducto/tipoproducto-component/tipoproducto.component';
-import { MiperfilComponent } from './miperfil/miperfil.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { ProductosEditarComponent } from './productos/productos-editar/productos-editar.component';
 import { ClientesEditarComponent } from './clientes/clientes-editar/clientes-editar.component';
@@ -24,6 +23,7 @@ import { VentasEditarComponent } from './ventas/ventas-editar/ventas-editar.comp
 import { LineadeventaEditarComponent } from './lineadeventa/lineadeventa-editar/lineadeventa-editar.component';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth/auth.guard';
+import { AdminGuard } from './auth/admin.guard';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -35,19 +35,18 @@ const routes: Routes = [
   { path: 'productos/:idProducto', component: ProductosEditarComponent, canActivate: [AuthGuard] },
   { path: 'ventas', component: VentasComponent, canActivate: [AuthGuard] },
   { path: 'ventas/:idVenta', component: VentasEditarComponent, canActivate: [AuthGuard]},
-  { path: 'empleados', component: EmpleadosComponent, canActivate: [AuthGuard] },
-  { path: 'empleados/:idEmpleado', component: EmpleadosEditarComponent, canActivate: [AuthGuard] },
+  { path: 'empleados', component: EmpleadosComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'empleados/:idEmpleado', component: EmpleadosEditarComponent, canActivate: [AuthGuard, AdminGuard]},
   { path: 'categorias', component: CategoriasComponent, canActivate: [AuthGuard] },
   { path: 'categorias/:idCategoria', component: CategoriasEditarComponent, canActivate: [AuthGuard] },
-  { path: 'roles', component: RolesComponent, canActivate: [AuthGuard] },
-  { path: 'roles/:idRol', component: RolesEditarComponent, canActivate: [AuthGuard] },
-  { path: 'pedidos', component: PedidosComponent, canActivate: [AuthGuard] },
-  { path: 'pedidos/:idPedido', component: PedidosEditarComponent, canActivate: [AuthGuard]},
-  { path: 'proveedores', component: ProveedoresComponent, canActivate: [AuthGuard] },
-  { path: 'proveedores/:idProveedor', component: ProveedoresEditarComponent, canActivate: [AuthGuard] },
+  { path: 'roles', component: RolesComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'roles/:idRol', component: RolesEditarComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'pedidos', component: PedidosComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'pedidos/:idPedido', component: PedidosEditarComponent, canActivate: [AuthGuard, AdminGuard]},
+  { path: 'proveedores', component: ProveedoresComponent, canActivate: [AuthGuard, AdminGuard] },
+  { path: 'proveedores/:idProveedor', component: ProveedoresEditarComponent, canActivate: [AuthGuard, AdminGuard] },
   { path: 'tipos', component: TipoproductoComponent, canActivate: [AuthGuard] },
   { path: 'tipos/:idTipo', component: TipoproductoEditarComponent, canActivate: [AuthGuard]},
-  { path: 'perfil', component: MiperfilComponent, canActivate: [AuthGuard] },
   { path: 'lineas', component: LineadeventaComponent, canActivate: [AuthGuard] },
   { path: 'lineas/:idLineaVenta', component: LineadeventaEditarComponent, canActivate: [AuthGuard]}
 ];
