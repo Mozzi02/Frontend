@@ -46,6 +46,7 @@ export class ProductosComponent implements  OnInit{
 
     this.productoService.agregarProducto(producto).subscribe((data) => {return data});
     this.getProductos();
+    location.reload();
   }
 
   editarProducto(producto: Producto): void {
@@ -55,6 +56,7 @@ export class ProductosComponent implements  OnInit{
   borrarProducto(producto: Producto): void {
     this.productoService.borrarProducto(producto.idProducto).subscribe((data) => {return data});
     this.getProductos();
+    location.reload();
   }
 
   buscarProductos(): void {
