@@ -1,14 +1,23 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
 import { ProveedoresEditarComponent } from './proveedores-editar.component';
+import { FormsModule } from '@angular/forms';
 
 describe('ProveedoresEditarComponent', () => {
   let component: ProveedoresEditarComponent;
   let fixture: ComponentFixture<ProveedoresEditarComponent>;
 
   beforeEach(() => {
+    Object.defineProperty(window, 'history', {
+      value: {
+        state: { proveedor: {} },
+      },
+      writable: true, // Establecer writable en true para permitir el cambio
+    });
+
     TestBed.configureTestingModule({
-      declarations: [ProveedoresEditarComponent]
+      declarations: [ProveedoresEditarComponent],
+      imports: [HttpClientModule, FormsModule]
     });
     fixture = TestBed.createComponent(ProveedoresEditarComponent);
     component = fixture.componentInstance;

@@ -31,7 +31,7 @@ export class PedidosEditarComponent {
   tipoProducto: TipoProducto = {idTipo: 0, descripcion: ''}
   producto: Producto = {idProducto: 0, descripcion: '', precio: 0, tipoProducto: this.tipoProducto, stock: 0, imagen: ''}
 
-  pedidoAux = history.state.pedido;
+  pedidoAux = history.state.pedido || {estado: 'sin definir'}
   pedido: Pedido = {idPedido: 0, fechaPedido: new Date(), empleado: this.empleado, proveedor: this.proveedor, cantidad: 0, producto: this.producto, estado: this.pedidoAux.estado}
 
   cargandoPedido: boolean = true;

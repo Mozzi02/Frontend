@@ -20,6 +20,8 @@ export class TipoproductoEditarComponent {
     if(tipo){
       this.tipo = tipo;
       this.cargandoTipo = false;
+    } else {
+      console.error('No se recibió tipo en el estado de navegación.');
     }
   }
 
