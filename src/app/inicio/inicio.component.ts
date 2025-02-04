@@ -13,6 +13,8 @@ export class InicioComponent {
   constructor (private ventaService: VentaService){}
 
   ventas: RespuestaVentas = {message: '', data: []};
+  year: number = 0;
+  yearsVisible: boolean = false;
 
   public barChartOptions = {
     scaleShowVerticalLines: false,
@@ -26,8 +28,13 @@ export class InicioComponent {
   public barChartData: {data: number[], label: string}[] = [{data: [], label: 'Ventas'}]
 
   ngOnInit(): void {
+    this.year = new Date().getFullYear();
+    this.genChart(this.year);
+  }
+
+  genChart(year: number): void{
     let ventasPorMes: number[] = [];
-    this.ventaService.getVentas().subscribe(response => {
+    this.ventaService.getVentasFromYear(year).subscribe(response => {
       this.ventas = response;
       this.ventas.data = response.data.map((venta) => ({
       ...venta,
@@ -42,5 +49,14 @@ export class InicioComponent {
     this.barChartData[0].data = ventasPorMes;
     this.barChartOptions = { ...this.barChartOptions }
     });
+  }
+
+  toggleMenu() {
+    this.yearsVisible = !this.yearsVisible;
+  }
+
+  changeYear(year: number){
+    this.year = year;
+    this.genChart(this.year);
   }
 }

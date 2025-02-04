@@ -19,8 +19,10 @@
       <a class="btn btn-dark" *ngIf="isAdmin" routerLink="/proveedores">Proveedores</a>
       <a class="btn btn-dark" routerLink="/tipos">Tipos de Producto</a>
       <div class="navbar-item" (click)="toggleMenu()" [ngClass]="{'active': menuVisible}">
-        <img class="icono" src="https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small/profile-icon-design-free-vector.jpg" alt="Icono de perfil">
-        <span>Mi Perfil</span>
+        <div class="btn btn-dark">
+          <img class="icono" src="https://static.vecteezy.com/system/resources/thumbnails/005/544/718/small/profile-icon-design-free-vector.jpg" alt="Icono de perfil">
+          <span>Mi Perfil</span>
+        </div>
         <div class="dropdown-content" *ngIf="menuVisible">
           <a class="dropdown-item text-danger" (click)="logout()">Cerrar Sesión</a>
         </div>

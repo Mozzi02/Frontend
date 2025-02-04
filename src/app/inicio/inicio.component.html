@@ -12,7 +12,14 @@
         </button>
     </div>
     <div style="display: block;">
-        <h1 class="titulo">Ventas por mes (2023):</h1>
+        <div class=navbar-item (click)="toggleMenu()" [ngClass]="{'active': yearsVisible}">
+            <span class="btn btn-dark">Ventas ({{year}})</span>
+            <div class="dropdown-content" *ngIf="yearsVisible">
+                <a class="dropdown-item" (click)="changeYear(2023)">2023</a>
+                <a class="dropdown-item" (click)="changeYear(2024)">2024</a>
+                <a class="dropdown-item" (click)="changeYear(2025)">2025</a>
+            </div>
+        </div>
         <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
             [legend]="barChartLegend" [type]="barChartType">
         </canvas>

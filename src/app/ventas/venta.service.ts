@@ -26,6 +26,15 @@ export class VentaService {
     );
   }
 
+  getVentasFromYear(year: number): Observable<RespuestaVentas>{
+    const url = `${this.ventasUrl}/buscar/${year}`;
+
+    return this.http.get<RespuestaVentas>(url, this.httpOptions)
+    .pipe(
+      catchError(this.handleError<RespuestaVentas>('getVentas', { message: '', data: [] }))
+    );
+  }
+
   agregarVenta(venta: Venta): Observable<Venta>{
     return this.http.post<Venta>(this.ventasUrl, venta, this.httpOptions)
       .pipe(catchError(this.handleError<Venta>('agregarVenta'))
