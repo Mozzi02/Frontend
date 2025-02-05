@@ -97,7 +97,7 @@ describe('LoginComponent (Integracion)', () => {
   })
 
   afterEach(() => {
-    httpMock.verify(); // Verifica que no haya llamadas HTTP pendientes
+    httpMock.verify(); 
   });
 
   it('debería crear el componente', () => {
@@ -109,12 +109,10 @@ describe('LoginComponent (Integracion)', () => {
     component.password = '123456';
     component.onLogin();
 
-    // Simulamos la petición HTTP
     const req = httpMock.expectOne('http://localhost:3000/api/login');
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual({ email: 'test@gmail.com', password: '123456' });
 
-    // Respondemos con un token falso
     req.flush({ token: 'fake-token', usuario: { rol: { idRol: 1 } } });
 
     expect(component.mostrarMensaje).toBeFalse();

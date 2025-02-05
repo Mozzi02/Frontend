@@ -12,7 +12,7 @@ describe('CategoriasEditarComponent', () => {
       value: {
         state: { categoria: {} },
       },
-      writable: true, // Establecer writable en true para permitir el cambio
+      writable: true,
     });
 
     TestBed.configureTestingModule({

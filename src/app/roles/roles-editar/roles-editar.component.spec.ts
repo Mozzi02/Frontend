@@ -12,7 +12,7 @@ describe('RolesEditarComponent', () => {
       value: {
         state: { rol: {} },
       },
-      writable: true, // Establecer writable en true para permitir el cambio
+      writable: true, 
     });
 
     TestBed.configureTestingModule({

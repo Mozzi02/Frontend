@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit() {
     this.authService.role$.subscribe(role => {
-      this.isAdmin = (role === '1'); // Se actualizará automáticamente cuando cambie el rol
+      this.isAdmin = (role === '1');
       this.cdRef.detectChanges();
     });
   }

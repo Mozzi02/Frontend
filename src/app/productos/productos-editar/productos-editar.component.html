@@ -12,11 +12,11 @@
       <form class="d-flex align-middle p-3 g-col-10" #formproducto="ngForm">
         <div class="d-flex flex-column m-1">
           <label for="descripcion">Descripcion:</label>
-          <input class="form-control" type="text" id="descripcion" name="descripcion" [(ngModel)]="producto.descripcion" required>
+          <input class="form-control" type="text" id="descripcion" name="descripcion" [(ngModel)]="producto.descripcion" required placeholder="Ingrese la descripción del producto">
         </div>
         <div class="d-flex flex-column m-1">
           <label for="precio">Precio:</label>
-          <input class="form-control" type="text" id="precio" name="precio" [(ngModel)]="producto.precio" required>
+          <input class="form-control" type="text" id="precio" name="precio" [(ngModel)]="producto.precio" required placeholder="Ingrese el precio del producto">
         </div>
         <div class="d-flex flex-column m-1">
           <label for="tipo">Tipo de Producto:</label>
@@ -28,11 +28,11 @@
         </div>
         <div class="d-flex flex-column m-1">
           <label for="stock">Stock:</label>
-          <input class="form-control" type="text" id="stock" name="stock" [(ngModel)]="producto.stock" required>
+          <input class="form-control" type="text" id="stock" name="stock" [(ngModel)]="producto.stock" required placeholder="Ingrese el stock del producto">
         </div>
         <div class="d-flex flex-column m-1">
           <label for="imagen">URL de la Imagen:</label>
-          <input class="form-control" type="text" id="imagen" name="imagen" [(ngModel)]="producto.imagen" required>
+          <input class="form-control" type="text" id="imagen" name="imagen" [(ngModel)]="producto.imagen" required placeholder="Ingrese la URL de la imagen del producto">
         </div>
       </form>
     </div>

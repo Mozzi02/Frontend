@@ -12,14 +12,14 @@ describe('PedidosEditarComponent', () => {
       value: {
         state: { pedido: {estado: ''} },
       },
-      writable: true, // Establecer writable en true para permitir el cambio
+      writable: true,
     });
 
     Object.defineProperty(window, 'history', {
       value: {
         state: { apellido: {} },
       },
-      writable: true, // Establecer writable en true para permitir el cambio
+      writable: true,
     });
 
     TestBed.configureTestingModule({

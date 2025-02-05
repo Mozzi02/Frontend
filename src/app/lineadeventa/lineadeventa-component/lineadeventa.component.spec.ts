@@ -12,7 +12,7 @@ describe('LineadeventaComponent', () => {
       value: {
         state: { venta: {} },
       },
-      writable: true, // Establecer writable en true para permitir el cambio
+      writable: true,
     });
 
     TestBed.configureTestingModule({

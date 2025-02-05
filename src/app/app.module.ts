@@ -66,9 +66,9 @@ import { LoginComponent } from './login/login.component';
     NgChartsModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: () => localStorage.getItem('jwt'), // Define cómo obtener el token (desde el localStorage)
-        allowedDomains: ['http://localhost:3000'], // Define tu dominio permitido (ajusta esto a tu servidor)
-        disallowedRoutes: [] // Aquí puedes agregar rutas que no necesiten token
+        tokenGetter: () => localStorage.getItem('jwt'), 
+        allowedDomains: ['http://localhost:3000'], 
+        disallowedRoutes: [] 
       }
     })
   ],

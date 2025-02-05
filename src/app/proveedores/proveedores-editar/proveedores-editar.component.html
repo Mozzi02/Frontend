@@ -4,19 +4,19 @@
   <form  class="d-flex align-middle p-3 g-col-10" #formpeditarproveedor="ngForm">
     <div class="d-flex flex-column m-1">
       <label for="cuit">CUIT:</label>
-      <input class="form-control" type="text" id="cuit" name="cuit" [(ngModel)]="proveedor.cuit" required>
+      <input class="form-control" type="text" id="cuit" name="cuit" [(ngModel)]="proveedor.cuit" required placeholder="Ingrese el CUIT del proveedor">
     </div>
     <div class="d-flex flex-column m-1">
       <label for="razonSocial">Razón Social:</label>
-      <input class="form-control" type="text" id="razonSocial" name="razonSocial" [(ngModel)]="proveedor.razonSocial" >
+      <input class="form-control" type="text" id="razonSocial" name="razonSocial" [(ngModel)]="proveedor.razonSocial" placeholder="Ingrese la razon social del proveedor">
     </div>
     <div class="d-flex flex-column m-1">
       <label for="telefono">Teléfono:</label>
-      <input class="form-control" type="text" id="telefono" name="telefono" [(ngModel)]="proveedor.telefono">
+      <input class="form-control" type="text" id="telefono" name="telefono" [(ngModel)]="proveedor.telefono" placeholder="Ingrese el telefono del proveedor">
     </div>
     <div class="d-flex flex-column m-1">
       <label for="email">E-Mail:</label>
-      <input class="form-control" type="text" id="email" name="email" [(ngModel)]="proveedor.email">
+      <input class="form-control" type="text" id="email" name="email" [(ngModel)]="proveedor.email" placeholder="Ingrese el email del proveedor">
     </div>
   </form>
 </div>

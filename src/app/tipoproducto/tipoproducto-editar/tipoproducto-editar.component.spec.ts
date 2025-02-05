@@ -12,7 +12,7 @@ describe('TipoproductoEditarComponent', () => {
       value: {
         state: { tipo: {} },
       },
-      writable: true, // Establecer writable en true para permitir el cambio
+      writable: true, 
     });
 
     TestBed.configureTestingModule({

@@ -15,7 +15,7 @@ export class LineaService {
   httpOptions = {
   headers: new HttpHeaders({ 
     'Content-Type': 'application/json',
-    'Authorization': `Bearer ${localStorage.getItem('token') || ''}` // Agrega el token
+    'Authorization': `Bearer ${localStorage.getItem('token') || ''}`
   })
   };
 

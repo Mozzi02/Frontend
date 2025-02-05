@@ -12,14 +12,14 @@ describe('ProductosEditarComponent', () => {
       value: {
         state: { producto: {} },
       },
-      writable: true, // Establecer writable en true para permitir el cambio
+      writable: true,
     });
 
     Object.defineProperty(window, 'history', {
       value: {
         state: { descripcion: {} },
       },
-      writable: true, // Establecer writable en true para permitir el cambio
+      writable: true, 
     });
 
     TestBed.configureTestingModule({

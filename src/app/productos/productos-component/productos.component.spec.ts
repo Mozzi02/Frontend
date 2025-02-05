@@ -53,26 +53,26 @@ describe('ProductosComponent (Validación de Formulario)', () => {
 
   it('No debe permitir enviar el formulario si los campos están vacíos', () => {
     const botonAgregar = fixture.debugElement.query(By.css('#btnAgregar')).nativeElement;
-    expect(botonAgregar.disabled).toBeTruthy(); // El botón debe estar deshabilitado
+    expect(botonAgregar.disabled).toBeTruthy(); 
   });
 
   it('No debe permitir ingresar texto en el campo precio ni en campo stock', () => {
-    component.precio = 0; // Simula ingreso en precio
-    component.stock = 0 // Simula ingreso en stock
+    component.precio = 0;
+    component.stock = 0;
     fixture.detectChanges();
 
     const inputPrecio = fixture.debugElement.query(By.css('input[name="precio"]')).nativeElement;
     const inputStock = fixture.debugElement.query(By.css('input[name="stock"]')).nativeElement;
 
-    expect(inputPrecio.value).toBe('0'); // Debe aceptar el valor, pero luego validarse
-    expect(inputStock.value).toBe('0'); // Debe aceptar el valor, pero luego validarse
+    expect(inputPrecio.value).toBe('0');
+    expect(inputStock.value).toBe('0');
 
-    // Simular validación manualmente
+  
     const esNumeroPrecio = !isNaN(Number(component.precio));
     const esNumeroStock = !isNaN(Number(component.stock));
 
-    expect(esNumeroPrecio).toBeTruthy(); // El valor es un número
-    expect(esNumeroStock).toBeTruthy(); // El valor de stock es un número
+    expect(esNumeroPrecio).toBeTruthy(); 
+    expect(esNumeroStock).toBeTruthy(); 
   });
 
   it('Debe habilitar el botón cuando el formulario es válido', () => {
@@ -84,6 +84,6 @@ describe('ProductosComponent (Validación de Formulario)', () => {
     fixture.detectChanges();
 
     const botonAgregar = fixture.debugElement.query(By.css('#btnAgregar')).nativeElement;
-    expect(botonAgregar.disabled).toBeFalsy(); // Ahora el botón debe estar habilitado
+    expect(botonAgregar.disabled).toBeFalsy(); 
   });
 });

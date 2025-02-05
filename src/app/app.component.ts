@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavigationEnd } from '@angular/router';
 
@@ -17,7 +17,7 @@ export class AppComponent {
   ngOnInit() {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
-        this.isLoginPage = event.url === '/login'; // Detecta si está en la ruta de login
+        this.isLoginPage = event.url === '/login'; 
       }
     });
   }

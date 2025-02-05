@@ -15,7 +15,7 @@
     <div class="d-flex flex-column m-1">
       <label for="cantidad">Cantidad:</label>
       <input class="form-control" type="number" id="cantidad" name="cantidad"
-        [(ngModel)]="cantidad" required>
+        [(ngModel)]="cantidad" required  placeholder="Ingrese la cantidad a vender">
     </div>
     <button class="btn m-1 btn-primary" type="submit" (click)="agregarNuevaLinea()"
       [disabled]="!formlinea.form.valid">Agregar

@@ -11,37 +11,37 @@
     <form class="d-flex align-middle p-3 g-col-10" #formempleado="ngForm">
       <div class="d-flex flex-column m-1">
         <label for="nombre">Nombre:</label>
-        <input class="form-control" type="text" id="nombre" name="nombre" [(ngModel)]="nombre">
+        <input class="form-control" type="text" id="nombre" name="nombre" [(ngModel)]="nombre" placeholder="Ingrese el nombre del empleado">
       </div>
       <div class="d-flex flex-column m-1">
         <label for="apellido">Apellido:</label>
-        <input class="form-control" type="text" id="apellido" name="apellido" [(ngModel)]="apellido">
+        <input class="form-control" type="text" id="apellido" name="apellido" [(ngModel)]="apellido" placeholder="Ingrese el apellido del empleado">
       </div>
       <div class="d-flex flex-column m-1">
         <label for="telefono">Telefono:</label>
-        <input class="form-control" type="text" id="telefono" name="telefono" [(ngModel)]="telefono">
+        <input class="form-control" type="text" id="telefono" name="telefono" [(ngModel)]="telefono" placeholder="Ingrese el teléfono del empleado">
       </div>
       <div class="d-flex flex-column m-1">
         <label for="email">E-Mail:</label>
-        <input class="form-control" type="text" id="email" name="email" [(ngModel)]="email">
+        <input class="form-control" type="text" id="email" name="email" [(ngModel)]="email" placeholder="Ingrese el email del empleado">
       </div>
       <div class="d-flex flex-column m-1">
         <label for="direccion">Dirección:</label>
-        <input class="form-control" type="text" id="direccion" name="direccion" [(ngModel)]="direccion">
+        <input class="form-control" type="text" id="direccion" name="direccion" [(ngModel)]="direccion" placeholder="Ingrese la direccion del empleado">
       </div>
       <div class="d-flex flex-column m-1">
         <label for="dni">DNI:</label>
-        <input class="form-control" type="text" id="dni" name="dni" [(ngModel)]="dni" required>
+        <input class="form-control" type="text" id="dni" name="dni" [(ngModel)]="dni" required placeholder="Ingrese el dni del empleado">
       </div>
       <div class="d-flex flex-column m-1">
         <label for="rol">Rol:</label>
-        <select class="form-select" id="selecRol" name="rol" [(ngModel)]="rol">
+        <select class="form-select" id="selecRol" name="rol" [(ngModel)]="rol" placeholder="Ingrese el rol del empleado">
           <option *ngFor="let rol of roles.data" [ngValue]="rol" type="number" id="rol">{{rol.descripcion}}</option>
         </select>
       </div>
       <div class="d-flex flex-column m-1">
         <label for="password">Password:</label>
-        <input class="form-control" type="text" id="password" name="password" aria-describedby="passwordHelpInline" [(ngModel)]="password">
+        <input class="form-control" type="text" id="password" name="password" aria-describedby="passwordHelpInline" [(ngModel)]="password" placeholder="Ingrese la contraseña del empleado">
       </div>
       <button class="btn m-1 btn-primary" 
       (click)="agregarNuevoEmpleado()"

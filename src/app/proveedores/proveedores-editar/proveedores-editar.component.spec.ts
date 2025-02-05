@@ -12,7 +12,7 @@ describe('ProveedoresEditarComponent', () => {
       value: {
         state: { proveedor: {} },
       },
-      writable: true, // Establecer writable en true para permitir el cambio
+      writable: true, 
     });
 
     TestBed.configureTestingModule({
