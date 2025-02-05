@@ -7,7 +7,7 @@ import { HttpTestingController, HttpClientTestingModule } from '@angular/common/
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
-describe('LoginComponent', () => {
+describe('LoginComponent (Unitario)', () => {
   let component: LoginComponent;
   let fixture: ComponentFixture<LoginComponent>;
   let authServiceMock: any;

@@ -28,7 +28,7 @@ describe('ProductosComponent', () => {
   });
 });
 
-describe('ProductosComponent (Validación de Formulario)', () => {
+describe('ProductosComponent (Automatizado - Valida formulario)', () => {
   let component: ProductosComponent;
   let fixture: ComponentFixture<ProductosComponent>;
   let productoServiceSpy: jasmine.SpyObj<ProductoService>;
