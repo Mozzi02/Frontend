@@ -12,11 +12,11 @@
         <form class="d-flex flex-column align-items-center" (ngSubmit)="onLogin()">
           <div class="d-flex flex-column mb-3 w-100">
             <label for="email" class="mb-1">Email</label>
-            <input class="form-control" type="text" id="email" ([ngModel])="email" name="email" required placeholder="Ingresá tu dirección de email" />
+            <input class="form-control" type="text" id="email" [(ngModel)]="email" name="email" required placeholder="Ingresá tu dirección de email" />
           </div>
           <div class="d-flex flex-column mb-3 w-100">
             <label for="password" class="mb-1">Password</label>
-            <input class="form-control" type="text" id="password" ([ngModel])="password" name="password" required placeholder="Ingresá tu contraseña"/>
+            <input class="form-control" type="text" id="password" [(ngModel)]="password" name="password" required placeholder="Ingresá tu contraseña"/>
           </div>
           <div *ngIf="errorMessage" [ngClass]="{'error-bubble': true, 'show': mostrarMensaje, 'hide': !mostrarMensaje}">{{ errorMessage }}</div>
           <button class="btn m-1 btn-primary w-100 mt-3" type="submit">Login</button>
