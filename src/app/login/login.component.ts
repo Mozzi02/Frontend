@@ -11,6 +11,7 @@ import { timeout } from 'rxjs';
 export class LoginComponent {
   email: string = '';
   password: string = '';
+  isPasswordVisible: boolean = false;
 
   errorMessage: string = '';
   mostrarMensaje: boolean = false;
@@ -33,6 +34,10 @@ export class LoginComponent {
         }, 3000);
       }
     });
+  }
+
+  mostrarContrasenia(): void {
+    this.isPasswordVisible = !this.isPasswordVisible;
   }
 }
 
