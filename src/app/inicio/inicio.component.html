@@ -15,7 +15,7 @@
         <div class=navbar-item (click)="toggleMenu()" [ngClass]="{'active': yearsVisible}">
             <span class="btn btn-dark">Ventas ({{year}})</span>
             <div class="dropdown-content" *ngIf="yearsVisible">
-                <a class="dropdown-item" (click)="changeYear(2025)">2025</a>
+                <a class="dropdown-item" (click)="changeYear(2025)" style="padding-left: 80px; padding-right: 80px">2025</a>
                 <a class="dropdown-item" (click)="changeYear(2024)">2024</a>
                 <a class="dropdown-item" (click)="changeYear(2023)">2023</a>
             </div>

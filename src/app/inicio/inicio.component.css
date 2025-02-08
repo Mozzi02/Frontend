@@ -98,7 +98,6 @@ canvas {
 .dropdown-content {
   position: absolute;
   top: 100%;
-  left: 5%;
   width: auto;
   max-width: fit-content; 
   background-color: #343a40;
