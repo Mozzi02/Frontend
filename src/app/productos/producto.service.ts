@@ -3,6 +3,7 @@ import { Producto, RespuestaProductos } from './iproducto';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { enviroment } from 'enviroments/enviroment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class ProductoService {
   constructor(private http: HttpClient) { }
 
-  private productosUrl = 'http://localhost:3000/api/productos'
+  private productosUrl = `${enviroment.BACKEND_URL}/api/productos`
   httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',

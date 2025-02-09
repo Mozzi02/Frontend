@@ -3,6 +3,7 @@ import { RespuestaRoles, Rol } from './irol';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { enviroment } from 'enviroments/enviroment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class RolService {
   constructor(private http: HttpClient) { }
 
-  private rolesUrl = 'http://localhost:3000/api/roles'
+  private rolesUrl = `${enviroment.BACKEND_URL}/api/roles`
   httpOptions = {
   headers: new HttpHeaders({ 
     'Content-Type': 'application/json',

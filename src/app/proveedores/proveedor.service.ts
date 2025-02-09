@@ -3,6 +3,7 @@ import { Proveedor, RespuestaProveedores } from './iproveedor';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { enviroment } from 'enviroments/enviroment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class ProveedorService {
   constructor(private http: HttpClient) { }
 
-  private proveedoresUrl = 'http://localhost:3000/api/proveedores'
+  private proveedoresUrl = `${enviroment.BACKEND_URL}/api/proveedores`
   httpOptions = {
     headers: new HttpHeaders({ 
       'Content-Type': 'application/json',

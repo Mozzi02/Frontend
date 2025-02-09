@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { enviroment } from 'enviroments/enviroment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/api/login';
+  private apiUrl = `${enviroment.BACKEND_URL}/api/login`;
   httpOptions = {
     headers: new HttpHeaders({ 
       'Content-Type': 'application/json',

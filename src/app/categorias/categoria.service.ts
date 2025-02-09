@@ -3,6 +3,7 @@ import { Categoria, RespuestaCategorias } from './icategoria';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError} from 'rxjs/operators';
+import { enviroment } from 'enviroments/enviroment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { catchError} from 'rxjs/operators';
 export class CategoriaService {
   constructor(private http: HttpClient) { }
 
-  private categoriasUrl = 'http://localhost:3000/api/categorias'
+  private categoriasUrl = `${enviroment.BACKEND_URL}/api/categorias`
   httpOptions = {
   headers: new HttpHeaders({ 
     'Content-Type': 'application/json',

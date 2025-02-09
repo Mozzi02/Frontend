@@ -4,6 +4,7 @@ import { Linea_de_venta, RespuestaLineas } from './ilineadeventa';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError} from 'rxjs/operators';
 import { Venta } from '../ventas/iventa';
+import { enviroment } from 'enviroments/enviroment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { Venta } from '../ventas/iventa';
 export class LineaService {
   constructor(private http: HttpClient) { }
 
-  lineasUrl = 'http://localhost:3000/api/lineas';
+  lineasUrl = `${enviroment.BACKEND_URL}/api/lineas`;
   httpOptions = {
   headers: new HttpHeaders({ 
     'Content-Type': 'application/json',

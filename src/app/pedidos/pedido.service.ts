@@ -3,6 +3,7 @@ import { Pedido, RespuestaPedidos } from './ipedido';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
+import { enviroment } from 'enviroments/enviroment';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class PedidoService {
   constructor(private http: HttpClient) { }
 
-  private pedidosUrl = 'http://localhost:3000/api/pedidos'
+  private pedidosUrl = `${enviroment.BACKEND_URL}/api/pedidos`
   httpOptions = {
   headers: new HttpHeaders({ 
     'Content-Type': 'application/json',

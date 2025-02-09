@@ -29,6 +29,7 @@ import { VentasEditarComponent } from './ventas/ventas-editar/ventas-editar.comp
 import { LineadeventaEditarComponent } from './lineadeventa/lineadeventa-editar/lineadeventa-editar.component';
 import { JwtModule } from '@auth0/angular-jwt';
 import { LoginComponent } from './login/login.component';
+import { enviroment } from 'enviroments/enviroment';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,7 @@ import { LoginComponent } from './login/login.component';
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('jwt'), 
-        allowedDomains: ['http://localhost:3000'], 
+        allowedDomains: [`${enviroment.BACKEND_URL}`], 
         disallowedRoutes: [] 
       }
     })
